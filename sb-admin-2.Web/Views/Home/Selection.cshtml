@@ -1,0 +1,13 @@
+﻿
+@{
+    ViewBag.Title = "Selection";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Maintenance Selection</h2>
+
+<p>
+    @Html.ActionLink("Preventive Maintenance", "Index", "Home", null, new { @class = "btn btn-primary btn-lg" })
+    @Html.ActionLink("Corrective Maintenance", "CIndex", "Home", null, new { @class = "btn btn-primary btn-lg" })
+</p>
+

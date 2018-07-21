@@ -1,0 +1,145 @@
+﻿
+@model sb_admin_2.Web.Models.NewTaxi
+
+@{
+    ViewBag.Title = "AddNewTaxi4";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+@using (Html.BeginForm("EquipmentFunctionsDetails", "Home"))
+{
+    <h2>Add New Taxi</h2>
+
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+
+                </div>
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <form role="form">
+                                <div class="form-group">
+                                    @*<div class="form-inline">*@
+                                    @Html.Label("Bronco MDVR")
+                                    @*@Html.EnumDropDownListFor(model => model.NT_BroncoMdvrs, "Select Bronco MDVR", new { @class = "form-control" })*@
+                                    @Html.DropDownListFor(m => m.NT_BroncoMdvrs, new SelectList(
+                                    new List<Object>
+                                        {
+                                            new { value = "VeryGood", text = "Very Good"},
+                                            new { value = "Good", text = "Good"},
+                                            new { value = "Fair", text = "Fair"},
+                                            new { value = "Poor", text = "Poor"},
+                                            new { value = "VeryPoor", text = "Very Poor"},
+                                        },
+                                        "value",
+                                        "text",
+                                    2), "-- Please Select --", new { @class = "form-control" })
+                                    @*@Html.RadioButton("Replaced HDD", "Yes", false) Recording*@
+                                    @Html.ValidationMessageFor(m => m.NT_BroncoMdvrs, "", new { @class = "text-danger" })
+                                    @*</div>*@
+                                </div>
+                                <div class="form-group">
+                                    @Html.Label("GPS")
+                                    @*@Html.EnumDropDownListFor(model => model.NT_Gps, "Select GPS", new { @class = "form-control" })*@
+                                    @Html.DropDownListFor(m => m.NT_Gps, new SelectList(
+                                    new List<Object>
+                                        {
+                                            new { value = "VeryGood", text = "Very Good"},
+                                            new { value = "Good", text = "Good"},
+                                            new { value = "Fair", text = "Fair"},
+                                            new { value = "Poor", text = "Poor"},
+                                            new { value = "VeryPoor", text = "Very Poor"},
+                                        },
+                                        "value",
+                                        "text",
+                                        2), "-- Please Select --", new { @class = "form-control" })
+                                        @Html.ValidationMessageFor(m => m.NT_Gps, "", new { @class = "text-danger" })
+                                </div>
+                                <div class="form-group">
+                                    @Html.Label("4G")
+                                    @*@Html.EnumDropDownListFor(model => model.NT_Four_g, "Select 4G", new { @class = "form-control" })*@
+                                    @Html.DropDownListFor(m => m.NT_Four_g, new SelectList(
+                                    new List<Object>
+                                        {
+                                            new { value = "VeryGood", text = "Very Good"},
+                                            new { value = "Good", text = "Good"},
+                                            new { value = "Fair", text = "Fair"},
+                                            new { value = "Poor", text = "Poor"},
+                                            new { value = "VeryPoor", text = "Very Poor"},
+                                        },
+                                        "value",
+                                        "text",
+                                        2), "-- Please Select --", new { @class = "form-control" })
+                                        @Html.ValidationMessageFor(m => m.NT_Four_g, "", new { @class = "text-danger" })
+                                </div>
+                                <div class="form-group">
+                                    @Html.Label("WiFi")
+                                    @*@Html.EnumDropDownListFor(model => model.NT_Wifi, "Select WiFi", new { @class = "form-control" })*@
+                                    @Html.DropDownListFor(m => m.NT_Wifi, new SelectList(
+                                   new List<Object>
+                                        {
+                                            new { value = "VeryGood", text = "Very Good"},
+                                            new { value = "Good", text = "Good"},
+                                            new { value = "Fair", text = "Fair"},
+                                            new { value = "Poor", text = "Poor"},
+                                            new { value = "VeryPoor", text = "Very Poor"},
+                                        },
+                                        "value",
+                                        "text",
+                                        2), "-- Please Select --", new { @class = "form-control" })
+                                        @Html.ValidationMessageFor(m => m.NT_Wifi, "", new { @class = "text-danger" })
+                                </div>
+                                <div class="form-group">
+                                    @Html.Label("UPS Voltage Test")
+                                    @*@Html.EnumDropDownListFor(model => model.NT_VoltageTest, "Select UPS Voltage Test", new { @class = "form-control" })*@
+                                    @Html.DropDownListFor(m => m.NT_VoltageTest, new SelectList(
+                                    new List<Object>
+                                        {
+                                            new { value = "VeryGood", text = "Very Good"},
+                                            new { value = "Good", text = "Good"},
+                                            new { value = "Fair", text = "Fair"},
+                                            new { value = "Poor", text = "Poor"},
+                                            new { value = "VeryPoor", text = "Very Poor"},
+                                        },
+                                        "value",
+                                        "text",
+                                        2), "-- Please Select --", new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(m => m.NT_VoltageTest, "", new { @class = "text-danger" })
+                                </div>
+                                <div class="form-group">
+                                    @Html.Label("Taxi Channel")
+                                    @*@Html.EnumDropDownListFor(model => model.NT_Channel, "Select Taxi Channel", new { @class = "form-control" })*@
+                                    @Html.ListBoxFor(m => m.NT_Channel, (IEnumerable<SelectListItem>)(new[] {
+                                        new SelectListItem() { Value = "CH1", Text = "CH1" },
+                                        new SelectListItem() { Value = "CH2", Text = "CH2" },
+                                        new SelectListItem() { Value = "CH3", Text = "CH3" },
+                                        new SelectListItem() { Value = "CH4", Text = "CH4" }
+                               }), new { multiple = "multiple" })
+                                    @*<input type="hidden" class="select2-offscreen" id="make-hdn" style="width:100%" value="@Model.NT_Channel" />
+                                    <input type="text" class="hidden" id="make" name="NT_Channel" value="@Model.NT_Channel" />*@
+
+                                </div>
+
+                                <input type="submit" class="btn btn-primary" name="prevBtn" value='Previous' />
+                                <input type="submit" class="btn btn-primary" name="nextBtn" value='Next' />
+                            </form>
+                        </div>
+                        <!-- /.col-lg-6 (nested) -->
+                        @*<div class="col-lg-6">
+
+                            </div>*@
+                        <!-- /.col-lg-6 (nested) -->
+                    </div>
+                    <!-- /.row (nested) -->
+                </div>
+                <!-- /.panel-body -->
+            </div>
+            <!-- /.panel -->
+        </div>
+        <!-- /.col-lg-12 -->
+    </div>
+    <!-- /.row -->
+}
