@@ -119,3 +119,4 @@ D:\Repos\sb-admin-2-bootstrap-template-asp-mvc-master\sb-admin-2.Web\obj\Debug\s
 D:\Repos\sb-admin-2-bootstrap-template-asp-mvc-master\sb-admin-2.Web\obj\Debug\sb-admin-2.Web.csproj.CoreCompileInputs.cache
 D:\Repos\sb-admin-2-bootstrap-template-asp-mvc-master\sb-admin-2.Web\obj\Debug\sb-admin-2.Web.dll
 D:\Repos\sb-admin-2-bootstrap-template-asp-mvc-master\sb-admin-2.Web\obj\Debug\sb-admin-2.Web.pdb
+D:\Repos\sb-admin-2-bootstrap-template-asp-mvc-master\sb-admin-2.Web\obj\Debug\sb-admin-2.Web.csproj.CopyComplete
