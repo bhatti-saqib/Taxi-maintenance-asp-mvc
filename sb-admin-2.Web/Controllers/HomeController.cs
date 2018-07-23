@@ -451,6 +451,14 @@ namespace sb_admin_2.Web.Controllers
             return View("Tables", _context.NewTaxis.ToList());
         }
 
+
+        public ActionResult Details(int id)
+        {
+            NewTaxi taxi = _context.NewTaxis.Find(id);
+            return View(taxi);
+        }
+
+
         public ActionResult Forms()
         {
             return View("Forms");

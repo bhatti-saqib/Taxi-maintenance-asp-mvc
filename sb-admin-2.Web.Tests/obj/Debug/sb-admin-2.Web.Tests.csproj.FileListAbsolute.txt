@@ -91,7 +91,8 @@ D:\Repos\sb-admin-2-bootstrap-template-asp-mvc-master\sb-admin-2.Web.Tests\bin\D
 D:\Repos\sb-admin-2-bootstrap-template-asp-mvc-master\sb-admin-2.Web.Tests\bin\Debug\EntityFramework.xml
 D:\Repos\sb-admin-2-bootstrap-template-asp-mvc-master\sb-admin-2.Web.Tests\bin\Debug\System.Web.Http.WebHost.xml
 D:\Repos\sb-admin-2-bootstrap-template-asp-mvc-master\sb-admin-2.Web.Tests\bin\Debug\System.Net.Http.Formatting.xml
-D:\Repos\sb-admin-2-bootstrap-template-asp-mvc-master\sb-admin-2.Web.Tests\obj\Debug\sb-admin-2.Web.Tests.csprojResolveAssemblyReference.cache
 D:\Repos\sb-admin-2-bootstrap-template-asp-mvc-master\sb-admin-2.Web.Tests\obj\Debug\sb-admin-2.Web.Tests.csproj.CoreCompileInputs.cache
 D:\Repos\sb-admin-2-bootstrap-template-asp-mvc-master\sb-admin-2.Web.Tests\obj\Debug\sb-admin-2.Web.Tests.dll
 D:\Repos\sb-admin-2-bootstrap-template-asp-mvc-master\sb-admin-2.Web.Tests\obj\Debug\sb-admin-2.Web.Tests.pdb
+D:\Repos\sb-admin-2-bootstrap-template-asp-mvc-master\sb-admin-2.Web.Tests\obj\Debug\sb-admin-2.Web.Tests.csprojAssemblyReference.cache
+D:\Repos\sb-admin-2-bootstrap-template-asp-mvc-master\sb-admin-2.Web.Tests\obj\Debug\sb-admin-2.Web.Tests.csproj.CopyComplete

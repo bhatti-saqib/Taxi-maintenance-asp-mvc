@@ -1386,6 +1386,7 @@
     <Content Include="Scripts\webcam.jquery.json" />
     <Content Include="Views\Photo\Index.cshtml" />
     <Content Include="Views\Photo\Changephoto.cshtml" />
+    <Content Include="Views\Home\Details.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
