@@ -38,10 +38,13 @@
                                         2), "-- Please Select --", new { @class = "form-control" })
                                     @Html.ValidationMessageFor(m => m.NT_ExistingMDVR, "", new { @class = "text-danger" })
                                 </div>
-                               <div class="form-group">
-                                   @Html.Label("MDVR Serial Number")
-                                   @Html.TextBoxFor(m => m.NT_MDVRSerialNo, new { placeholder = "Please enter MDVR Serial No.", @class = "form-control" })
-                                   @Html.ValidationMessageFor(m => m.NT_MDVRSerialNo, "", new { @class = "text-danger" })
+                                <div class="form-group">
+                                    @Html.Label("MDVR Serial Number")
+                                    @Html.TextBoxFor(m => m.NT_MDVRSerialNo, new { placeholder = "Please enter MDVR Serial No.", @class = "form-control" })
+                                    @Html.ValidationMessageFor(m => m.NT_MDVRSerialNo, "", new { @class = "text-danger" })
+                                    @*<a href="@Url.Action("ChangePhoto", "Home")">
+                                        <img src="~/Content/images/photo-camera.png" />
+                                    </a>*@
                                 </div>
                                 <div class="form-group">
                                     @Html.Label("Taxi Cameras")

@@ -6,6 +6,8 @@ namespace sb_admin_2.Web.Controllers
 {
     public class PhotoController : Controller
     {
+        public static string btnName;
+        
         // GET: Photo
         [HttpGet]
         public ActionResult Index()
@@ -27,12 +29,21 @@ namespace sb_admin_2.Web.Controllers
         
         // Code to display index View in a new window.
         [HttpGet]
-        public ActionResult Changephoto()
+        public ActionResult Changephoto(string linktext)
         {
+            if(linktext != null)
+            {
+                btnName = linktext +".jpg";
+            }
             if (Convert.ToString(Session["val"]) != string.Empty)
             {
-                ViewBag.pic = "http://localhost:29128/WebImages/" + Session["val"].ToString();
-                return View("/Views/Home/TaxiDetails.cshtml");
+                //ViewBag.pic = "http://localhost:29128/WebImages/" + Session["val"].ToString();
+                ViewBag.pic = "http://localhost:29128/WebImages/" + btnName.ToString();
+                Session.Remove("val");
+
+                
+                return View("/Views/Home/PicDetails.cshtml");
+                
             }
             else
             {
@@ -49,7 +60,9 @@ namespace sb_admin_2.Web.Controllers
         // This method returns the path of the image that we captured.
         public JsonResult Rebind()
         {
-            string path = "http://localhost:29128/WebImages/" + Session["val"].ToString();
+            //string path = "http://localhost:29128/WebImages/" + Session["val"].ToString();
+            //string path = "http://localhost:29128/WebImages/" + btnName.ToString();
+            string path = "http://localhost:29128/WebImages/" + Session["TaxiPlateNumber"] + btnName.ToString();
             return Json(path, JsonRequestBehavior.AllowGet);
         }
 
@@ -67,7 +80,9 @@ namespace sb_admin_2.Web.Controllers
 
                 string date = nm.ToString("yyyymmddMMss");
 
-                var path = Server.MapPath("~/WebImages/" + date + "test.jpg");
+                //var path = Server.MapPath("~/WebImages/" + date + "test.jpg");
+                //var path = Server.MapPath("~/WebImages/" + btnName);
+                var path = Server.MapPath("~/WebImages/" + Session["TaxiPlateNumber"] + btnName);
 
                 System.IO.File.WriteAllBytes(path, String_To_Bytes2(dump));
 

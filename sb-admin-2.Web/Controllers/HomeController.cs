@@ -1,15 +1,16 @@
 ﻿using sb_admin_2.Web.Models;
 using System;
-using System.Collections.Generic;
 using System.Data.Entity.Validation;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
+using System.IO;
 
 namespace sb_admin_2.Web.Controllers
 {
     public class HomeController : Controller
     {
+        //String TaxiPlateNumber = "";
+
         //private ApplicationDbContext _context;
         private DAL.TaxiContext _context;
 
@@ -53,6 +54,8 @@ namespace sb_admin_2.Web.Controllers
         public ActionResult TaxiDetails(TaxiDetails data, string prevBtn, string nextBtn)
         {
             //_context.NewTaxis.Add(newTaxiRecord);
+            Session["TaxiPlateNumber"] = data.NT_PlateNumber;
+            
 
             if (nextBtn != null)
             {
@@ -79,10 +82,7 @@ namespace sb_admin_2.Web.Controllers
                 return View();
         }
 
-        //public ActionResult AddNewTaxi2()
-        //{
-        //    return View("AddNewTaxi2");
-        //}
+        
 
 
         [HttpPost]
@@ -135,10 +135,7 @@ namespace sb_admin_2.Web.Controllers
         }
 
 
-        //public ActionResult AddNewTaxi3()
-        //{
-        //    return View("AddNewTaxi3");
-        //}
+        
 
 
         [HttpPost]
@@ -195,10 +192,7 @@ namespace sb_admin_2.Web.Controllers
         }
 
 
-        //public ActionResult AddNewTaxi4()
-        //{
-        //    return View("AddNewTaxi4");
-        //}
+        
 
 
         [HttpPost]
@@ -252,12 +246,7 @@ namespace sb_admin_2.Web.Controllers
 
 
 
-        //public ActionResult AddNewTaxi5()
-        //{
-        //    return View("AddNewTaxi5");
-        //}
-
-
+        
 
         [HttpPost]
         public ActionResult HouseKeepingDetails(HouseKeepingDetails data, string prevBtn, string nextBtn)
@@ -289,7 +278,8 @@ namespace sb_admin_2.Web.Controllers
                     obj.NT_TaxiCabin = data.NT_TaxiCabin;
                     obj.NT_ItemsLeftInside = data.NT_ItemsLeftInside;
 
-                    return View("SignOffDetails",obj);
+                    //return View("SignOffDetails", obj);
+                    return View("PicDetails", obj);
                 }
                 else
                 {
@@ -301,12 +291,113 @@ namespace sb_admin_2.Web.Controllers
        
 
 
-        //public ActionResult SignOffDetails()
-        //{
-        //    return View("AddNewTaxi6");
-        //}
+
+        [HttpPost]
+        public ActionResult PicDetails(PicDetails data, string prevBtn, string nextBtn)
+        {
+            NewTaxi obj = GetNewTaxi();
+
+            if (prevBtn != null)
+            {
+                HouseKeepingDetails hkd = new HouseKeepingDetails();
+
+                hkd.NT_TaxiHandover = obj.NT_TaxiHandover;
+                hkd.NT_NoExistingAlarms = obj.NT_NoExistingAlarms;
+                hkd.NT_TaxiCabin = obj.NT_TaxiCabin;
+                hkd.NT_ItemsLeftInside = obj.NT_ItemsLeftInside;
+
+                return View("HouseKeepingDetails", hkd);
+            }
+
+            if (nextBtn != null)
+            {
+                if (ModelState.IsValid)
+                {
+                    if(System.IO.File.Exists(Server.MapPath("~/WebImages/" + Session["TaxiPlateNumber"] + "PlateNoPic.jpg")))
+                    {
+                        //obj.NT_PlateNumberPic = Server.MapPath("~/WebImages/" + Session["TaxiPlateNumber"] + "PlateNoPic.jpg".ToString());
+                        obj.NT_PlateNumberPic = Server.MapPath("~/WebImages/" + "336PlateNoPic.jpg");
+                    }
+
+                    if (System.IO.File.Exists(Server.MapPath("~/WebImages/" + Session["TaxiPlateNumber"] + "MdvrNoPic.jpg")))
+                    {
+                        obj.NT_MdvrNoPic = Server.MapPath("~/WebImages/" + Session["TaxiPlateNumber"] + "MdvrNoPic.jpg");
+                    }
+
+                    if (System.IO.File.Exists(Server.MapPath("~/WebImages/" + Session["TaxiPlateNumber"] + "MDVRSerialNoPic.jpg")))
+                    {
+                        obj.NT_MDVRSerialNoPic = Server.MapPath("~/WebImages/" + Session["TaxiPlateNumber"] + "MDVRSerialNoPic.jpg");
+                    }
+
+                    if (System.IO.File.Exists(Server.MapPath("~/WebImages/" + Session["TaxiPlateNumber"] + "CameraSerialNoPic.jpg")))
+                    {
+                        obj.NT_CameraSerialNoPic = Server.MapPath("~/WebImages/" + Session["TaxiPlateNumber"] + "CameraSerialNoPic.jpg");
+                    }
+
+                    if (System.IO.File.Exists(Server.MapPath("~/WebImages/" + Session["TaxiPlateNumber"] + "UpsSerialNoPic.jpg")))
+                    {
+                        obj.NT_UpsSerialNoPic = Server.MapPath("~/WebImages/" + Session["TaxiPlateNumber"] + "UpsSerialNoPic.jpg");
+                    }
+
+                    if (System.IO.File.Exists(Server.MapPath("~/WebImages/" + Session["TaxiPlateNumber"] + "HDDSerialNoPic.jpg")))
+                    {
+                        obj.NT_HDDSerialNoPic = Server.MapPath("~/WebImages/" + Session["TaxiPlateNumber"] + "HDDSerialNoPic.jpg");
+                    }
+
+                    if (System.IO.File.Exists(Server.MapPath("~/WebImages/" + Session["TaxiPlateNumber"] + "PowerConnectionsPic.jpg")))
+                    {
+                        obj.NT_PowerConnectionsPic = Server.MapPath("~/WebImages/" + Session["TaxiPlateNumber"] + "PowerConnectionsPic.jpg");
+                    }
+
+                    if (System.IO.File.Exists(Server.MapPath("~/WebImages/" + Session["TaxiPlateNumber"] + "PowerCablesPic.jpg")))
+                    {
+                        obj.NT_PowerCablesPic = Server.MapPath("~/WebImages/" + Session["TaxiPlateNumber"] + "PowerCablesPic.jpg");
+                    }
+
+                    if (System.IO.File.Exists(Server.MapPath("~/WebImages/" + Session["TaxiPlateNumber"] + "CameraCablesPic.jpg")))
+                    {
+                        obj.NT_CameraCablesPic = Server.MapPath("~/WebImages/" + Session["TaxiPlateNumber"] + "CameraCablesPic.jpg");
+                    }
+
+                    if (System.IO.File.Exists(Server.MapPath("~/WebImages/" + Session["TaxiPlateNumber"] + "4GCablesPic.jpg")))
+                    {
+                        obj.NT_FourG_cablesPic = Server.MapPath("~/WebImages/" + Session["TaxiPlateNumber"] + "4GCablesPic.jpg");
+                    }
+
+                    if (System.IO.File.Exists(Server.MapPath("~/WebImages/" + Session["TaxiPlateNumber"] + "GPSCablesPic.jpg")))
+                    {
+                        obj.NT_Gps_cablesPic = Server.MapPath("~/WebImages/" + Session["TaxiPlateNumber"] + "GPSCablesPic.jpg");
+                    }
+
+                    if (System.IO.File.Exists(Server.MapPath("~/WebImages/" + Session["TaxiPlateNumber"] + "WifiCablesPic.jpg")))
+                    {
+                        obj.NT_WifiCablesPic = Server.MapPath("~/WebImages/" + Session["TaxiPlateNumber"] + "WifiCablesPic.jpg");
+                    }
 
 
+                    if (System.IO.File.Exists(Server.MapPath("~/WebImages/" + Session["TaxiPlateNumber"] + "LabelingPic.jpg")))
+                    {
+                        obj.NT_LabelingPic = Server.MapPath("~/WebImages/" + Session["TaxiPlateNumber"] + "LabelingPic.jpg");
+                    }
+
+                    if (System.IO.File.Exists(Server.MapPath("~/WebImages/" + Session["TaxiPlateNumber"] + "CableDressingPic.jpg")))
+                    {
+                        obj.NT_CableDressingPic = Server.MapPath("~/WebImages/" + Session["TaxiPlateNumber"] + "CableDressingPic.jpg");
+                    }
+
+                    return View("SignOffDetails", obj);
+                    
+                }
+                else
+                {
+                    var errors = ModelState.Values.SelectMany(v => v.Errors);
+                }
+            }
+
+            return View();
+        }
+
+        
         [HttpPost]
         public ActionResult SignOffDetails(SignOffDetails data, string prevBtn, string nextBtn)
         {
@@ -314,17 +405,17 @@ namespace sb_admin_2.Web.Controllers
 
             NewTaxi obj = GetNewTaxi();
 
-            if (prevBtn != null)
-            {
-                HouseKeepingDetails hd = new HouseKeepingDetails();
+            //if (prevBtn != null)
+            //{
+            //    HouseKeepingDetails hd = new HouseKeepingDetails();
 
-                hd.NT_TaxiHandover = obj.NT_TaxiHandover;
-                hd.NT_NoExistingAlarms = obj.NT_NoExistingAlarms;
-                hd.NT_TaxiCabin = obj.NT_TaxiCabin;
-                hd.NT_ItemsLeftInside = obj.NT_ItemsLeftInside;
+            //    hd.NT_TaxiHandover = obj.NT_TaxiHandover;
+            //    hd.NT_NoExistingAlarms = obj.NT_NoExistingAlarms;
+            //    hd.NT_TaxiCabin = obj.NT_TaxiCabin;
+            //    hd.NT_ItemsLeftInside = obj.NT_ItemsLeftInside;
 
-                return View("HouseKeepingDetails", hd);
-            }
+            //    return View("HouseKeepingDetails", hd);
+            //}
 
             if (nextBtn != null)
             {
@@ -367,6 +458,7 @@ namespace sb_admin_2.Web.Controllers
                      
             return View("Thankyou");
         }
+
 
         public ActionResult SiteTaxiDetails()
         {

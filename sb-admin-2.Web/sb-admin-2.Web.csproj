@@ -178,6 +178,10 @@
     <Compile Include="Migrations\201807101352571_MakeRepsNullable.Designer.cs">
       <DependentUpon>201807101352571_MakeRepsNullable.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201807250743536_PicsFieldsAddedToNewTaxi.cs" />
+    <Compile Include="Migrations\201807250743536_PicsFieldsAddedToNewTaxi.Designer.cs">
+      <DependentUpon>201807250743536_PicsFieldsAddedToNewTaxi.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\CableDetails.cs" />
     <Compile Include="Models\EquipmentDetails.cs" />
@@ -185,6 +189,7 @@
     <Compile Include="Models\HouseKeepingDetails.cs" />
     <Compile Include="Models\Navbar.cs" />
     <Compile Include="Models\NewTaxi.cs" />
+    <Compile Include="Models\PicDetails.cs" />
     <Compile Include="Models\Preventive.cs" />
     <Compile Include="Models\SignOffDetails.cs" />
     <Compile Include="Models\TaxiDetails.cs" />
@@ -1385,8 +1390,10 @@
     <Content Include="Scripts\src\jscam.as" />
     <Content Include="Scripts\webcam.jquery.json" />
     <Content Include="Views\Photo\Index.cshtml" />
-    <Content Include="Views\Photo\Changephoto.cshtml" />
+    <Content Include="Views\Photo\ChangePhoto.cshtml" />
     <Content Include="Views\Home\Details.cshtml" />
+    <Content Include="Views\Home\PhotoIndex.cshtml" />
+    <Content Include="Views\Home\PicDetails.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -1428,6 +1435,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201807101352571_MakeRepsNullable.resx">
       <DependentUpon>201807101352571_MakeRepsNullable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201807250743536_PicsFieldsAddedToNewTaxi.resx">
+      <DependentUpon>201807250743536_PicsFieldsAddedToNewTaxi.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

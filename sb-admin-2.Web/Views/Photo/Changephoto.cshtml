@@ -1,12 +1,13 @@
 ﻿
 @{
-    ViewBag.Title = "Changephoto";
+    ViewBag.Title = "ChangePhoto";
 }
 
 
 <script type="text/javascript">
     function ShowPopUp() {
         window.open('/Photo/Index/', "wndPopUp", 'width=720,height=400,left=100,top=100,resizable=no');
+        
     }
 </script>
 
@@ -15,8 +16,7 @@
 <br />
 <input type="button" id="btnSave" value="Take Photo" onclick="ShowPopUp();" />
 
-<input type="submit" class="btn btn-primary" style="margin-top:10px" name="prevBtn" value='Previous' />
-<input type="submit" class="btn btn-primary" style="margin-top:10px" name="nextBtn" value='Next' />
+@*<input type="submit" class="btn btn-primary" style="margin-top:10px" name="nextBtn" value='Next' />*@
 @*<p>
         @Html.ActionLink("Next", "Index", "Signature", null, new { @class = "btn btn-primary" })
     </p>*@
