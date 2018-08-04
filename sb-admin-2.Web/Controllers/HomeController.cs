@@ -62,7 +62,7 @@ namespace sb_admin_2.Web.Controllers
                 if (ModelState.IsValid)
                 {
                     NewTaxi obj = GetNewTaxi();
-                    obj.Id = data.Id;
+                    //obj.Id = data.Id;
                     obj.NT_SiteName = data.NT_SiteName;
                     obj.NT_TaxiType = data.NT_TaxiType;
                     obj.NT_PlateNumber = data.NT_PlateNumber;
@@ -96,7 +96,7 @@ namespace sb_admin_2.Web.Controllers
             {
                 TaxiDetails td = new TaxiDetails();
 
-                td.Id = obj.Id;
+                //td.Id = obj.Id;
                 td.NT_SiteName = obj.NT_SiteName;
                 td.NT_TaxiType = obj.NT_TaxiType;
                 td.NT_PlateNumber = obj.NT_PlateNumber;
@@ -460,7 +460,7 @@ namespace sb_admin_2.Web.Controllers
         }
 
 
-        public ActionResult SiteTaxiDetails()
+        public ActionResult MTaxiDetails()
         {
             return View();
         }

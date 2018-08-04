@@ -5,7 +5,7 @@ namespace sb_admin_2.Web.Models
 {
     public class NewTaxi
     {
-        public int Id { get; set; }
+        //public int Id { get; set; }
         //public Sites? NT_Sites { get; set; }
 
         [Required(ErrorMessage = "Please select Site.")]
@@ -17,8 +17,9 @@ namespace sb_admin_2.Web.Models
         [Required]
         public string NT_TaxiType { get; set; }
 
-        [Required(ErrorMessage = "Please enter Plate Number")]
+        //[Required(ErrorMessage = "Please enter Plate Number")]
         //[DataType(DataType.PhoneNumber)]
+        [Key]
         public string NT_PlateNumber { get; set; }
 
 
@@ -112,32 +113,23 @@ namespace sb_admin_2.Web.Models
         [Required]
         public string NT_Four_g { get; set; }
 
-
         [Required]
         public string NT_Wifi { get; set; }
-
 
         [Required]
         public string NT_VoltageTest { get; set; }
 
-
-
         [Required]
         public string NT_Channel { get; set; }
-
-
 
         [Required]
         public string NT_TaxiHandover { get; set; }
 
-
         [Required]
         public string NT_NoExistingAlarms { get; set; }
 
-
         [Required]
         public string NT_TaxiCabin { get; set; }
-
 
         [Required]
         public string NT_ItemsLeftInside { get; set; }

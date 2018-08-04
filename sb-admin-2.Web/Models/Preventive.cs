@@ -11,167 +11,162 @@ namespace sb_admin_2.Web.Models
         [Required(ErrorMessage = "Please select Site.")]
         [StringLength(255)]
         //[RegularExpression(@"^[a-zA-Z]+$", ErrorMessage = "Please enter only alphabets.")]
-        public string MT_SiteName { get; set; }
+        public string SiteName { get; set; }
 
 
         [Required]
-        public string MT_TaxiType { get; set; }
+        public string TaxiType { get; set; }
 
         [Required(ErrorMessage = "Please enter Plate Number")]
         //[DataType(DataType.PhoneNumber)]
-        public string MT_PlateNumber { get; set; }
+        public string PlateNumber { get; set; }
 
 
         //[RegularExpression("([1-9][0-9]*)", ErrorMessage = "Must be a number")]
         [Required(ErrorMessage = "Please enter MDVR Number")]
-        public string MT_MdvrNo { get; set; }
+        public string MdvrNo { get; set; }
 
 
         [Required(ErrorMessage = "Please enter Date")]
         [DataType(DataType.DateTime)]
         [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{dd-mm-yyyy}")]
-        public DateTime MT_Date { get; set; }
+        public DateTime Date { get; set; }
 
         [Required]
-        public string MT_Region { get; set; }
+        public string Region { get; set; }
 
         [Required]
-        public string MT_ExistingMDVR { get; set; }
-
-        //public string MT_MDVRSerialNo { get; set; }
+        public string ExistingMDVR { get; set; }
 
 
-        [Required]
-        public string MT_Cameras { get; set; }
-
-        //public string NT_CameraSerialNo { get; set; }
-
-        [Required]
-        public string MT_Ups { get; set; }
-
-        //public string NT_UpsSerialNo { get; set; }
-
-        [Required]
-        public string MT_Hdds { get; set; }
-
-        //public string NT_HDDSerialNo { get; set; }
-
-        [Required]
-        public string MT_Sims { get; set; }
-
-        [Required]
-        public string MT_Emmis { get; set; }
-
-        [Required]
-        public string MT_CameraFovs { get; set; }
-
-        [Required]
-        public string MT_PowerConnections { get; set; }
-
-        [Required]
-        public string MT_PowerCables { get; set; }
-
-        [Required]
-        public string MT_CameraCables { get; set; }
-
-        [Required]
-        public string MT_FourG_cables { get; set; }
-
-        [Required]
-        public string MT_Gps_cables { get; set; }
-
-        [Required]
-        public string MT_WifiCables { get; set; }
-
-        [Required]
-        public string MT_Labeling { get; set; }
-
-        [Required]
-        public string MT_CableDressing { get; set; }
-
-        [Required]
-        public string MT_CameraConnector { get; set; }
-
-        [Required]
-        public string MT_DiskSize { get; set; }
-
-        [Required]
-        public string MT_BroncoMdvrs { get; set; }
-
-        [Required]
-        public string MT_Gps { get; set; }
-
-        [Required]
-        public string MT_Four_g { get; set; }
+        [Required(ErrorMessage = "Please enter MDVR Serial No.")]
+        //[MaxLength(10, ErrorMessage="Cannot be greater than 10")]
+        public string MDVRSerialNo { get; set; }
 
 
         [Required]
-        public string MT_Wifi { get; set; }
+        public string Cameras { get; set; }
 
-
-        [Required]
-        public string MT_VoltageTest { get; set; }
-
-
+        [Required(ErrorMessage = "Please enter Camera Serial No.")]
+        public string CameraSerialNo { get; set; }
 
         [Required]
-        public string MT_Channel { get; set; }
+        public string Ups { get; set; }
 
 
-
-        [Required]
-        public string MT_TaxiHandover { get; set; }
-
+        [Required(ErrorMessage = "Please enter UPS Serial No.")]
+        public string UpsSerialNo { get; set; }
 
         [Required]
-        public string MT_NoExistingAlarms { get; set; }
+        public string Hdds { get; set; }
 
+
+        [Required(ErrorMessage = "Please enter HDD Serial No.")]
+        public string HDDSerialNo { get; set; }
 
         [Required]
-        public string MT_TaxiCabin { get; set; }
-
+        public string Sims { get; set; }
 
         [Required]
-        public string MT_ItemsLeftInside { get; set; }
+        public string Emmis { get; set; }
 
+        [Required]
+        public string CameraFovs { get; set; }
 
-        [Required(ErrorMessage = "Please enter Depot Representative Name.")]
-        public string MT_DepotRepresentative { get; set; }
+        [Required]
+        public string PowerConnections { get; set; }
 
+        [Required]
+        public string PowerCables { get; set; }
 
-        [Required(ErrorMessage = "Please enter SecureTech Representative Name.")]
-        public string MT_SecureTechRepresentative { get; set; }
+        [Required]
+        public string CameraCables { get; set; }
 
+        [Required]
+        public string FourG_cables { get; set; }
 
-        [Required(ErrorMessage = "Please enter MCC Representative Name.")]
-        public string MT_MccRepresentative { get; set; }
-    }
+        [Required]
+        public string Gps_cables { get; set; }
 
+        [Required]
+        public string WifiCables { get; set; }
 
-    
+        [Required]
+        public string Labeling { get; set; }
+
+        [Required]
+        public string CableDressing { get; set; }
+
         
+        [Required]
+        public string BroncoMdvrs { get; set; }
 
-    public enum Equipment
-    {
-        [Display(Name = "Equipment 1")]
-        Equipment1,
-        [Display(Name = "Equipment 2")]
-        Equipment2,
-        [Display(Name = "Equipment 3")]
-        Equipment3,
-        [Display(Name = "Equipment 4")]
-        Equipment4
-    }
+        [Required]
+        public string Gps { get; set; }
 
-    public enum Measures
-    {
-        [Display(Name = "Measure 1")]
-        Measure1,
-        [Display(Name = "Measure 2")]
-        Measure2,
-        [Display(Name = "Measure 3")]
-        Measure3,
-        [Display(Name = "Measure 4")]
-        Measure4
+        [Required]
+        public string Four_g { get; set; }
+
+
+        [Required]
+        public string Wifi { get; set; }
+
+
+        [Required]
+        public string VoltageTest { get; set; }
+
+
+
+        [Required]
+        public string TaxiHandover { get; set; }
+
+
+        [Required]
+        public string NoExistingAlarms { get; set; }
+
+
+        [Required]
+        public string OverallFeedback { get; set; }
+
+
+        //[Required(ErrorMessage = "Please enter Depot Representative Name.")]
+        public bool? Is_DepotRepApproved { get; set; }
+
+
+        //[Required(ErrorMessage = "Please enter SecureTech Representative Name.")]
+        public bool? Is_SecureTechRepApproved { get; set; }
+
+
+        //[Required(ErrorMessage = "Please enter MCC Representative Name.")]
+        public bool? Is_MccRepApproved { get; set; }
+
+        public string PlateNumberPic { get; set; }
+
+        public string MdvrNoPic { get; set; }
+
+        public string MDVRSerialNoPic { get; set; }
+
+        public string CameraSerialNoPic { get; set; }
+
+        public string UpsSerialNoPic { get; set; }
+
+        public string HDDSerialNoPic { get; set; }
+
+        public string PowerConnectionsPic { get; set; }
+
+        public string PowerCablesPic { get; set; }
+
+        public string CameraCablesPic { get; set; }
+
+        public string FourG_cablesPic { get; set; }
+
+        public string Gps_cablesPic { get; set; }
+
+        public string WifiCablesPic { get; set; }
+
+        public string LabelingPic { get; set; }
+
+        public string CableDressingPic { get; set; }
+
     }
 }

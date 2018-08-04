@@ -165,6 +165,7 @@ D:\Repos\sb-admin-2\sb-admin-2.Web\obj\Debug\sb_admin_2.Web.Migrations.AddSerial
 D:\Repos\sb-admin-2\sb-admin-2.Web\obj\Debug\sb_admin_2.Web.Migrations.ChangeRepsTypeToBool.resources
 D:\Repos\sb-admin-2\sb-admin-2.Web\obj\Debug\sb_admin_2.Web.Migrations.MakeRepsNullable.resources
 D:\Repos\sb-admin-2\sb-admin-2.Web\obj\Debug\sb_admin_2.Web.Migrations.PicsFieldsAddedToNewTaxi.resources
+D:\Repos\sb-admin-2\sb-admin-2.Web\obj\Debug\sb_admin_2.Web.Migrations.PlateNumberBecomesPrimaryKey.resources
 D:\Repos\sb-admin-2\sb-admin-2.Web\obj\Debug\sb-admin-2.Web.csproj.GenerateResource.cache
 D:\Repos\sb-admin-2\sb-admin-2.Web\obj\Debug\sb-admin-2.Web.csproj.CoreCompileInputs.cache
 D:\Repos\sb-admin-2\sb-admin-2.Web\obj\Debug\sb-admin-2.Web.csproj.CopyComplete
