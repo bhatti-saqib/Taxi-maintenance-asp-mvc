@@ -3,15 +3,12 @@ using System;
 using System.Data.Entity.Validation;
 using System.Linq;
 using System.Web.Mvc;
-using System.IO;
+
 
 namespace sb_admin_2.Web.Controllers
 {
     public class HomeController : Controller
     {
-        //String TaxiPlateNumber = "";
-
-        //private ApplicationDbContext _context;
         private DAL.TaxiContext _context;
 
 
@@ -23,9 +20,18 @@ namespace sb_admin_2.Web.Controllers
 
         public ActionResult Index()
         {
+            
             return View();
+            
+            //return RedirectToAction("Index", "Login");
+            
         }
 
+
+        //public ActionResult Index(string uName)
+        //{
+        //    return View();
+        //}
 
         private NewTaxi GetNewTaxi()
         {
@@ -41,6 +47,24 @@ namespace sb_admin_2.Web.Controllers
         private void RemoveNewTaxi()
         {
             Session.Remove("newTaxi");
+            PhotoController.picPaths = null;
+        }
+
+
+        private Preventive GetMaintenanceTaxi()
+        {
+            if(Session["maintenance"] == null)
+            {
+                Session["maintenance"] = new Preventive();
+            }
+
+            return (Preventive)Session["maintenance"];
+        }
+
+
+        private void RemoveMaintenanceTaxi()
+        {
+            Session.Remove("maintenance");
         }
 
 
@@ -53,7 +77,6 @@ namespace sb_admin_2.Web.Controllers
         [HttpPost]
         public ActionResult TaxiDetails(TaxiDetails data, string prevBtn, string nextBtn)
         {
-            //_context.NewTaxis.Add(newTaxiRecord);
             Session["TaxiPlateNumber"] = data.NT_PlateNumber;
             
 
@@ -88,21 +111,20 @@ namespace sb_admin_2.Web.Controllers
         [HttpPost]
         public ActionResult EquipmentDetails(EquipmentDetails data, string prevBtn, string nextBtn)
         {
-            //_context.NewTaxis.Add(newTaxiRecord);
-
             NewTaxi obj = GetNewTaxi();
 
             if (prevBtn != null)
             {
-                TaxiDetails td = new TaxiDetails();
-
-                //td.Id = obj.Id;
-                td.NT_SiteName = obj.NT_SiteName;
-                td.NT_TaxiType = obj.NT_TaxiType;
-                td.NT_PlateNumber = obj.NT_PlateNumber;
-                td.NT_MdvrNo = obj.NT_MdvrNo;
-                td.NT_Date = obj.NT_Date;
-                td.NT_Region = obj.NT_Region;
+                TaxiDetails td = new TaxiDetails
+                {
+                    //td.Id = obj.Id;
+                    NT_SiteName = obj.NT_SiteName,
+                    NT_TaxiType = obj.NT_TaxiType,
+                    NT_PlateNumber = obj.NT_PlateNumber,
+                    NT_MdvrNo = obj.NT_MdvrNo,
+                    NT_Date = obj.NT_Date,
+                    NT_Region = obj.NT_Region
+                };
 
                 return View("TaxiDetails", td);
             }
@@ -141,8 +163,6 @@ namespace sb_admin_2.Web.Controllers
         [HttpPost]
         public ActionResult CableDetails(CableDetails data, string prevBtn, string nextBtn)
         {
-            //_context.NewTaxis.Add(newTaxiRecord);
-
             NewTaxi obj = GetNewTaxi();
 
             if (prevBtn != null)
@@ -198,8 +218,6 @@ namespace sb_admin_2.Web.Controllers
         [HttpPost]
         public ActionResult EquipmentFunctionsDetails(EquipmentFunctionsDetails data, string prevBtn, string nextBtn)
         {
-            //_context.NewTaxis.Add(newTaxiRecord);
-
             NewTaxi obj = GetNewTaxi();
 
             if (prevBtn != null)
@@ -313,77 +331,140 @@ namespace sb_admin_2.Web.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    if(System.IO.File.Exists(Server.MapPath("~/WebImages/" + Session["TaxiPlateNumber"] + "PlateNoPic.jpg")))
+                    foreach(var path in PhotoController.picPaths)
                     {
-                        //obj.NT_PlateNumberPic = Server.MapPath("~/WebImages/" + Session["TaxiPlateNumber"] + "PlateNoPic.jpg".ToString());
-                        obj.NT_PlateNumberPic = Server.MapPath("~/WebImages/" + "336PlateNoPic.jpg");
-                    }
+                        if(path.Contains("PlateNoPic.jpg"))
+                        {
+                            obj.NT_PlateNumberPic = path;
+                        }
+                        else if(path.Contains("MdvrNoPic.jpg"))
+                        {
+                            obj.NT_MdvrNoPic = path;
+                        }
+                        else if(path.Contains("MDVRSerialNoPic.jpg"))
+                        {
+                            obj.NT_MDVRSerialNoPic = path;
+                        }
+                        else if (path.Contains("CameraSerialNoPic.jpg"))
+                        {
+                            obj.NT_CameraSerialNoPic = path;
+                        }
+                        else if(path.Contains("UpsSerialNoPic.jpg"))
+                        {
+                            obj.NT_UpsSerialNoPic = path;
+                        }
+                        else if(path.Contains("HDDSerialNoPic.jpg"))
+                        {
+                            obj.NT_HDDSerialNoPic = path;
+                        }
+                        else if(path.Contains("PowerConnectionsPic.jpg"))
+                        {
+                            obj.NT_PowerConnectionsPic = path;
+                        }
+                        else if(path.Contains("PowerCablesPic.jpg"))
+                        {
+                            obj.NT_PowerCablesPic = path;
+                        }    
+                        else if(path.Contains("CameraCablesPic.jpg"))
+                        {
+                            obj.NT_CameraCablesPic = path;
+                        }
+                        else if(path.Contains("4GCablesPic.jpg"))
+                        {
+                            obj.NT_FourG_cablesPic = path;
+                        }
+                        else if(path.Contains("GPSCablesPic.jpg"))
+                        {
+                            obj.NT_Gps_cablesPic = path;
+                        }
+                        else if(path.Contains("WifiCablesPic.jpg"))
+                        {
+                            obj.NT_WifiCablesPic = path;
+                        }
+                        else if(path.Contains("LabelingPic.jpg"))
+                        {
+                            obj.NT_LabelingPic = path;
+                        }
+                        else if(path.Contains("CableDressingPic.jpg"))
+                        {
+                            obj.NT_CableDressingPic = path;
+                        }
 
-                    if (System.IO.File.Exists(Server.MapPath("~/WebImages/" + Session["TaxiPlateNumber"] + "MdvrNoPic.jpg")))
-                    {
-                        obj.NT_MdvrNoPic = Server.MapPath("~/WebImages/" + Session["TaxiPlateNumber"] + "MdvrNoPic.jpg");
                     }
+                    
 
-                    if (System.IO.File.Exists(Server.MapPath("~/WebImages/" + Session["TaxiPlateNumber"] + "MDVRSerialNoPic.jpg")))
-                    {
-                        obj.NT_MDVRSerialNoPic = Server.MapPath("~/WebImages/" + Session["TaxiPlateNumber"] + "MDVRSerialNoPic.jpg");
-                    }
+                    //if (System.IO.File.Exists(Server.MapPath("~/WebImages/" + Session["dateAndTime"] + "PlateNoPic.jpg")))
+                    //{
+                    //    obj.NT_PlateNumberPic = Server.MapPath("~/WebImages/" + Session["dateAndTime"] + "PlateNoPic.jpg");
 
-                    if (System.IO.File.Exists(Server.MapPath("~/WebImages/" + Session["TaxiPlateNumber"] + "CameraSerialNoPic.jpg")))
-                    {
-                        obj.NT_CameraSerialNoPic = Server.MapPath("~/WebImages/" + Session["TaxiPlateNumber"] + "CameraSerialNoPic.jpg");
-                    }
+                    //}
 
-                    if (System.IO.File.Exists(Server.MapPath("~/WebImages/" + Session["TaxiPlateNumber"] + "UpsSerialNoPic.jpg")))
-                    {
-                        obj.NT_UpsSerialNoPic = Server.MapPath("~/WebImages/" + Session["TaxiPlateNumber"] + "UpsSerialNoPic.jpg");
-                    }
+                    //if (System.IO.File.Exists(Server.MapPath("~/WebImages/" + Session["dateAndTime"] + "MdvrNoPic.jpg")))
+                    //{
+                    //    obj.NT_MdvrNoPic = Server.MapPath("~/WebImages/" + Session["dateAndTime"] + "MdvrNoPic.jpg");
 
-                    if (System.IO.File.Exists(Server.MapPath("~/WebImages/" + Session["TaxiPlateNumber"] + "HDDSerialNoPic.jpg")))
-                    {
-                        obj.NT_HDDSerialNoPic = Server.MapPath("~/WebImages/" + Session["TaxiPlateNumber"] + "HDDSerialNoPic.jpg");
-                    }
+                    //}
 
-                    if (System.IO.File.Exists(Server.MapPath("~/WebImages/" + Session["TaxiPlateNumber"] + "PowerConnectionsPic.jpg")))
-                    {
-                        obj.NT_PowerConnectionsPic = Server.MapPath("~/WebImages/" + Session["TaxiPlateNumber"] + "PowerConnectionsPic.jpg");
-                    }
+                    //if (System.IO.File.Exists(Server.MapPath("~/WebImages/" + Session["dateAndTime"] + "MDVRSerialNoPic.jpg")))
+                    //{
+                    //    obj.NT_MDVRSerialNoPic = Server.MapPath("~/WebImages/" + Session["dateAndTime"] + "MDVRSerialNoPic.jpg");
+                    //}
 
-                    if (System.IO.File.Exists(Server.MapPath("~/WebImages/" + Session["TaxiPlateNumber"] + "PowerCablesPic.jpg")))
-                    {
-                        obj.NT_PowerCablesPic = Server.MapPath("~/WebImages/" + Session["TaxiPlateNumber"] + "PowerCablesPic.jpg");
-                    }
+                    //if (System.IO.File.Exists(Server.MapPath("~/WebImages/" + Session["dateAndTime"] + "CameraSerialNoPic.jpg")))
+                    //{
+                    //    obj.NT_CameraSerialNoPic = Server.MapPath("~/WebImages/" + Session["dateAndTime"] + "CameraSerialNoPic.jpg");
+                    //}
 
-                    if (System.IO.File.Exists(Server.MapPath("~/WebImages/" + Session["TaxiPlateNumber"] + "CameraCablesPic.jpg")))
-                    {
-                        obj.NT_CameraCablesPic = Server.MapPath("~/WebImages/" + Session["TaxiPlateNumber"] + "CameraCablesPic.jpg");
-                    }
+                    //if (System.IO.File.Exists(Server.MapPath("~/WebImages/" + Session["dateAndTime"] + "UpsSerialNoPic.jpg")))
+                    //{
+                    //    obj.NT_UpsSerialNoPic = Server.MapPath("~/WebImages/" + Session["dateAndTime"] + "UpsSerialNoPic.jpg");
+                    //}
 
-                    if (System.IO.File.Exists(Server.MapPath("~/WebImages/" + Session["TaxiPlateNumber"] + "4GCablesPic.jpg")))
-                    {
-                        obj.NT_FourG_cablesPic = Server.MapPath("~/WebImages/" + Session["TaxiPlateNumber"] + "4GCablesPic.jpg");
-                    }
+                    //if (System.IO.File.Exists(Server.MapPath("~/WebImages/" + Session["dateAndTime"] + "HDDSerialNoPic.jpg")))
+                    //{
+                    //    obj.NT_HDDSerialNoPic = Server.MapPath("~/WebImages/" + Session["dateAndTime"] + "HDDSerialNoPic.jpg");
+                    //}
 
-                    if (System.IO.File.Exists(Server.MapPath("~/WebImages/" + Session["TaxiPlateNumber"] + "GPSCablesPic.jpg")))
-                    {
-                        obj.NT_Gps_cablesPic = Server.MapPath("~/WebImages/" + Session["TaxiPlateNumber"] + "GPSCablesPic.jpg");
-                    }
+                    //if (System.IO.File.Exists(Server.MapPath("~/WebImages/" + Session["dateAndTime"] + "PowerConnectionsPic.jpg")))
+                    //{
+                    //    obj.NT_PowerConnectionsPic = Server.MapPath("~/WebImages/" + Session["dateAndTime"] + "PowerConnectionsPic.jpg");
+                    //}
 
-                    if (System.IO.File.Exists(Server.MapPath("~/WebImages/" + Session["TaxiPlateNumber"] + "WifiCablesPic.jpg")))
-                    {
-                        obj.NT_WifiCablesPic = Server.MapPath("~/WebImages/" + Session["TaxiPlateNumber"] + "WifiCablesPic.jpg");
-                    }
+                    //if (System.IO.File.Exists(Server.MapPath("~/WebImages/" + Session["dateAndTime"] + "PowerCablesPic.jpg")))
+                    //{
+                    //    obj.NT_PowerCablesPic = Server.MapPath("~/WebImages/" + Session["dateAndTime"] + "PowerCablesPic.jpg");
+                    //}
+
+                    //if (System.IO.File.Exists(Server.MapPath("~/WebImages/" + Session["dateAndTime"] + "CameraCablesPic.jpg")))
+                    //{
+                    //    obj.NT_CameraCablesPic = Server.MapPath("~/WebImages/" + Session["dateAndTime"] + "CameraCablesPic.jpg");
+                    //}
+
+                    //if (System.IO.File.Exists(Server.MapPath("~/WebImages/" + Session["dateAndTime"] + "4GCablesPic.jpg")))
+                    //{
+                    //    obj.NT_FourG_cablesPic = Server.MapPath("~/WebImages/" + Session["dateAndTime"] + "4GCablesPic.jpg");
+                    //}
+
+                    //if (System.IO.File.Exists(Server.MapPath("~/WebImages/" + Session["dateAndTime"] + "GPSCablesPic.jpg")))
+                    //{
+                    //    obj.NT_Gps_cablesPic = Server.MapPath("~/WebImages/" + Session["dateAndTime"] + "GPSCablesPic.jpg");
+                    //}
+
+                    //if (System.IO.File.Exists(Server.MapPath("~/WebImages/" + Session["dateAndTime"] + "WifiCablesPic.jpg")))
+                    //{
+                    //    obj.NT_WifiCablesPic = Server.MapPath("~/WebImages/" + Session["dateAndTime"] + "WifiCablesPic.jpg");
+                    //}
 
 
-                    if (System.IO.File.Exists(Server.MapPath("~/WebImages/" + Session["TaxiPlateNumber"] + "LabelingPic.jpg")))
-                    {
-                        obj.NT_LabelingPic = Server.MapPath("~/WebImages/" + Session["TaxiPlateNumber"] + "LabelingPic.jpg");
-                    }
+                    //if (System.IO.File.Exists(Server.MapPath("~/WebImages/" + Session["dateAndTime"] + "LabelingPic.jpg")))
+                    //{
+                    //    obj.NT_LabelingPic = Server.MapPath("~/WebImages/" + Session["dateAndTime"] + "LabelingPic.jpg");
+                    //}
 
-                    if (System.IO.File.Exists(Server.MapPath("~/WebImages/" + Session["TaxiPlateNumber"] + "CableDressingPic.jpg")))
-                    {
-                        obj.NT_CableDressingPic = Server.MapPath("~/WebImages/" + Session["TaxiPlateNumber"] + "CableDressingPic.jpg");
-                    }
+                    //if (System.IO.File.Exists(Server.MapPath("~/WebImages/" + Session["dateAndTime"] + "CableDressingPic.jpg")))
+                    //{
+                    //    obj.NT_CableDressingPic = Server.MapPath("~/WebImages/" + Session["dateAndTime"] + "CableDressingPic.jpg");
+                    //}
 
                     return View("SignOffDetails", obj);
                     
@@ -465,41 +546,400 @@ namespace sb_admin_2.Web.Controllers
             return View();
         }
 
-        
-        public ActionResult Equipment()
+
+        [HttpPost]
+        public ActionResult MTaxiDetails(MTaxiDetails data, string prevBtn, string nextBtn)
         {
-            return View("Equipment");
+            //Session["MaintenanceId"] = data.Id;
+
+
+            if (nextBtn != null)
+            {
+                if (ModelState.IsValid)
+                {
+                    Preventive obj = GetMaintenanceTaxi();
+                    obj.Id = data.Id;
+                    obj.MT_SiteName = data.MT_SiteName;
+                    obj.MT_TaxiType = data.MT_TaxiType;
+                    obj.MT_PlateNumber = data.MT_PlateNumber;
+                    obj.MT_MdvrNo = data.MT_MdvrNo;
+                    obj.MT_Date = data.MT_Date;
+                    obj.MT_Region = data.MT_Region;
+                    obj.typeOfMaintenance = "P";
+
+                    return View("MEquipmentDetails");
+                }
+                else
+                {
+                    var errors = ModelState.Values.SelectMany(v => v.Errors);
+                }
+
+            }
+
+            return View();
         }
 
-        public ActionResult Cables()
+
+        [HttpPost]
+        public ActionResult MEquipmentDetails(MEquipmentDetails data, string prevBtn, string nextBtn)
         {
-            return View("Cables");
+            Preventive obj = GetMaintenanceTaxi();
+
+            if (prevBtn != null)
+            {
+                MTaxiDetails td = new MTaxiDetails
+                {
+                    Id = obj.Id,
+                    MT_SiteName = obj.MT_SiteName,
+                    MT_TaxiType = obj.MT_TaxiType,
+                    MT_PlateNumber = obj.MT_PlateNumber,
+                    MT_MdvrNo = obj.MT_MdvrNo,
+                    MT_Date = obj.MT_Date,
+                    MT_Region = obj.MT_Region,
+                    typeOfMaintenance = obj.typeOfMaintenance
+                };
+
+                return View("MTaxiDetails", td);
+            }
+
+            if (nextBtn != null)
+            {
+                if (ModelState.IsValid)
+                {
+                    obj.MT_ExistingMDVR = data.MT_ExistingMDVR;
+                    obj.MT_MDVRSerialNo = data.MT_MDVRSerialNo;
+                    obj.MT_Cameras = data.MT_Cameras;
+                    obj.MT_CameraSerialNo = data.MT_CameraSerialNo;
+                    obj.MT_Ups = data.MT_Ups;
+                    obj.MT_UpsSerialNo = data.MT_UpsSerialNo;
+                    obj.MT_Hdds = data.MT_Hdds;
+                    obj.MT_HDDSerialNo = data.MT_HDDSerialNo;
+                    obj.MT_Sims = data.MT_Sims;
+                    obj.MT_Emmis = data.MT_Emmis;
+                    obj.MT_CameraFovs = data.MT_CameraFovs;
+
+                    return View("MCableDetails");
+                }
+                else
+                {
+                    var errors = ModelState.Values.SelectMany(v => v.Errors);
+                }
+            }
+
+            return View();
         }
 
-        public ActionResult EquipmentFunctions()
+
+
+        [HttpPost]
+        public ActionResult MCableDetails(MCableDetails data, string prevBtn, string nextBtn)
         {
-            return View("EquipmentFunctions");
+            Preventive obj = GetMaintenanceTaxi();
+
+            if (prevBtn != null)
+            {
+                MEquipmentDetails ed = new MEquipmentDetails
+                {
+                    MT_ExistingMDVR = obj.MT_ExistingMDVR,
+                    MT_MDVRSerialNo = obj.MT_MDVRSerialNo,
+                    MT_Cameras = obj.MT_Cameras,
+                    MT_CameraSerialNo = obj.MT_CameraSerialNo,
+                    MT_Ups = obj.MT_Ups,
+                    MT_UpsSerialNo = obj.MT_UpsSerialNo,
+                    MT_Hdds = obj.MT_Hdds,
+                    MT_HDDSerialNo = obj.MT_HDDSerialNo,
+                    MT_Sims = obj.MT_Sims,
+                    MT_Emmis = obj.MT_Emmis,
+                    MT_CameraFovs = obj.MT_CameraFovs
+                };
+
+                return View("MEquipmentDetails", ed);
+            }
+
+            if (nextBtn != null)
+            {
+                if (ModelState.IsValid)
+                {
+                    obj.MT_PowerConnections = data.MT_PowerConnections;
+                    obj.MT_PowerCables = data.MT_PowerCables;
+                    obj.MT_CameraCables = data.MT_CameraCables;
+                    obj.MT_FourG_cables = data.MT_FourG_cables;
+                    obj.MT_Gps_cables = data.MT_Gps_cables;
+                    obj.MT_WifiCables = data.MT_WifiCables;
+                    obj.MT_Labeling = data.MT_Labeling;
+                    obj.MT_CableDressing = data.MT_CableDressing;
+                    
+                    return View("MEquipmentFunctionsDetails");
+                }
+                else
+                {
+                    var errors = ModelState.Values.SelectMany(v => v.Errors);
+                }
+
+
+            }
+            return View();
         }
 
-        public ActionResult HouseKeeping()
+
+
+        [HttpPost]
+        public ActionResult MEquipmentFunctionsDetails(MEquipmentFunctionsDetails data, string prevBtn, string nextBtn)
         {
-            return View("HouseKeeping");
+            Preventive obj = GetMaintenanceTaxi();
+
+            if (prevBtn != null)
+            {
+                MCableDetails cd = new MCableDetails()
+                {
+                    MT_PowerConnections = obj.MT_PowerConnections,
+                    MT_PowerCables = obj.MT_PowerCables,
+                    MT_CameraCables = obj.MT_CameraCables,
+                    MT_FourG_cables = obj.MT_FourG_cables,
+                    MT_Gps_cables = obj.MT_Gps_cables,
+                    MT_WifiCables = obj.MT_WifiCables,
+                    MT_Labeling = obj.MT_Labeling,
+                    MT_CableDressing = obj.MT_CableDressing
+                
+                };
+
+                return View("MCableDetails", cd);
+            }
+
+            if (nextBtn != null)
+            {
+                if (ModelState.IsValid)
+                {
+                    obj.MT_BroncoMdvrs = data.MT_BroncoMdvrs;
+                    obj.MT_Gps = data.MT_Gps;
+                    obj.MT_Four_g = data.MT_Four_g;
+                    obj.MT_Wifi = data.MT_Wifi;
+                    obj.MT_VoltageTest = data.MT_VoltageTest;
+                    
+                    return View("MHouseKeepingDetails");
+                }
+                else
+                {
+                    var errors = ModelState.Values.SelectMany(v => v.Errors);
+                }
+
+
+            }
+
+            return View();
         }
 
-        public ActionResult SignOff()
+
+
+        [HttpPost]
+        public ActionResult MHouseKeepingDetails(MHouseKeepingDetails data, string prevBtn, string nextBtn)
         {
-            return View("SignOff");
+            Preventive obj = GetMaintenanceTaxi();
+
+            if (prevBtn != null)
+            {
+                MEquipmentFunctionsDetails ed = new MEquipmentFunctionsDetails()
+                {
+                    MT_BroncoMdvrs = obj.MT_BroncoMdvrs,
+                    MT_Gps = obj.MT_Gps,
+                    MT_Four_g = obj.MT_Four_g,
+                    MT_Wifi = obj.MT_Wifi,
+                    MT_VoltageTest = obj.MT_VoltageTest
+                    
+                };
+
+                return View("MEquipmentFunctionsDetails", ed);
+            }
+
+            if (nextBtn != null)
+            {
+                if (ModelState.IsValid)
+                {
+                    obj.MT_TaxiHandover = data.MT_TaxiHandover;
+                    obj.MT_NoExistingAlarms = data.MT_NoExistingAlarms;
+                    obj.MT_OverallFeedback = data.MT_OverallFeedback;
+                    
+                    //return View("SignOffDetails", obj);
+                    return View("MPicDetails", obj);
+                }
+                else
+                {
+                    var errors = ModelState.Values.SelectMany(v => v.Errors);
+                }
+            }
+            return View();
         }
 
-        public ActionResult Thankyou()
+
+        [HttpPost]
+        public ActionResult MPicDetails(MPicDetails data, string prevBtn, string nextBtn)
         {
+            Preventive obj = GetMaintenanceTaxi();
+
+            if (prevBtn != null)
+            {
+                MHouseKeepingDetails hkd = new MHouseKeepingDetails()
+                {
+                    MT_TaxiHandover = obj.MT_TaxiHandover,
+                    MT_NoExistingAlarms = obj.MT_NoExistingAlarms,
+                    MT_OverallFeedback = obj.MT_OverallFeedback                
+                };
+
+                return View("MHouseKeepingDetails", hkd);
+            }
+
+            if (nextBtn != null)
+            {
+                if (ModelState.IsValid)
+                {
+                    if (System.IO.File.Exists(Server.MapPath("~/WebImages/" + Session["MaintenanceId"] + "PlateNoPic.jpg")))
+                    {
+                        obj.MT_PlateNumberPic = Server.MapPath("~/WebImages/" + Session["MaintenanceId"] + "PlateNoPic.jpg".ToString());
+                        //obj.NT_PlateNumberPic = Server.MapPath("~/WebImages/" + "336PlateNoPic.jpg");
+                    }
+
+                    if (System.IO.File.Exists(Server.MapPath("~/WebImages/" + Session["MaintenanceId"] + "MdvrNoPic.jpg")))
+                    {
+                        obj.MT_MdvrNoPic = Server.MapPath("~/WebImages/" + Session["MaintenanceId"] + "MdvrNoPic.jpg");
+                    }
+
+                    if (System.IO.File.Exists(Server.MapPath("~/WebImages/" + Session["MaintenanceId"] + "MDVRSerialNoPic.jpg")))
+                    {
+                        obj.MT_MDVRSerialNoPic = Server.MapPath("~/WebImages/" + Session["MaintenanceId"] + "MDVRSerialNoPic.jpg");
+                    }
+
+                    if (System.IO.File.Exists(Server.MapPath("~/WebImages/" + Session["MaintenanceId"] + "CameraSerialNoPic.jpg")))
+                    {
+                        obj.MT_CameraSerialNoPic = Server.MapPath("~/WebImages/" + Session["MaintenanceId"] + "CameraSerialNoPic.jpg");
+                    }
+
+                    if (System.IO.File.Exists(Server.MapPath("~/WebImages/" + Session["MaintenanceId"] + "UpsSerialNoPic.jpg")))
+                    {
+                        obj.MT_UpsSerialNoPic = Server.MapPath("~/WebImages/" + Session["MaintenanceId"] + "UpsSerialNoPic.jpg");
+                    }
+
+                    if (System.IO.File.Exists(Server.MapPath("~/WebImages/" + Session["MaintenanceId"] + "HDDSerialNoPic.jpg")))
+                    {
+                        obj.MT_HDDSerialNoPic = Server.MapPath("~/WebImages/" + Session["MaintenanceId"] + "HDDSerialNoPic.jpg");
+                    }
+
+                    if (System.IO.File.Exists(Server.MapPath("~/WebImages/" + Session["MaintenanceId"] + "PowerConnectionsPic.jpg")))
+                    {
+                        obj.MT_PowerConnectionsPic = Server.MapPath("~/WebImages/" + Session["MaintenanceId"] + "PowerConnectionsPic.jpg");
+                    }
+
+                    if (System.IO.File.Exists(Server.MapPath("~/WebImages/" + Session["MaintenanceId"] + "PowerCablesPic.jpg")))
+                    {
+                        obj.MT_PowerCablesPic = Server.MapPath("~/WebImages/" + Session["MaintenanceId"] + "PowerCablesPic.jpg");
+                    }
+
+                    if (System.IO.File.Exists(Server.MapPath("~/WebImages/" + Session["MaintenanceId"] + "CameraCablesPic.jpg")))
+                    {
+                        obj.MT_CameraCablesPic = Server.MapPath("~/WebImages/" + Session["MaintenanceId"] + "CameraCablesPic.jpg");
+                    }
+
+                    if (System.IO.File.Exists(Server.MapPath("~/WebImages/" + Session["MaintenanceId"] + "4GCablesPic.jpg")))
+                    {
+                        obj.MT_FourG_cablesPic = Server.MapPath("~/WebImages/" + Session["MaintenanceId"] + "4GCablesPic.jpg");
+                    }
+
+                    if (System.IO.File.Exists(Server.MapPath("~/WebImages/" + Session["MaintenanceId"] + "GPSCablesPic.jpg")))
+                    {
+                        obj.MT_Gps_cablesPic = Server.MapPath("~/WebImages/" + Session["MaintenanceId"] + "GPSCablesPic.jpg");
+                    }
+
+                    if (System.IO.File.Exists(Server.MapPath("~/WebImages/" + Session["MaintenanceId"] + "WifiCablesPic.jpg")))
+                    {
+                        obj.MT_WifiCablesPic = Server.MapPath("~/WebImages/" + Session["MaintenanceId"] + "WifiCablesPic.jpg");
+                    }
+
+
+                    if (System.IO.File.Exists(Server.MapPath("~/WebImages/" + Session["MaintenanceId"] + "LabelingPic.jpg")))
+                    {
+                        obj.MT_LabelingPic = Server.MapPath("~/WebImages/" + Session["MaintenanceId"] + "LabelingPic.jpg");
+                    }
+
+                    if (System.IO.File.Exists(Server.MapPath("~/WebImages/" + Session["MaintenanceId"] + "CableDressingPic.jpg")))
+                    {
+                        obj.MT_CableDressingPic = Server.MapPath("~/WebImages/" + Session["MaintenanceId"] + "CableDressingPic.jpg");
+                    }
+
+                    return View("MSignOffDetails", obj);
+
+                }
+                else
+                {
+                    var errors = ModelState.Values.SelectMany(v => v.Errors);
+                }
+            }
+
+            return View();
+        }
+
+
+
+        [HttpPost]
+        public ActionResult MSignOffDetails(MSignOffDetails data, string prevBtn, string nextBtn)
+        {
+            //_context.NewTaxis.Add(newTaxiRecord6);
+
+            Preventive obj = GetMaintenanceTaxi();
+
+            //if (prevBtn != null)
+            //{
+            //    HouseKeepingDetails hd = new HouseKeepingDetails();
+
+            //    hd.NT_TaxiHandover = obj.NT_TaxiHandover;
+            //    hd.NT_NoExistingAlarms = obj.NT_NoExistingAlarms;
+            //    hd.NT_TaxiCabin = obj.NT_TaxiCabin;
+            //    hd.NT_ItemsLeftInside = obj.NT_ItemsLeftInside;
+
+            //    return View("HouseKeepingDetails", hd);
+            //}
+
+            if (nextBtn != null)
+            {
+                if (ModelState.IsValid)
+                {
+                    obj.Is_MT_DepotRepApproved = data.Is_MT_DepotRepApproved;
+                    obj.Is_MT_SecureTechRepApproved = data.Is_MT_SecureTechRepApproved;
+                    obj.Is_MT_MccRepApproved = data.Is_MT_MccRepApproved;
+
+                    //_context.NewTaxis.Add(obj);
+                    _context.Preventives.Add(obj);
+
+                    try
+                    {
+                        _context.SaveChanges();
+                        RemoveMaintenanceTaxi();
+                    }
+                    catch (DbEntityValidationException e)
+                    {
+                        foreach (var eve in e.EntityValidationErrors)
+                        {
+                            Console.WriteLine("Entity of type \"{0}\" in state \"{1}\" has the following validation errors:",
+                                eve.Entry.Entity.GetType().Name, eve.Entry.State);
+                            foreach (var ve in eve.ValidationErrors)
+                            {
+                                Console.WriteLine("- Property: \"{0}\", Error: \"{1}\"",
+                                    ve.PropertyName, ve.ErrorMessage);
+                            }
+                        }
+                        throw;
+                    }
+
+
+                    return View("Thankyou");
+                }
+                else
+                {
+                    var errors = ModelState.Values.SelectMany(v => v.Errors);
+                }
+            }
+
             return View("Thankyou");
         }
 
-        public ActionResult CSiteTaxiDetails()
-        {
-            return View();
-        }
 
         public ActionResult CorrectiveMeasures()
         {

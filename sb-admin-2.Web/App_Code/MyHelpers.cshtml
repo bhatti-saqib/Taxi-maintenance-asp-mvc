@@ -1,0 +1,15 @@
+﻿@*@using System.IO
+@using System.DirectoryServices.AccountManagement*@
+
+
+@*Method to get Full name from AD*@
+
+@*@helper AccountName()
+{
+    using (var context = new PrincipalContext(ContextType.Domain))
+    {
+        var principal = UserPrincipal.FindByIdentity(context, User.Identity.Name);
+
+        @principal.GivenName @principal.Surname
+    }
+}*@

@@ -1,0 +1,190 @@
+﻿
+@model sb_admin_2.Web.Models.Preventive
+
+@{
+    ViewBag.Title = "MEquipmentDetails";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@using (Html.BeginForm("MEquipmentDetails", "Home"))
+{
+    <h2>Preventive Maintenance</h2>
+
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+
+                </div>
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <form role="form">
+                                <div class="form-group">
+                                    @Html.Label("MDVR")
+                                    @*@Html.EnumDropDownListFor(model => model.NT_ExistingMDVR, "Select Existing MDVR", new { @class = "form-control" })*@
+                                    @Html.DropDownListFor(m => m.MT_ExistingMDVR, new SelectList(
+                                        new List<Object>
+                                        {
+                                            new { value = "VeryGood", text = "Very Good"},
+                                            new { value = "Good", text = "Good"},
+                                            new { value = "Fair", text = "Fair"},
+                                            new { value = "Poor", text = "Poor"},
+                                            new { value = "VeryPoor", text = "Very Poor"},
+                                        },
+                                        "value",
+                                        "text",
+                                        2), "-- Please Select --", new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(m => m.MT_ExistingMDVR, "", new { @class = "text-danger" })
+                                </div>
+                                <div class="form-group">
+                                    @Html.Label("MDVR Serial Number")
+                                    @Html.TextBoxFor(m => m.MT_MDVRSerialNo, new { placeholder = "Please enter MDVR Serial No.", @class = "form-control" })
+                                    @Html.ValidationMessageFor(m => m.MT_MDVRSerialNo, "", new { @class = "text-danger" })
+                                    @*<a href="@Url.Action("ChangePhoto", "Home")">
+                                            <img src="~/Content/images/photo-camera.png" />
+                                        </a>*@
+                                </div>
+                                <div class="form-group">
+                                    @Html.Label("Taxi Cameras")
+                                    @*@Html.EnumDropDownListFor(model => model.NT_Cameras, "Select Taxi Camera",
+                                        new { @class = "form-control" })*@
+                                    @Html.DropDownListFor(m => m.MT_Cameras, new SelectList(
+                                        new List<Object>
+                                        {
+                                            new { value = "VeryGood", text = "Very Good"},
+                                            new { value = "Good", text = "Good"},
+                                            new { value = "Fair", text = "Fair"},
+                                            new { value = "Poor", text = "Poor"},
+                                            new { value = "VeryPoor", text = "Very Poor"},
+                                        },
+                                        "value",
+                                        "text",
+                                        2), "-- Please Select --", new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(m => m.MT_Cameras, "", new { @class = "text-danger" })
+                                </div>
+                                <div class="form-group">
+                                    @Html.Label("Camera Serial Number")
+                                    @Html.TextBoxFor(m => m.MT_CameraSerialNo, new { placeholder = "Please enter Camera Serial No.", @class = "form-control" })
+                                    @Html.ValidationMessageFor(m => m.MT_CameraSerialNo, "", new { @class = "text-danger" })
+                                </div>
+                                <div class="form-group">
+                                    @Html.Label("UPS Test")
+                                    @*@Html.EnumDropDownListFor(model => model.NT_Ups, "Select UPS Test", new { @class = "form-control" })*@
+                                    @Html.DropDownListFor(m => m.MT_Ups, new SelectList(
+                                        new List<Object>
+                                        {
+                                            new { value = "VeryGood", text = "Very Good"},
+                                            new { value = "Good", text = "Good"},
+                                            new { value = "Fair", text = "Fair"},
+                                            new { value = "Poor", text = "Poor"},
+                                            new { value = "VeryPoor", text = "Very Poor"},
+                                        },
+                                        "value",
+                                        "text",
+                                        2), "-- Please Select --", new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(m => m.MT_Ups, "", new { @class = "text-danger" })
+                                </div>
+                                <div class="form-group">
+                                    @Html.Label("UPS Serial Number")
+                                    @Html.TextBoxFor(m => m.MT_UpsSerialNo, new { placeholder = "Please enter UPS Serial No.", @class = "form-control" })
+                                    @Html.ValidationMessageFor(m => m.MT_UpsSerialNo, "", new { @class = "text-danger" })
+                                </div>
+                                <div class="form-group">
+                                    @Html.Label("HDD")
+                                    @*@Html.EnumDropDownListFor(model => model.NT_Hdds, "Select HDD ", new { @class = "form-control" })*@
+                                    @Html.DropDownListFor(m => m.MT_Hdds, new SelectList(
+                                        new List<Object>
+                                        {
+                                            new { value = "VeryGood", text = "Very Good"},
+                                            new { value = "Good", text = "Good"},
+                                            new { value = "Fair", text = "Fair"},
+                                            new { value = "Poor", text = "Poor"},
+                                            new { value = "VeryPoor", text = "Very Poor"},
+                                        },
+                                        "value",
+                                        "text",
+                                        2), "-- Please Select --", new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(m => m.MT_Hdds, "", new { @class = "text-danger" })
+                                </div>
+                                <div class="form-group">
+                                    @Html.Label("HDD Serial Number")
+                                    @Html.TextBoxFor(m => m.MT_HDDSerialNo, new { placeholder = "Please enter UPS Serial No.", @class = "form-control" })
+                                    @Html.ValidationMessageFor(m => m.MT_HDDSerialNo, "", new { @class = "text-danger" })
+                                </div>
+                                <div class="form-group">
+                                    @Html.Label("Sim Card")
+                                    @*@Html.EnumDropDownListFor(model => model.NT_Sims, "Select Sim Card", new { @class = "form-control" })*@
+                                    @Html.DropDownListFor(m => m.MT_Sims, new SelectList(
+                                        new List<Object>
+                                        {
+                                            new { value = "VeryGood", text = "Very Good"},
+                                            new { value = "Good", text = "Good"},
+                                            new { value = "Fair", text = "Fair"},
+                                            new { value = "Poor", text = "Poor"},
+                                            new { value = "VeryPoor", text = "Very Poor"},
+                                        },
+                                        "value",
+                                        "text",
+                                        2), "-- Please Select --", new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(m => m.MT_Sims, "", new { @class = "text-danger" })
+                                </div>
+                                <div class="form-group">
+                                    @Html.Label("Emmi")
+                                    @*@Html.EnumDropDownListFor(model => model.NT_Emmis, "Select Emmi", new { @class = "form-control" })*@
+                                    @*@Html.DropDownListFor(m => m.NT_Emmis, new SelectList(
+                                            new List<Object>
+                                            {
+                                                new { value = "VeryGood", text = "Very Good"},
+                                                new { value = "Good", text = "Good"},
+                                                new { value = "Fair", text = "Fair"},
+                                                new { value = "Poor", text = "Poor"},
+                                                new { value = "VeryPoor", text = "Very Poor"},
+                                            },
+                                            "value",
+                                            "text",
+                                            2), "-- Please Select --", new { @class = "form-control" })
+                                        @Html.ValidationMessageFor(m => m.NT_Emmis, "", new { @class = "text-danger" })*@
+                                    @Html.TextBoxFor(m => m.MT_Emmis, new { placeholder = "Please enter Emmi No.", @class = "form-control" })
+                                    @Html.ValidationMessageFor(m => m.MT_Emmis, "", new { @class = "text-danger" })
+                                </div>
+                                <div class="form-group">
+                                    @Html.Label("Camera FOV")
+                                    @*@Html.EnumDropDownListFor(model => model.NT_CameraFovs, "Select Camera FOV ", new { @class = "form-control" })*@
+                                    @Html.DropDownListFor(m => m.MT_CameraFovs, new SelectList(
+                                        new List<Object>
+                                        {
+                                            new { value = "VeryGood", text = "Very Good"},
+                                            new { value = "Good", text = "Good"},
+                                            new { value = "Fair", text = "Fair"},
+                                            new { value = "Poor", text = "Poor"},
+                                            new { value = "VeryPoor", text = "Very Poor"},
+                                        },
+                                        "value",
+                                        "text",
+                                        2), "-- Please Select --", new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(m => m.MT_CameraFovs, "", new { @class = "text-danger" })
+                                </div>
+
+                                @*@Html.ActionLink("Next", "AddNewTaxi3", "Home", null, new { @class = "btn btn-primary" })*@
+                                @*<input type="submit" class="btn btn-primary" name="prevBtn" value='Previous' />*@
+                                <input type="submit" class="btn btn-primary" name="nextBtn" value='Next' />
+                            </form>
+                        </div>
+                        <!-- /.col-lg-6 (nested) -->
+                        @*<div class="col-lg-6">
+
+                            </div>*@
+                        <!-- /.col-lg-6 (nested) -->
+                    </div>
+                    <!-- /.row (nested) -->
+                </div>
+                <!-- /.panel-body -->
+            </div>
+            <!-- /.panel -->
+        </div>
+        <!-- /.col-lg-12 -->
+    </div>
+    <!-- /.row -->
+}
+

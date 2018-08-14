@@ -13,7 +13,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>sb_admin_2.Web</RootNamespace>
     <AssemblyName>sb-admin-2.Web</AssemblyName>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
     <MvcBuildViews>false</MvcBuildViews>
     <UseIISExpress>true</UseIISExpress>
     <IISExpressSSLPort />
@@ -22,6 +22,7 @@
     <IISExpressUseClassicPipelineMode />
     <Use64BitIISExpress />
     <UseGlobalApplicationHostFile />
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -48,8 +49,26 @@
       <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.Owin, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.4.0.0\lib\net451\Microsoft.Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Host.SystemWeb, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.Host.SystemWeb.4.0.0\lib\net451\Microsoft.Owin.Host.SystemWeb.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.Security.4.0.0\lib\net451\Microsoft.Owin.Security.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Cookies, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.Security.Cookies.4.0.0\lib\net451\Microsoft.Owin.Security.Cookies.dll</HintPath>
+    </Reference>
+    <Reference Include="Owin, Version=1.0.0.0, Culture=neutral, PublicKeyToken=f0ebd12fd5e55cc5, processorArchitecture=MSIL">
+      <HintPath>..\packages\Owin.1.0\lib\net40\Owin.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.DirectoryServices" />
+    <Reference Include="System.DirectoryServices.AccountManagement" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Net.Http.Formatting, Version=5.2.2.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.2.2\lib\net45\System.Net.Http.Formatting.dll</HintPath>
@@ -58,17 +77,14 @@
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
-    <Reference Include="System.Core" />
-    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Web.Http, Version=5.2.2.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNet.WebApi.Core.5.2.2\lib\net45\System.Web.Http.dll</HintPath>
     </Reference>
     <Reference Include="System.Web.Http.WebHost, Version=5.2.2.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNet.WebApi.WebHost.5.2.2\lib\net45\System.Web.Http.WebHost.dll</HintPath>
     </Reference>
-    <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Web" />
-    <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Web.Abstractions" />
     <Reference Include="System.Web.Routing" />
     <Reference Include="System.Xml" />
@@ -110,6 +126,7 @@
       <Private>True</Private>
       <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.2\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
     </Reference>
+    <Reference Include="System.Xml.Linq" />
     <Reference Include="WebGrease">
       <Private>True</Private>
       <HintPath>..\packages\WebGrease.1.5.2\lib\WebGrease.dll</HintPath>
@@ -125,12 +142,15 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="App_Start\AdAuthenticationService.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="App_Start\Startup.Auth.cs" />
+    <Compile Include="App_Start\Startup.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
-    <Compile Include="Controllers\Api\NewTaxisController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\NavbarController.cs" />
     <Compile Include="Controllers\PhotoController.cs" />
     <Compile Include="DAL\TaxiContext.cs" />
@@ -186,11 +206,30 @@
     <Compile Include="Migrations\201808040657223_PlateNumberBecomesPrimaryKey.Designer.cs">
       <DependentUpon>201808040657223_PlateNumberBecomesPrimaryKey.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201808051813244_UpdateMaintenanceModelWithNewFields.cs" />
+    <Compile Include="Migrations\201808051813244_UpdateMaintenanceModelWithNewFields.Designer.cs">
+      <DependentUpon>201808051813244_UpdateMaintenanceModelWithNewFields.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201808051911124_AddMaintenanceType.cs" />
+    <Compile Include="Migrations\201808051911124_AddMaintenanceType.Designer.cs">
+      <DependentUpon>201808051911124_AddMaintenanceType.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201808060827543_AddNewTaxiAsForeignKeyInPreventiveModel.cs" />
+    <Compile Include="Migrations\201808060827543_AddNewTaxiAsForeignKeyInPreventiveModel.Designer.cs">
+      <DependentUpon>201808060827543_AddNewTaxiAsForeignKeyInPreventiveModel.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\CableDetails.cs" />
     <Compile Include="Models\EquipmentDetails.cs" />
     <Compile Include="Models\EquipmentFunctionsDetails.cs" />
     <Compile Include="Models\HouseKeepingDetails.cs" />
+    <Compile Include="Models\MCableDetails.cs" />
+    <Compile Include="Models\MEquipmentDetails.cs" />
+    <Compile Include="Models\MEquipmentFunctionsDetails.cs" />
+    <Compile Include="Models\MHouseKeepingDetails.cs" />
+    <Compile Include="Models\MPicDetails.cs" />
+    <Compile Include="Models\MSignOffDetails.cs" />
+    <Compile Include="Models\MTaxiDetails.cs" />
     <Compile Include="Models\Navbar.cs" />
     <Compile Include="Models\NewTaxi.cs" />
     <Compile Include="Models\PicDetails.cs" />
@@ -1243,6 +1282,7 @@
     <Content Include="Scripts\DataTables\responsive.semanticui.min.js" />
     <Content Include="Scripts\flot-data.js" />
     <Content Include="Scripts\bower.json" />
+    <Content Include="App_Code\MyHelpers.cshtml" />
     <Content Include="WebImages\person.jpg" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
@@ -1374,7 +1414,6 @@
     <Content Include="Views\Home\Icons.cshtml" />
     <Content Include="Views\Home\Grid.cshtml" />
     <Content Include="Views\Home\Blank.cshtml" />
-    <Content Include="Views\Home\Login.cshtml" />
     <Content Include="Views\Home\Selection.cshtml" />
     <Content Include="Views\Home\MTaxiDetails.cshtml" />
     <Content Include="Views\Home\SignOff.cshtml" />
@@ -1398,6 +1437,14 @@
     <Content Include="Views\Home\Details.cshtml" />
     <Content Include="Views\Home\PhotoIndex.cshtml" />
     <Content Include="Views\Home\PicDetails.cshtml" />
+    <Content Include="Views\Login\Index.cshtml" />
+    <Content Include="Views\Shared\_LoginPartial.cshtml" />
+    <Content Include="Views\Home\MEquipmentDetails.cshtml" />
+    <Content Include="Views\Home\MCableDetails.cshtml" />
+    <Content Include="Views\Home\MEquipmentFunctionsDetails.cshtml" />
+    <Content Include="Views\Home\MHouseKeepingDetails.cshtml" />
+    <Content Include="Views\Home\MPicDetails.cshtml" />
+    <Content Include="Views\Home\MSignOffDetails.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -1445,6 +1492,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201808040657223_PlateNumberBecomesPrimaryKey.resx">
       <DependentUpon>201808040657223_PlateNumberBecomesPrimaryKey.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201808051813244_UpdateMaintenanceModelWithNewFields.resx">
+      <DependentUpon>201808051813244_UpdateMaintenanceModelWithNewFields.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201808051911124_AddMaintenanceType.resx">
+      <DependentUpon>201808051911124_AddMaintenanceType.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201808060827543_AddNewTaxiAsForeignKeyInPreventiveModel.resx">
+      <DependentUpon>201808060827543_AddNewTaxiAsForeignKeyInPreventiveModel.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

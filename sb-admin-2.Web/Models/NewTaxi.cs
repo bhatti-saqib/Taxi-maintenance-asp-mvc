@@ -1,13 +1,11 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace sb_admin_2.Web.Models
 {
     public class NewTaxi
     {
-        //public int Id { get; set; }
-        //public Sites? NT_Sites { get; set; }
-
         [Required(ErrorMessage = "Please select Site.")]
         [StringLength(255)]
         //[RegularExpression(@"^[a-zA-Z]+$", ErrorMessage = "Please enter only alphabets.")]
@@ -173,6 +171,8 @@ namespace sb_admin_2.Web.Models
         public string NT_LabelingPic { get; set; }
 
         public string NT_CableDressingPic { get; set; }
+
+        public List<Preventive> Preventives { get; set; }
 
     } 
 }

@@ -81,7 +81,7 @@
                 '<td>' + data.hdd_serialNo + '</td>' +
                 '<td class="title">HDD Serial No Pic :</td>' +
                 '<td>' + '<img src="http://localhost:29128/WebImages/@Session["TaxiPlateNumber"]HDDSerialNoPic.jpg" alt="" style="width:50px; height:50;" />' + '</td>' +
-                
+
                 '</tr>' +
                 '<tr>' +
                 '<td class="title">UPS Serial No:</td>' +
@@ -185,7 +185,7 @@
                 '<td class="title">Items left inside :</td>' +
                 '<td>' + data.items_left + '</td>' +
                 '</tr>' +
-                            
+
             '</table>' +
                 '</div>';
         };
@@ -209,9 +209,9 @@
             ];
 
 
-        
+
             var table = $('.datatables').DataTable({
-                
+
                 // Column definitions
                 columns: [
                     {
@@ -227,8 +227,8 @@
                     {
                         data: 'MdvrNoImageUrl',
                         render: function (data, type, full, meta) {
-                            //return '<img src=' + 'http://localhost:29128/WebImages/PlateNoPic.jpg/' + data + '>';
                             return '<img src="http://localhost:29128/WebImages/@Session["TaxiPlateNumber"]PlateNoPic.jpg" alt="" style="width:50px; height:50;"/>';
+                            
                         }
                     }
                 ],
@@ -283,7 +283,7 @@
                 }
             });
         });
-        </script>
+    </script>
 </head>
 
 

@@ -7,5 +7,6 @@ namespace sb_admin_2.Web.DAL
     public class TaxiContext:DbContext
     {
         public DbSet<NewTaxi> NewTaxis { get; set; }
+        public DbSet<Preventive> Preventives { get; set; }
     }
 }

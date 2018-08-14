@@ -3,14 +3,25 @@
 
 
 @{
-    ViewBag.Title = "SiteTaxiDetails";
+    ViewBag.Title = "AddNewTaxi";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+
+<head>
+    @*<script type="text/javascript" src="~/scripts/jquery-3.3.1.min.js"></script>*@
+    <script type="text/javascript" src="~/scripts/jquery-ui-1.12.1.js"></script>
+    <link href="~/Content/themes/base/jquery-ui.css" rel="stylesheet" />
+
+
+    <title></title>
+</head>
 
 
 @using (Html.BeginForm("MTaxiDetails", "Home"))
 {
-    <h2>Site and Taxi Details</h2>
+    <h2>Preventive Maintenance</h2>
+
+    @*<h2>Site and Taxi Details</h2>*@
 
     <div class="row">
         <div class="col-lg-12">
@@ -24,8 +35,8 @@
                             <form role="form">
                                 <div class="form-group">
                                     @Html.Label("Site")
-                                    @*@Html.EnumDropDownListFor(model => model.sites, "Please select Site", new { @class = "form-control" })*@
-                                    @Html.DropDownListFor(m => m.SiteName, new SelectList(
+                                    @*@Html.EnumDropDownListFor(model => model.NT_Sites, "Please select Site", new { @class = "form-control" })*@
+                                    @Html.DropDownListFor(m => m.MT_SiteName, new SelectList(
                                         new List<Object>
                                         {
                                             new { value = "TestSite1", text = "Test Site 1"},
@@ -35,40 +46,55 @@
                                         "value",
                                         "text",
                                         2), "-- Please Select --", new { @class = "form-control" })
-                                    @Html.ValidationMessageFor(m => m.SiteName, "", new { @class = "text-danger" })
+                                    @Html.ValidationMessageFor(m => m.MT_SiteName, "", new { @class = "text-danger" })
+
                                 </div>
                                 <div class="form-group">
                                     @Html.Label("Taxi Type")
-                                    <div class="radio-inline"><label>@Html.RadioButton("Taxi Type", "Camry", true) Camry </label></div>
-                                    <div class="radio-inline"><label>@Html.RadioButton("Taxi Type", "Innova", false) Innova </label></div>
-                                    <div class="radio-inline"><label>@Html.RadioButton("Taxi Type", "Vito", false) Vito </label></div>
-                                    <div class="radio-inline"><label>@Html.RadioButton("Taxi Type", "Special Needs", false) Special Needs </label></div>
-                                    <div class="radio-inline"><label>@Html.RadioButton("Taxi Type", "Smart Taxi", false) Smart Taxi </label></div>
+                                    <div class="radio-inline"><label>@Html.RadioButtonFor(m => m.MT_TaxiType, "Camry", false) Camry </label></div>
+                                    <div class="radio-inline"><label>@Html.RadioButtonFor(m => m.MT_TaxiType, "Innova", false) Innova </label></div>
+                                    <div class="radio-inline"><label>@Html.RadioButtonFor(m => m.MT_TaxiType, "Vito", false) Vito </label></div>
+                                    <div class="radio-inline"><label>@Html.RadioButtonFor(m => m.MT_TaxiType, "Special Needs", false) Special Needs </label></div>
+                                    <div class="radio-inline"><label>@Html.RadioButtonFor(m => m.MT_TaxiType, "Smart Taxi", false) Smart Taxi </label></div>
+                                    <div class="radio-inline"><label>@Html.RadioButtonFor(m => m.MT_TaxiType, "Smart Taxi", false) Buses </label></div>
                                 </div>
-                                <div class="form-group">
-                                    <label>Taxi Plate No.</label>
-                                    <input class="form-control" placeholder="Enter Plate No.">
-                                </div>
-                                <div class="form-group">
-                                    <label>Taxi MDVR No.</label>
-                                    <input class="form-control" placeholder="Enter MDVR No.">
-                                </div>
-                                @*<div class="form-group">
-                                        @Html.EditorFor(x => x.date, new { htmlAttributes = new { placeholder = "Date", @class = "datepicker" } })
-                                        @Html.ValidationMessageFor(m => m.date)
-                                    </div>*@
                                 <div class="form-group">
                                     @Html.Label("Region")
-                                    <div class="radio-inline"><label>@Html.RadioButton("Region Type", "AD", true) AD </label></div>
-                                    <div class="radio-inline"><label>@Html.RadioButton("Region Type", "AA", false) AA </label></div>
-                                    <div class="radio-inline"><label>@Html.RadioButton("Region Type", "WR", false) WR </label></div>
+                                    <div class="radio-inline"><label>@Html.RadioButtonFor(m => m.MT_Region, "AD", true) AD </label></div>
+                                    <div class="radio-inline"><label>@Html.RadioButtonFor(m => m.MT_Region, "AA", false) AA </label></div>
+                                    <div class="radio-inline"><label>@Html.RadioButtonFor(m => m.MT_Region, "WR", false) WR </label></div>
 
+                                    @*@{ selectedRegion = Model.NT_Region;}*@
                                 </div>
+
+                                <div class="form-group field-validation-error form-inline">
+                                    @Html.Label("Taxi Plate No.")
+                                    @Html.TextBoxFor(m => m.MT_PlateNumber, new { placeholder = "Please enter Taxi Plate No.", @class = "form-control" })
+                                    @Html.ValidationMessageFor(m => m.MT_PlateNumber, "", new { @class = "text-danger" })
+                                    @*@Html.ActionLink("Take Photo", "Changephoto", "Photo", new { @class = "btn btn-primary" })*@
+                                    @*<a href="@Url.Action("ChangePhoto", "Home", new { fromView ="TaxiDetails"})">
+                                            <img src="~/Content/images/photo-camera.png"/>
+                                        </a>*@
+                                </div>
+                                <div class="form-group field-validation-error form-inline">
+                                    @Html.Label("Taxi MDVR No.")
+                                    @Html.TextBoxFor(m => m.MT_MdvrNo, new { placeholder = "Please enter Taxi MDVR No.", @class = "form-control" })
+                                    @Html.ValidationMessageFor(m => m.MT_MdvrNo, "", new { @class = "text-danger" })
+                                    @*<a href="@Url.Action("ChangePhoto", "Home", new { fromView ="TaxiDetails"})">
+                                            <img src="~/Content/images/photo-camera.png" />
+                                        </a>*@
+                                </div>
+                                <div class="form-group">
+                                    @Html.EditorFor(x => x.MT_Date, new { htmlAttributes = new { placeholder = "Date", @class = "form-control datetimepicker" } })
+                                    @Html.ValidationMessageFor(m => m.MT_Date, "", new { @class = "text-danger" })
+                                </div>
+
                                 @*<div class="form-group">
                                         <label>Text area</label>
                                         <textarea class="form-control" rows="3"></textarea>
                                     </div>*@
-                                @Html.ActionLink("Next", "Equipment", "Home", null, new { @class = "btn btn-primary" })
+                                @*@Html.ActionLink("Next", "AddNewTaxi2", "Home", null, new { @class = "btn btn-primary" })*@
+                                <input type="submit" class="btn btn-primary" name="nextBtn" value='Next' />
                             </form>
                         </div>
                         <!-- /.col-lg-6 (nested) -->
@@ -86,16 +112,17 @@
         <!-- /.col-lg-12 -->
     </div>
     <!-- /.row -->
+
 }
 
 
-@section scripts{
+@section Scripts{
+    @Scripts.Render("~/bundles/jqueryval")
+
     <script type="text/javascript">
-        //...
-        $('.datepicker').datepicker({
-            format: 'dd-mm-yyyy', //choose the date format you prefer
-            language: "en-CA",
-            orientation: 'left bottom'
-        }); //yyyy - mm - dd
+        $('.datetimepicker').datepicker({
+            //minDate: new Date()
+        });
+
     </script>
 }

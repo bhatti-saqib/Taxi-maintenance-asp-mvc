@@ -1,0 +1,355 @@
+﻿
+@model sb_admin_2.Web.Models.Preventive
+
+@{
+    ViewBag.Title = "MSignOffDetails";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<head>
+    <style type="text/css" class="init">
+
+        .title {
+            font-weight: bold;
+        }
+
+        .details-table {
+            width: 100%;
+            background-color: #FFF;
+            margin: 5px;
+        }
+
+        td.details-control {
+            background: url('/Content/Images/details_open.png') no-repeat center center;
+            cursor: pointer;
+        }
+
+        tr.shown td.details-control {
+            background: url('/Content/Images/details_close.png') no-repeat center center;
+        }
+    </style>
+    <script type="text/javascript" language="javascript" src="../../media/js/jquery.js"></script>
+    <script type="text/javascript" language="javascript" src="../../media/js/jquery.dataTables.js"></script>
+    <script type="text/javascript" language="javascript" src="../resources/syntax/shCore.js"></script>
+    @*<script type="text/javascript" language="javascript" src="../resources/demo.js"></script>*@
+    <script type="text/javascript" language="javascript" class="init">
+
+        function format(data) {
+            return '<div class="details-container">' +
+                '<table cellpadding="5" cellspacing="0" border="0" class="details-table">' +
+                '<tr>' +
+                '<td class="title">Site Name:</td>' +
+                '<td>' + data.site_name + '</td>' +
+                '<td class="title">Taxi Type:</td>' +
+                '<td>' + data.taxi_type + '</td>' +
+                '</tr>' +
+                '<tr>' +
+                '<td class="title">Plate No:</td>' +
+                '<td>' + data.taxi_plateNo + '</td>' +
+                '<td class="title">Plate No Pic :</td>' +
+                '<td>' + '<img src="http://localhost:29128/WebImages/@Session["MaintenanceId"]PlateNoPic.jpg" alt="" style="width:50px; height:50;" />' + '</td>' +
+                '</tr>' +
+                '<tr>' +
+                '<td class="title">MDVR No:</td>' +
+                '<td>' + data.mdvr_no + '</td>' +
+                '<td class="title">Mdvr No Pic :</td>' +
+                '<td>' + '<img src="http://localhost:29128/WebImages/@Session["MaintenanceId"]MdvrNoPic.jpg" alt="" style="width:50px; height:50;" />' + '</td>' +
+                '</tr>' +
+                '<tr>' +
+                '<td class="title">Date:</td>' +
+                '<td>' + data.date + '</td>' +
+                '<td class="title">Region:</td>' +
+                '<td>' + data.region + '</td>' +
+                '</tr>' +
+                '<tr>' +
+                '<td class="title">MDVR Serial No:</td>' +
+                '<td>' + data.mdvr_serialNo + '</td>' +
+                '<td class="title">MDVR Serial No Pic :</td>' +
+                '<td>' + '<img src="http://localhost:29128/WebImages/@Session["MaintenanceId"]MDVRSerialNoPic.jpg" alt="" style="width:50px; height:50;" />' + '</td>' +
+                '</tr>' +
+                '<tr>' +
+                '<td class="title">Camera Serial No:</td>' +
+                '<td>' + data.camera_serialNo + '</td>' +
+                '<td class="title">Camera Serial No Pic :</td>' +
+                '<td>' + '<img src="http://localhost:29128/WebImages/@Session["MaintenanceId"]CameraSerialNoPic.jpg" alt="" style="width:50px; height:50;" />' + '</td>' +
+                '</tr>' +
+                '<tr>' +
+                '<td class="title">HDD Serial No:</td>' +
+                '<td>' + data.hdd_serialNo + '</td>' +
+                '<td class="title">HDD Serial No Pic :</td>' +
+                '<td>' + '<img src="http://localhost:29128/WebImages/@Session["MaintenanceId"]HDDSerialNoPic.jpg" alt="" style="width:50px; height:50;" />' + '</td>' +
+
+                '</tr>' +
+                '<tr>' +
+                '<td class="title">UPS Serial No:</td>' +
+                '<td>' + data.ups_serialNo + '</td>' +
+                '<td class="title">Ups Serial No Pic :</td>' +
+                '<td>' + '<img src="http://localhost:29128/WebImages/@Session["MaintenanceId"]UpsSerialNoPic.jpg" alt="" style="width:50px; height:50;" />' + '</td>' +
+                '</tr>' +
+                '<tr>' +
+                '<td class="title">Sim Card:</td>' +
+                '<td>' + data.sim_card + '</td>' +
+                '<td class="title">Emmi:</td>' +
+                '<td>' + data.emmi + '</td>' +
+                '</tr>' +
+                '<tr>' +
+                '<td class="title">Power Connections Pic :</td>' +
+                '<td>' + '<img src="http://localhost:29128/WebImages/@Session["MaintenanceId"]PowerConnectionsPic.jpg" alt="" style="width:50px; height:50;" />' + '</td>' +
+                '<td class="title">Power Connection:</td>' +
+                '<td>' + data.power_connection + '</td>' +
+                '</tr>' +
+                '<tr>' +
+                '<td class="title">Power Cables:</td>' +
+                '<td>' + data.power_cables + '</td>' +
+                '<td class="title">Power Cables Pic :</td>' +
+                '<td>' + '<img src="http://localhost:29128/WebImages/@Session["MaintenanceId"]PowerCablesPic.jpg" alt="" style="width:50px; height:50;" />' + '</td>' +
+                '</tr>' +
+                '<tr>' +
+                '<td class="title">Power Connection:</td>' +
+                '<td>' + data.power_connection + '</td>' +
+                '<td class="title">Camera FOV:</td>' +
+                '<td>' + data.camera_fov + '</td>' +
+                '</tr>' +
+                '<tr>' +
+                '<td class="title">Camera Cables:</td>' +
+                '<td>' + data.camera_cable + '</td>' +
+                '<td class="title">Camera Cables Pic :</td>' +
+                '<td>' + '<img src="http://localhost:29128/WebImages/@Session["MaintenanceId"]CameraCablesPic.jpg" alt="" style="width:50px; height:50;" />' + '</td>' +
+                '</tr>' +
+                '<tr>' +
+                '<td class="title">4G Cables:</td>' +
+                '<td>' + data.fourG_cable + '</td>' +
+                '<td class="title">4G Cables Pic :</td>' +
+                '<td>' + '<img src="http://localhost:29128/WebImages/@Session["MaintenanceId"]4GCablesPic.jpg" alt="" style="width:50px; height:50;" />' + '</td>' +
+                '</tr>' +
+                '<tr>' +
+                '<td class="title">GPS Cables Pic :</td>' +
+                '<td>' + '<img src="http://localhost:29128/WebImages/@Session["MaintenanceId"]GPSCablesPic.jpg" alt="" style="width:50px; height:50;" />' + '</td>' +
+                '<td class="title">GPS Cables:</td>' +
+                '<td>' + data.gps_cable + '</td>' +
+                '</tr>' +
+                '<tr>' +
+                '<td class="title">WiFi Cables:</td>' +
+                '<td>' + data.wiFi_cable + '</td>' +
+                '<td class="title">Wifi Cables Pic :</td>' +
+                '<td>' + '<img src="http://localhost:29128/WebImages/@Session["MaintenanceId"]WifiCablesPic.jpg" alt="" style="width:50px; height:50;" />' + '</td>' +
+                '</tr>' +
+                '<tr>' +
+                '<td class="title">Labeling Pic :</td>' +
+                '<td>' + '<img src="http://localhost:29128/WebImages/@Session["MaintenanceId"]LabelingPic.jpg" alt="" style="width:50px; height:50;" />' + '</td>' +
+                '<td class="title">Labeling:</td>' +
+                '<td>' + data.labeling + '</td>' +
+                '</tr>' +
+                '<tr>' +
+                '<td class="title">Cable Dressing:</td>' +
+                '<td>' + data.cable_dressing + '</td>' +
+                '<td class="title">Cable Dressing Pic :</td>' +
+                '<td>' + '<img src="http://localhost:29128/WebImages/@Session["MaintenanceId"]CableDressingPic.jpg" alt="" style="width:50px; height:50;" />' + '</td>' +
+                '</tr>' +
+                '<tr>' +
+                '<td class="title">Bronco MDVR:</td>' +
+                '<td>' + data.bronco_mdvr + '</td>' +
+                '<td class="title">GPS:</td>' +
+                '<td>' + data.gps + '</td>' +
+                '</tr>' +
+                '<tr>' +
+                '<td class="title">4G:</td>' +
+                '<td>' + data.four_g + '</td>' +
+                '<td class="title">WiFi:</td>' +
+                '<td>' + data.wifi + '</td>' +
+                '</tr>' +
+                '<tr>' +
+                '<td class="title">UPS Voltage Test:</td>' +
+                '<td>' + data.ups_voltage_test + '</td>' +
+                '<td class="title">Taxi Handover:</td>' +
+                '<td>' + data.taxi_handover + '</td>' +
+                '</tr>' +
+                '<tr>' +
+                '<td class="title">Overall Feedback :</td>' +
+                '<td>' + data.overall_feedback + '</td>' +
+                '<td class="title">Existing Alarms :</td>' +
+                '<td>' + data.exisiting_alarms + '</td>' +
+                '</tr>' +
+                
+            '</table>' +
+                '</div>';
+        };
+
+        $(document).ready(function () {
+
+            var data = [
+                {
+                    "site_name": "@Model.MT_SiteName", "taxi_type": "@Model.MT_TaxiType", "taxi_plateNo": "@Model.MT_PlateNumber", "date": "@Model.MT_Date",
+                    "mdvr_no": "@Model.MT_MdvrNo", "region": "@Model.MT_Region", "mdvr_serialNo": "@Model.MT_MDVRSerialNo", "camera_serialNo": "@Model.MT_CameraSerialNo",
+                    "ups_serialNo": "@Model.MT_UpsSerialNo", "hdd_serialNo": "@Model.MT_HDDSerialNo", "sim_card": "@Model.MT_Sims", "emmi": "@Model.MT_Emmis",
+                    "camera_fov": "@Model.MT_CameraFovs", "power_connection": "@Model.MT_PowerConnections", "power_cables": "@Model.MT_PowerCables",
+                    "camera_cable": "@Model.MT_CameraCables", "fourG_cable": "@Model.MT_FourG_cables", "gps_cable": "@Model.MT_Gps_cables",
+                    "wiFi_cable": "@Model.MT_WifiCables", "labeling": "@Model.MT_Labeling", "cable_dressing": "@Model.MT_CableDressing",
+                    "bronco_mdvr": "@Model.MT_BroncoMdvrs", "gps": "@Model.MT_Gps", "four_g": "@Model.MT_Four_g", "wifi": "@Model.MT_Wifi",
+                    "ups_voltage_test": "@Model.MT_VoltageTest", "taxi_handover": "@Model.MT_TaxiHandover", "exisiting_alarms": "@Model.MT_NoExistingAlarms",
+                    "overall_feedback": "@Model.MT_OverallFeedback"
+                }
+
+            ];
+
+
+
+            var table = $('.datatables').DataTable({
+
+                // Column definitions
+                columns: [
+                    {
+                        className: 'details-control',
+                        defaultContent: '',
+                        data: null,
+                        orderable: false
+                    },
+                    { data: 'site_name' },
+                    { data: 'taxi_type' },
+                    { data: 'taxi_plateNo' },
+                    { data: 'date' },
+                    {
+                        data: 'MdvrNoImageUrl',
+                        render: function (data, type, full, meta) {
+                            //return '<img src=' + 'http://localhost:29128/WebImages/PlateNoPic.jpg/' + data + '>';
+                            return '<img src="http://localhost:29128/WebImages/@Session["MaintenanceId"]PlateNoPic.jpg" alt="" style="width:50px; height:50;"/>';
+                        }
+                    }
+                ],
+
+                "paging": false,
+                "ordering": false,
+                "info": false,
+                "searching": false,
+                data: data,
+
+                //pagingType: 'full_numbers',
+
+                // Localization
+                language: {
+                    emptyTable: 'Virhe! Haku epäonnistui.',
+                    zeroRecords: 'Ei hakutuloksia.',
+                    thousands: ',',
+                    processing: 'Prosessoidaan...',
+                    loadingRecords: 'Ladataan...',
+                    info: 'Sivu _PAGE_ / _PAGES_',
+                    infoEmpty: 'Sivu 0 / 0',
+                    infoFiltered: '(rajattu _MAX_ hakutuloksesta)',
+                    infoPostFix: '',
+                    lengthMenu: 'Rivien määrä _MENU_',
+                    search: 'Hae:',
+                    paginate: {
+                        first: 'Ensimmäinen',
+                        last: 'Viimeinen',
+                        next: 'Seuraava',
+                        previous: 'Edellinen'
+                    },
+                    aria: {
+                        sortAscending: ' aktivoi järjestääksesi sarake nousevasti',
+                        sortDescending: ' aktivoi järjestääksesi saraka laskevasti'
+                    }
+                }
+            });
+
+            $('.datatables tbody').on('click', 'td.details-control', function () {
+                var tr = $(this).closest('tr'),
+                    row = table.row(tr);
+
+                if (row.child.isShown()) {
+                    tr.next('tr').removeClass('details-row');
+                    row.child.hide();
+                    tr.removeClass('shown');
+                }
+                else {
+                    row.child(format(row.data())).show();
+                    tr.next('tr').addClass('details-row');
+                    tr.addClass('shown');
+                }
+            });
+        });
+    </script>
+</head>
+
+
+
+<h2>Preventive Maintenance</h2>
+
+<table class="table table-striped table-hover datatables">
+    <thead>
+        <tr>
+            <th></th>
+            <th>Site Name</th>
+            <th>Taxi Type</th>
+            <th>Taxi Plate No</th>
+            <th>Date</th>
+            <th>Plate No Pic</th>
+        </tr>
+    </thead>
+    <tbody></tbody>
+</table>
+
+
+
+@using (Html.BeginForm("MSignOffDetails", "Home"))
+{
+    @*<h2>Add New Taxi</h2>*@
+
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+
+                </div>
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <form role="form">
+                                <div class="form-group">
+                                    <input type="submit" class="btn btn-primary" name="nextBtn" value='Submit' />
+                                    @*<input type="submit" class="btn btn-primary btn-lg btn-block" name="pendingBtn" value='Depot Representative' />*@
+                                    @*@Html.TextBoxFor(m => m.Is_NT_DepotRepApproved, new { placeholder = "Depot Representative", @class = "form-control" })
+                                        @Html.ValidationMessageFor(m => m.Is_NT_DepotRepApproved, "", new { @class = "text-danger" })*@
+                                </div>
+                                @*<div class="form-group row">
+                                        <div class=col-md-6>
+                                            <input type="submit" class="btn btn-success" name="nextBtn" value='Depot Rep Approved' />
+                                        </div>
+                                        <div class=col-md-6>
+                                            <input type="button" class="btn btn-danger" value="Depot Rep Rejected" onclick="location.href='@Url.Action("TaxiDetails", "Home")'" />
+                                        </div>
+                                    </div>*@
+                                @*<div class="form-group row">
+                                        <div class=col-md-6>
+                                            <input type="submit" class="btn btn-success disabled" name="nextBtn" value='SecureTech Rep Approved' />
+                                        </div>
+                                        <div class=col-md-6>
+                                            <input type="button" class="btn btn-danger disabled" value="SecureTech Rep Rejected" onclick="location.href='@Url.Action("TaxiDetails", "Home")'" />
+                                        </div>
+                                    </div>*@
+                                @*<div class="form-group row">
+                                        <div class=col-md-6>
+                                            <input type="submit" class="btn btn-success disabled" name="nextBtn" value='MCC Rep Approved' />
+                                        </div>
+                                        <div class=col-md-6>
+                                            <input type="button" class="btn btn-danger disabled" value="MCC Rep Rejected" onclick="location.href='@Url.Action("TaxiDetails", "Home")'" />
+                                        </div>
+                                    </div>*@
+                            </form>
+                        </div>
+                        <!-- /.col-lg-6 (nested) -->
+                        @*<div class="col-lg-6">
+
+                            </div>*@
+                        <!-- /.col-lg-6 (nested) -->
+                    </div>
+                    <!-- /.row (nested) -->
+                </div>
+                <!-- /.panel-body -->
+            </div>
+            <!-- /.panel -->
+        </div>
+        <!-- /.col-lg-12 -->
+    </div>
+    <!-- /.row -->
+}
+

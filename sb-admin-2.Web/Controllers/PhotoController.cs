@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Web.Mvc;
 using System.IO;
+using System.Collections.Generic;
 
 namespace sb_admin_2.Web.Controllers
 {
@@ -8,6 +9,9 @@ namespace sb_admin_2.Web.Controllers
     {
         public static string btnName;
         
+        // List to store pic paths
+        public static List<string> picPaths = new List<string>();
+
         // GET: Photo
         [HttpGet]
         public ActionResult Index()
@@ -34,6 +38,7 @@ namespace sb_admin_2.Web.Controllers
             if(linktext != null)
             {
                 btnName = linktext +".jpg";
+                
             }
             if (Convert.ToString(Session["val"]) != string.Empty)
             {
@@ -61,8 +66,9 @@ namespace sb_admin_2.Web.Controllers
         public JsonResult Rebind()
         {
             //string path = "http://localhost:29128/WebImages/" + Session["val"].ToString();
-            //string path = "http://localhost:29128/WebImages/" + btnName.ToString();
+            //string path = "http://localhost:29128/WebImages/" + Session["dateAndTime"] + btnName.ToString();
             string path = "http://localhost:29128/WebImages/" + Session["TaxiPlateNumber"] + btnName.ToString();
+            picPaths.Add(path);
             return Json(path, JsonRequestBehavior.AllowGet);
         }
 
@@ -81,7 +87,8 @@ namespace sb_admin_2.Web.Controllers
                 string date = nm.ToString("yyyymmddMMss");
 
                 //var path = Server.MapPath("~/WebImages/" + date + "test.jpg");
-                //var path = Server.MapPath("~/WebImages/" + btnName);
+                //Session["dateAndTime"] = DateTime.Now.ToFileTime().ToString();
+                //var path = Server.MapPath("~/WebImages/" + Session["dateAndTime"] + btnName);
                 var path = Server.MapPath("~/WebImages/" + Session["TaxiPlateNumber"] + btnName);
 
                 System.IO.File.WriteAllBytes(path, String_To_Bytes2(dump));
