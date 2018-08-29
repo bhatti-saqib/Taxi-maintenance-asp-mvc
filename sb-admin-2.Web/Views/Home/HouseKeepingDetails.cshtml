@@ -21,10 +21,8 @@
                     <div class="row">
                         <div class="col-lg-6">
                             <form role="form">
-                                <div class="form-group">
-                                    @*<div class="form-inline">*@
+                                @*<div class="form-group">
                                     @Html.Label("Taxi Handover")
-                                    @*@Html.EnumDropDownListFor(model => model.NT_TaxiHandover, "Select Taxi Handover", new { @class = "form-control" })*@
                                     @Html.DropDownListFor(m => m.NT_TaxiHandover, new SelectList(
                                         new List<Object>
                                         {
@@ -38,11 +36,9 @@
                                         "text",
                                         2), "-- Please Select --", new { @class = "form-control" })
                                     @Html.ValidationMessageFor(m => m.NT_TaxiHandover, "", new { @class = "text-danger" })
-                                    @*</div>*@
-                                </div>
-                                <div class="form-group">
+                                </div>*@
+                                @*<div class="form-group">
                                     @Html.Label("Existing Alarms")
-                                    @*@Html.EnumDropDownListFor(model => model.NT_NoExistingAlarms, " ", new { @class = "form-control" })*@
                                     @Html.DropDownListFor(m => m.NT_NoExistingAlarms, new SelectList(
                                         new List<Object>
                                         {
@@ -53,17 +49,17 @@
                                         "text",
                                         2), "-- Please Select --", new { @class = "form-control" })
                                     @Html.ValidationMessageFor(m => m.NT_NoExistingAlarms, "", new { @class = "text-danger" })
-                                </div>
-                                <div class="form-group">
+                                </div>*@
+                                @*<div class="form-group">
                                     @Html.Label("Taxi is clean & without any damages")
                                     <div class="radio-inline"><label>@Html.RadioButtonFor(m => m.NT_TaxiCabin, "Yes", true) Yes </label></div>
                                     <div class="radio-inline"><label>@Html.RadioButtonFor(m => m.NT_TaxiCabin, "No", false) No </label></div>
-                                </div>
-                                <div class="form-group">
+                                </div>*@
+                                @*<div class="form-group">
                                     @Html.Label("Items left inside")
                                     <div class="radio-inline"><label>@Html.RadioButtonFor(m => m.NT_ItemsLeftInside , "Yes", true) Yes </label></div>
                                     <div class="radio-inline"><label>@Html.RadioButtonFor(m => m.NT_ItemsLeftInside, "No", false) No </label></div>
-                                </div>
+                                </div>*@
 
                                 @*@Html.ActionLink("Next", "AddNewTaxi6", "Home", null, new { @class = "btn btn-primary" })*@
                                 @*<input type="submit" class="btn btn-primary" name="prevBtn" value='Previous' />*@

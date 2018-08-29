@@ -21,9 +21,8 @@
                     <div class="row">
                         <div class="col-lg-6">
                             <form role="form">
-                                <div class="form-group">
+                                @*<div class="form-group">
                                     @Html.Label("Power Connection")
-                                    @*@Html.EnumDropDownListFor(model => model.NT_PowerConnections, "Select Power Connection", new { @class = "form-control" })*@
                                     @Html.DropDownListFor(m => m.NT_PowerConnections, new SelectList(
                                         new List<Object>
                                         {
@@ -37,10 +36,9 @@
                                         "text",
                                         2), "-- Please Select --", new { @class = "form-control" })
                                     @Html.ValidationMessageFor(m => m.NT_PowerConnections, "", new { @class = "text-danger" })
-                                </div>
-                                <div class="form-group">
+                                </div>*@
+                                @*<div class="form-group">
                                     @Html.Label("Power Cables")
-                                    @*@Html.EnumDropDownListFor(model => model.NT_PowerCables, "Select Power Cables", new { @class = "form-control" })*@
                                     @Html.DropDownListFor(m => m.NT_PowerCables, new SelectList(
                                         new List<Object>
                                         {
@@ -54,10 +52,9 @@
                                         "text",
                                         2), "-- Please Select --", new { @class = "form-control" })
                                     @Html.ValidationMessageFor(m => m.NT_PowerCables, "", new { @class = "text-danger" })
-                                </div>
-                                <div class="form-group">
+                                </div>*@
+                                @*<div class="form-group">
                                     @Html.Label("Camera Cables")
-                                    @*@Html.EnumDropDownListFor(model => model.NT_CameraCables, "Select Camera Cables", new { @class = "form-control" })*@
                                     @Html.DropDownListFor(m => m.NT_CameraCables, new SelectList(
                                         new List<Object>
                                         {
@@ -71,10 +68,9 @@
                                         "text",
                                         2), "-- Please Select --", new { @class = "form-control" })
                                     @Html.ValidationMessageFor(m => m.NT_CameraCables, "", new { @class = "text-danger" })
-                                </div>
-                                <div class="form-group">
+                                </div>*@
+                                @*<div class="form-group">
                                     @Html.Label("4G Cables")
-                                    @*@Html.EnumDropDownListFor(model => model.NT_FourG_cables, "Select 4G Cables", new { @class = "form-control" })*@
                                     @Html.DropDownListFor(m => m.NT_FourG_cables, new SelectList(
                                         new List<Object>
                                         {
@@ -88,10 +84,9 @@
                                         "text",
                                         2), "-- Please Select --", new { @class = "form-control" })
                                     @Html.ValidationMessageFor(m => m.NT_FourG_cables, "", new { @class = "text-danger" })
-                                </div>
-                                <div class="form-group">
+                                </div>*@
+                                @*<div class="form-group">
                                     @Html.Label("GPS Cables")
-                                    @*@Html.EnumDropDownListFor(model => model.NT_Gps_cables, "Select GPS Cables", new { @class = "form-control" })*@
                                     @Html.DropDownListFor(m => m.NT_Gps_cables, new SelectList(
                                         new List<Object>
                                         {
@@ -105,10 +100,9 @@
                                         "text",
                                         2), "-- Please Select --", new { @class = "form-control" })
                                     @Html.ValidationMessageFor(m => m.NT_Gps_cables, "", new { @class = "text-danger" })
-                                </div>
-                                <div class="form-group">
+                                </div>*@
+                                @*<div class="form-group">
                                     @Html.Label("Wi-Fi Cables")
-                                    @*@Html.EnumDropDownListFor(model => model.NT_WifiCables, "Select Wi-Fi Cables", new { @class = "form-control" })*@
                                     @Html.DropDownListFor(m => m.NT_WifiCables, new SelectList(
                                         new List<Object>
                                         {
@@ -122,10 +116,9 @@
                                         "text",
                                         2), "-- Please Select --", new { @class = "form-control" })
                                     @Html.ValidationMessageFor(m => m.NT_WifiCables, "", new { @class = "text-danger" })
-                                </div>
-                                <div class="form-group">
+                                </div>*@
+                                @*<div class="form-group">
                                     @Html.Label("Labeling")
-                                    @*@Html.EnumDropDownListFor(model => model.NT_Labeling, "Select Labeling", new { @class = "form-control" })*@
                                     @Html.DropDownListFor(m => m.NT_Labeling, new SelectList(
                                         new List<Object>
                                         {
@@ -139,10 +132,9 @@
                                         "text",
                                         2), "-- Please Select --", new { @class = "form-control" })
                                     @Html.ValidationMessageFor(m => m.NT_Labeling, "", new { @class = "text-danger" })
-                                </div>
-                                <div class="form-group">
+                                </div>*@
+                                @*<div class="form-group">
                                     @Html.Label("Cable Dressing")
-                                    @*@Html.EnumDropDownListFor(model => model.NT_CableDressing, "Select Cable Dressing", new { @class = "form-control" })*@
                                     @Html.DropDownListFor(m => m.NT_CableDressing, new SelectList(
                                         new List<Object>
                                         {
@@ -156,7 +148,7 @@
                                         "text",
                                         2), "-- Please Select --", new { @class = "form-control" })
                                     @Html.ValidationMessageFor(m => m.NT_CableDressing, "", new { @class = "text-danger" })
-                                </div>
+                                </div>*@
                                 <div class="form-group">
                                     @Html.Label("Camera Connector")
                                     @Html.DropDownListFor(m => m.NT_CameraConnector, new SelectList(

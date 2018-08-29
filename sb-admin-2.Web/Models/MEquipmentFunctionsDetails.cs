@@ -1,5 +1,4 @@
 ﻿
-using System;
 using System.ComponentModel.DataAnnotations;
 
 namespace sb_admin_2.Web.Models
@@ -23,4 +22,5 @@ namespace sb_admin_2.Web.Models
         [Required(ErrorMessage = "-- Please Select --")]
         public string MT_VoltageTest { get; set; }
     }
+
 }

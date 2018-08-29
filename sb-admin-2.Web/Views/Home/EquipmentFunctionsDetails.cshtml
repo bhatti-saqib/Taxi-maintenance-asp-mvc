@@ -1,5 +1,7 @@
 ﻿
-@model sb_admin_2.Web.Models.NewTaxi
+
+@*@model sb_admin_2.Web.Models.NewTaxi*@
+@model sb_admin_2.Web.Models.CommonViewModel
 
 @{
     ViewBag.Title = "AddNewTaxi4";
@@ -7,7 +9,7 @@
 }
 
 
-@using (Html.BeginForm("EquipmentFunctionsDetails", "Home"))
+@using (Html.BeginForm("EquipmentFunctionsDetails", "Home", FormMethod.Post))
 {
     <h2>Add New Taxi</h2>
 
@@ -21,11 +23,9 @@
                     <div class="row">
                         <div class="col-lg-6">
                             <form role="form">
-                                <div class="form-group">
-                                    @*<div class="form-inline">*@
+                                @*<div class="form-group">
                                     @Html.Label("Bronco MDVR")
-                                    @*@Html.EnumDropDownListFor(model => model.NT_BroncoMdvrs, "Select Bronco MDVR", new { @class = "form-control" })*@
-                                    @Html.DropDownListFor(m => m.NT_BroncoMdvrs, new SelectList(
+                                    @Html.DropDownListFor(m => m.NT.NT_BroncoMdvrs, new SelectList(
                                     new List<Object>
                                         {
                                             new { value = "VeryGood", text = "Very Good"},
@@ -37,14 +37,11 @@
                                         "value",
                                         "text",
                                     2), "-- Please Select --", new { @class = "form-control" })
-                                    @*@Html.RadioButton("Replaced HDD", "Yes", false) Recording*@
-                                    @Html.ValidationMessageFor(m => m.NT_BroncoMdvrs, "", new { @class = "text-danger" })
-                                    @*</div>*@
-                                </div>
-                                <div class="form-group">
+                                    @Html.ValidationMessageFor(m => m.NT.NT_BroncoMdvrs, "", new { @class = "text-danger" })
+                                </div>*@
+                                @*<div class="form-group">
                                     @Html.Label("GPS")
-                                    @*@Html.EnumDropDownListFor(model => model.NT_Gps, "Select GPS", new { @class = "form-control" })*@
-                                    @Html.DropDownListFor(m => m.NT_Gps, new SelectList(
+                                    @Html.DropDownListFor(m => m.NT.NT_Gps, new SelectList(
                                     new List<Object>
                                         {
                                             new { value = "VeryGood", text = "Very Good"},
@@ -56,12 +53,11 @@
                                         "value",
                                         "text",
                                         2), "-- Please Select --", new { @class = "form-control" })
-                                        @Html.ValidationMessageFor(m => m.NT_Gps, "", new { @class = "text-danger" })
-                                </div>
-                                <div class="form-group">
+                                    @Html.ValidationMessageFor(m => m.NT.NT_Gps, "", new { @class = "text-danger" })
+                                </div>*@
+                                @*<div class="form-group">
                                     @Html.Label("4G")
-                                    @*@Html.EnumDropDownListFor(model => model.NT_Four_g, "Select 4G", new { @class = "form-control" })*@
-                                    @Html.DropDownListFor(m => m.NT_Four_g, new SelectList(
+                                    @Html.DropDownListFor(m => m.NT.NT_Four_g, new SelectList(
                                     new List<Object>
                                         {
                                             new { value = "VeryGood", text = "Very Good"},
@@ -73,12 +69,11 @@
                                         "value",
                                         "text",
                                         2), "-- Please Select --", new { @class = "form-control" })
-                                        @Html.ValidationMessageFor(m => m.NT_Four_g, "", new { @class = "text-danger" })
-                                </div>
-                                <div class="form-group">
+                                    @Html.ValidationMessageFor(m => m.NT.NT_Four_g, "", new { @class = "text-danger" })
+                                </div>*@
+                                @*<div class="form-group">
                                     @Html.Label("WiFi")
-                                    @*@Html.EnumDropDownListFor(model => model.NT_Wifi, "Select WiFi", new { @class = "form-control" })*@
-                                    @Html.DropDownListFor(m => m.NT_Wifi, new SelectList(
+                                    @Html.DropDownListFor(m => m.NT.NT_Wifi, new SelectList(
                                    new List<Object>
                                         {
                                             new { value = "VeryGood", text = "Very Good"},
@@ -90,12 +85,11 @@
                                         "value",
                                         "text",
                                         2), "-- Please Select --", new { @class = "form-control" })
-                                        @Html.ValidationMessageFor(m => m.NT_Wifi, "", new { @class = "text-danger" })
-                                </div>
-                                <div class="form-group">
+                                    @Html.ValidationMessageFor(m => m.NT.NT_Wifi, "", new { @class = "text-danger" })
+                                </div>*@
+                                @*<div class="form-group">
                                     @Html.Label("UPS Voltage Test")
-                                    @*@Html.EnumDropDownListFor(model => model.NT_VoltageTest, "Select UPS Voltage Test", new { @class = "form-control" })*@
-                                    @Html.DropDownListFor(m => m.NT_VoltageTest, new SelectList(
+                                    @Html.DropDownListFor(m => m.NT.NT_VoltageTest, new SelectList(
                                     new List<Object>
                                         {
                                             new { value = "VeryGood", text = "Very Good"},
@@ -107,21 +101,38 @@
                                         "value",
                                         "text",
                                         2), "-- Please Select --", new { @class = "form-control" })
-                                    @Html.ValidationMessageFor(m => m.NT_VoltageTest, "", new { @class = "text-danger" })
-                                </div>
-                                <div class="form-group">
+                                    @Html.ValidationMessageFor(m => m.NT.NT_VoltageTest, "", new { @class = "text-danger" })
+                                </div>*@
+                                @*<div class="form-group">
                                     @Html.Label("Taxi Channel")
-                                    @*@Html.EnumDropDownListFor(model => model.NT_Channel, "Select Taxi Channel", new { @class = "form-control" })*@
-                                    @Html.ListBoxFor(m => m.NT_Channel, (IEnumerable<SelectListItem>)(new[] {
-                                        new SelectListItem() { Value = "CH1", Text = "CH1" },
-                                        new SelectListItem() { Value = "CH2", Text = "CH2" },
-                                        new SelectListItem() { Value = "CH3", Text = "CH3" },
-                                        new SelectListItem() { Value = "CH4", Text = "CH4" }
-                               }), new { multiple = "multiple" })
-                                    @*<input type="hidden" class="select2-offscreen" id="make-hdn" style="width:100%" value="@Model.NT_Channel" />
-                                    <input type="text" class="hidden" id="make" name="NT_Channel" value="@Model.NT_Channel" />*@
+                                    <br />*@ @*for new line*@
 
-                                </div>
+                                    @*<table>
+                                        @for(int i = 0; i < Model.TC.Channels.Count(); i++)
+                                            {
+                                                <tr>
+                                                    <td>
+                                                        @Html.CheckBoxFor(m => m.TC.Channels[i].Selected)
+                                                    </td>
+                                                    <td>
+                                                        @Html.DisplayFor(m => m.TC.Channels[i].Text)
+                                                        @Html.HiddenFor(m => m.TC.Channels[i].Value)
+                                                        @Html.HiddenFor(m => m.TC.Channels[i].Text)
+                                                    </td>
+                                                </tr>
+                                            }
+                                    </table>
+                                    @{ 
+                                        foreach(SelectListItem item in Model.TC.Channels)
+                                        {
+                                            if(item.Selected)
+                                            {
+                                                Model.NT.NT_Channels += item;
+                                            }
+                                        }
+                                    }*@
+
+                                @*</div>*@
 
                                 @*<input type="submit" class="btn btn-primary" name="prevBtn" value='Previous' />*@
                                 <input type="submit" class="btn btn-primary" name="nextBtn" value='Next' />

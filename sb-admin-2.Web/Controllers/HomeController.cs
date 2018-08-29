@@ -1,8 +1,10 @@
 ﻿using sb_admin_2.Web.Models;
 using System;
+using System.Collections.Generic;
 using System.Data.Entity.Validation;
 using System.Linq;
 using System.Web.Mvc;
+using System.Web.UI.WebControls;
 
 
 namespace sb_admin_2.Web.Controllers
@@ -11,11 +13,28 @@ namespace sb_admin_2.Web.Controllers
     {
         private DAL.TaxiContext _context;
 
-
+                
         public HomeController()
         {
             _context = new DAL.TaxiContext();
+
         }
+
+
+        //private List<SelectListItem> LoadData()
+        //{
+        //    //Here we will provide the checkbox values to be displayed
+        //    // on EquipmentFunctionsDetails View
+        //    List<SelectListItem> channels = new List<SelectListItem>();
+        //    {
+        //        channels.Add(new SelectListItem() { Text = "CH1", Value = "CH1" });
+        //        channels.Add(new SelectListItem() { Text = "CH2", Value = "CH2" });
+        //        channels.Add(new SelectListItem() { Text = "CH3", Value = "CH3" });
+        //        channels.Add(new SelectListItem() { Text = "CH4", Value = "CH4" });
+        //    };
+
+        //    return channels;
+        //}
 
 
         public ActionResult Index()
@@ -28,11 +47,7 @@ namespace sb_admin_2.Web.Controllers
         }
 
 
-        //public ActionResult Index(string uName)
-        //{
-        //    return View();
-        //}
-
+        
         private NewTaxi GetNewTaxi()
         {
             if (Session["newTaxi"] == null)
@@ -68,6 +83,7 @@ namespace sb_admin_2.Web.Controllers
         }
 
 
+
         public ActionResult TaxiDetails()
         {
             return View();
@@ -75,7 +91,7 @@ namespace sb_admin_2.Web.Controllers
 
 
         [HttpPost]
-        public ActionResult TaxiDetails(TaxiDetails data, string prevBtn, string nextBtn)
+        public ActionResult TaxiDetails(TaxiDetails data, string nextBtn)
         {
             Session["TaxiPlateNumber"] = data.NT_PlateNumber;
             
@@ -109,41 +125,25 @@ namespace sb_admin_2.Web.Controllers
 
 
         [HttpPost]
-        public ActionResult EquipmentDetails(EquipmentDetails data, string prevBtn, string nextBtn)
+        public ActionResult EquipmentDetails(EquipmentDetails data, string nextBtn)
         {
             NewTaxi obj = GetNewTaxi();
-
-            if (prevBtn != null)
-            {
-                TaxiDetails td = new TaxiDetails
-                {
-                    //td.Id = obj.Id;
-                    NT_SiteName = obj.NT_SiteName,
-                    NT_TaxiType = obj.NT_TaxiType,
-                    NT_PlateNumber = obj.NT_PlateNumber,
-                    NT_MdvrNo = obj.NT_MdvrNo,
-                    NT_Date = obj.NT_Date,
-                    NT_Region = obj.NT_Region
-                };
-
-                return View("TaxiDetails", td);
-            }
 
             if (nextBtn != null)
             {
                 if (ModelState.IsValid)
                 {
-                    obj.NT_ExistingMDVR = data.NT_ExistingMDVR;
+                    //obj.NT_ExistingMDVR = data.NT_ExistingMDVR;
                     obj.NT_MDVRSerialNo = data.NT_MDVRSerialNo;
-                    obj.NT_Cameras = data.NT_Cameras;
+                    //obj.NT_Cameras = data.NT_Cameras;
                     obj.NT_CameraSerialNo = data.NT_CameraSerialNo;
-                    obj.NT_Ups = data.NT_Ups;
+                    //obj.NT_Ups = data.NT_Ups;
                     obj.NT_UpsSerialNo = data.NT_UpsSerialNo;
-                    obj.NT_Hdds = data.NT_Hdds;
+                    //obj.NT_Hdds = data.NT_Hdds;
                     obj.NT_HDDSerialNo = data.NT_HDDSerialNo;
-                    obj.NT_Sims = data.NT_Sims;
+                    //obj.NT_Sims = data.NT_Sims;
                     obj.NT_Emmis = data.NT_Emmis;
-                    obj.NT_CameraFovs = data.NT_CameraFovs;
+                    //obj.NT_CameraFovs = data.NT_CameraFovs;
 
                     return View("CableDetails");
                 }
@@ -161,45 +161,39 @@ namespace sb_admin_2.Web.Controllers
 
 
         [HttpPost]
-        public ActionResult CableDetails(CableDetails data, string prevBtn, string nextBtn)
+        public ActionResult CableDetails(CableDetails data, string nextBtn)
         {
             NewTaxi obj = GetNewTaxi();
-
-            if (prevBtn != null)
-            {
-                EquipmentDetails ed = new EquipmentDetails();
-
-                ed.NT_ExistingMDVR = obj.NT_ExistingMDVR;
-                ed.NT_MDVRSerialNo = obj.NT_MDVRSerialNo;
-                ed.NT_Cameras = obj.NT_Cameras;
-                ed.NT_CameraSerialNo = obj.NT_CameraSerialNo;
-                ed.NT_Ups = obj.NT_Ups;
-                ed.NT_UpsSerialNo = obj.NT_UpsSerialNo;
-                ed.NT_Hdds = obj.NT_Hdds;
-                ed.NT_HDDSerialNo = obj.NT_HDDSerialNo;
-                ed.NT_Sims = obj.NT_Sims;
-                ed.NT_Emmis = obj.NT_Emmis;
-                ed.NT_CameraFovs = obj.NT_CameraFovs;
-
-                return View("EquipmentDetails", ed);
-            }
 
             if (nextBtn != null)
             {
                 if (ModelState.IsValid)
                 {
-                    obj.NT_PowerConnections = data.NT_PowerConnections;
-                    obj.NT_PowerCables = data.NT_PowerCables;
-                    obj.NT_CameraCables = data.NT_CameraCables;
-                    obj.NT_FourG_cables = data.NT_FourG_cables;
-                    obj.NT_Gps_cables = data.NT_Gps_cables;
-                    obj.NT_WifiCables = data.NT_WifiCables;
-                    obj.NT_Labeling = data.NT_Labeling;
-                    obj.NT_CableDressing = data.NT_CableDressing;
+                    //obj.NT_PowerConnections = data.NT_PowerConnections;
+                    //obj.NT_PowerCables = data.NT_PowerCables;
+                    //obj.NT_CameraCables = data.NT_CameraCables;
+                    //obj.NT_FourG_cables = data.NT_FourG_cables;
+                    //obj.NT_Gps_cables = data.NT_Gps_cables;
+                    //obj.NT_WifiCables = data.NT_WifiCables;
+                    //obj.NT_Labeling = data.NT_Labeling;
+                    //obj.NT_CableDressing = data.NT_CableDressing;
                     obj.NT_CameraConnector = data.NT_CameraConnector;
                     obj.NT_DiskSize = data.NT_DiskSize;
 
-                    return View("EquipmentFunctionsDetails");
+
+                    // Code to display checkbox on the next screen.
+                    //CommonViewModel model = new CommonViewModel();
+                    //model.NT = new NewTaxi();
+                    //model.TC = new TaxiChannels();
+
+                    //model.TC.Channels = this.LoadData();
+
+                    //return View("EquipmentFunctionsDetails", model);
+
+                    //return View("EquipmentFunctionsDetails");
+
+
+                    return View("SignOffDetails", obj);
                 }
                 else
                 {
@@ -216,45 +210,27 @@ namespace sb_admin_2.Web.Controllers
 
 
         [HttpPost]
-        public ActionResult EquipmentFunctionsDetails(EquipmentFunctionsDetails data, string prevBtn, string nextBtn)
+        public ActionResult EquipmentFunctionsDetails(EquipmentFunctionsDetails data, string nextBtn, List<SelectListItem> Channels)
         {
             NewTaxi obj = GetNewTaxi();
 
-            if (prevBtn != null)
-            {
-                CableDetails cd = new CableDetails();
-
-                cd.NT_PowerConnections = obj.NT_PowerConnections;
-                cd.NT_PowerCables = obj.NT_PowerCables;
-                cd.NT_CameraCables = obj.NT_CameraCables;
-                cd.NT_FourG_cables = obj.NT_FourG_cables;
-                cd.NT_Gps_cables = obj.NT_Gps_cables;
-                cd.NT_WifiCables = obj.NT_WifiCables;
-                cd.NT_Labeling = obj.NT_Labeling;
-                cd.NT_CableDressing = obj.NT_CableDressing;
-                cd.NT_CameraConnector = obj.NT_CameraConnector;
-                cd.NT_DiskSize = obj.NT_DiskSize;
-
-                return View("CableDetails", cd);
-            }
-
             if (nextBtn != null)
             {
-                if (ModelState.IsValid)
-                {
-                    obj.NT_BroncoMdvrs = data.NT_BroncoMdvrs;
-                    obj.NT_Gps = data.NT_Gps;
-                    obj.NT_Four_g = data.NT_Four_g;
-                    obj.NT_Wifi = data.NT_Wifi;
-                    obj.NT_VoltageTest = data.NT_VoltageTest;
-                    obj.NT_Channel = data.NT_Channel;
+                //if (ModelState.IsValid)
+                //{
+                    //obj.NT_BroncoMdvrs = data.NT_BroncoMdvrs;
+                    //obj.NT_Gps = data.NT_Gps;
+                    //obj.NT_Four_g = data.NT_Four_g;
+                    //obj.NT_Wifi = data.NT_Wifi;
+                    //obj.NT_VoltageTest = data.NT_VoltageTest;
+                    //obj.NT_Channel = data.NT_Channel;
 
                     return View("HouseKeepingDetails");
-                }
-                else
-                {
-                    var errors = ModelState.Values.SelectMany(v => v.Errors);
-                }
+                //}
+                //else
+                //{
+                //    var errors = ModelState.Values.SelectMany(v => v.Errors);
+                //}
 
 
             }
@@ -267,34 +243,20 @@ namespace sb_admin_2.Web.Controllers
         
 
         [HttpPost]
-        public ActionResult HouseKeepingDetails(HouseKeepingDetails data, string prevBtn, string nextBtn)
+        public ActionResult HouseKeepingDetails(HouseKeepingDetails data, string nextBtn)
         {
             //_context.NewTaxis.Add(newTaxiRecord);
 
             NewTaxi obj = GetNewTaxi();
 
-            if (prevBtn != null)
-            {
-                EquipmentFunctionsDetails ed = new EquipmentFunctionsDetails();
-
-                ed.NT_BroncoMdvrs = obj.NT_BroncoMdvrs;
-                ed.NT_Gps = obj.NT_Gps;
-                ed.NT_Four_g = obj.NT_Four_g;
-                ed.NT_Wifi = obj.NT_Wifi;
-                ed.NT_VoltageTest = obj.NT_VoltageTest;
-                ed.NT_Channel = obj.NT_Channel;
-
-                return View("EquipmentFunctionsDetails", ed);
-            }
-
             if (nextBtn != null)
             {
                 if (ModelState.IsValid)
                 {
-                    obj.NT_TaxiHandover = data.NT_TaxiHandover;
-                    obj.NT_NoExistingAlarms = data.NT_NoExistingAlarms;
-                    obj.NT_TaxiCabin = data.NT_TaxiCabin;
-                    obj.NT_ItemsLeftInside = data.NT_ItemsLeftInside;
+                    //obj.NT_TaxiHandover = data.NT_TaxiHandover;
+                    //obj.NT_NoExistingAlarms = data.NT_NoExistingAlarms;
+                    //obj.NT_TaxiCabin = data.NT_TaxiCabin;
+                    //obj.NT_ItemsLeftInside = data.NT_ItemsLeftInside;
 
                     //return View("SignOffDetails", obj);
                     return View("PicDetails", obj);
@@ -311,86 +273,74 @@ namespace sb_admin_2.Web.Controllers
 
 
         [HttpPost]
-        public ActionResult PicDetails(PicDetails data, string prevBtn, string nextBtn)
+        public ActionResult PicDetails(PicDetails data, string nextBtn)
         {
             NewTaxi obj = GetNewTaxi();
-
-            if (prevBtn != null)
-            {
-                HouseKeepingDetails hkd = new HouseKeepingDetails();
-
-                hkd.NT_TaxiHandover = obj.NT_TaxiHandover;
-                hkd.NT_NoExistingAlarms = obj.NT_NoExistingAlarms;
-                hkd.NT_TaxiCabin = obj.NT_TaxiCabin;
-                hkd.NT_ItemsLeftInside = obj.NT_ItemsLeftInside;
-
-                return View("HouseKeepingDetails", hkd);
-            }
 
             if (nextBtn != null)
             {
                 if (ModelState.IsValid)
                 {
-                    foreach(var path in PhotoController.picPaths)
-                    {
-                        if(path.Contains("PlateNoPic.jpg"))
-                        {
-                            obj.NT_PlateNumberPic = path;
-                        }
-                        else if(path.Contains("MdvrNoPic.jpg"))
-                        {
-                            obj.NT_MdvrNoPic = path;
-                        }
-                        else if(path.Contains("MDVRSerialNoPic.jpg"))
-                        {
-                            obj.NT_MDVRSerialNoPic = path;
-                        }
-                        else if (path.Contains("CameraSerialNoPic.jpg"))
-                        {
-                            obj.NT_CameraSerialNoPic = path;
-                        }
-                        else if(path.Contains("UpsSerialNoPic.jpg"))
-                        {
-                            obj.NT_UpsSerialNoPic = path;
-                        }
-                        else if(path.Contains("HDDSerialNoPic.jpg"))
-                        {
-                            obj.NT_HDDSerialNoPic = path;
-                        }
-                        else if(path.Contains("PowerConnectionsPic.jpg"))
-                        {
-                            obj.NT_PowerConnectionsPic = path;
-                        }
-                        else if(path.Contains("PowerCablesPic.jpg"))
-                        {
-                            obj.NT_PowerCablesPic = path;
-                        }    
-                        else if(path.Contains("CameraCablesPic.jpg"))
-                        {
-                            obj.NT_CameraCablesPic = path;
-                        }
-                        else if(path.Contains("4GCablesPic.jpg"))
-                        {
-                            obj.NT_FourG_cablesPic = path;
-                        }
-                        else if(path.Contains("GPSCablesPic.jpg"))
-                        {
-                            obj.NT_Gps_cablesPic = path;
-                        }
-                        else if(path.Contains("WifiCablesPic.jpg"))
-                        {
-                            obj.NT_WifiCablesPic = path;
-                        }
-                        else if(path.Contains("LabelingPic.jpg"))
-                        {
-                            obj.NT_LabelingPic = path;
-                        }
-                        else if(path.Contains("CableDressingPic.jpg"))
-                        {
-                            obj.NT_CableDressingPic = path;
-                        }
+                    //foreach(var path in PhotoController.picPaths)
+                    //{
+                    //    if(path.Contains("PlateNoPic.jpg"))
+                    //    {
+                    //        obj.NT_PlateNumberPic = path;
+                    //    }
+                    //    else if(path.Contains("MdvrNoPic.jpg"))
+                    //    {
+                    //        obj.NT_MdvrNoPic = path;
+                    //    }
+                    //    else if(path.Contains("MDVRSerialNoPic.jpg"))
+                    //    {
+                    //        obj.NT_MDVRSerialNoPic = path;
+                    //    }
+                    //    else if (path.Contains("CameraSerialNoPic.jpg"))
+                    //    {
+                    //        obj.NT_CameraSerialNoPic = path;
+                    //    }
+                    //    else if(path.Contains("UpsSerialNoPic.jpg"))
+                    //    {
+                    //        obj.NT_UpsSerialNoPic = path;
+                    //    }
+                    //    else if(path.Contains("HDDSerialNoPic.jpg"))
+                    //    {
+                    //        obj.NT_HDDSerialNoPic = path;
+                    //    }
+                    //    else if(path.Contains("PowerConnectionsPic.jpg"))
+                    //    {
+                    //        obj.NT_PowerConnectionsPic = path;
+                    //    }
+                    //    else if(path.Contains("PowerCablesPic.jpg"))
+                    //    {
+                    //        obj.NT_PowerCablesPic = path;
+                    //    }    
+                    //    else if(path.Contains("CameraCablesPic.jpg"))
+                    //    {
+                    //        obj.NT_CameraCablesPic = path;
+                    //    }
+                    //    else if(path.Contains("4GCablesPic.jpg"))
+                    //    {
+                    //        obj.NT_FourG_cablesPic = path;
+                    //    }
+                    //    else if(path.Contains("GPSCablesPic.jpg"))
+                    //    {
+                    //        obj.NT_Gps_cablesPic = path;
+                    //    }
+                    //    else if(path.Contains("WifiCablesPic.jpg"))
+                    //    {
+                    //        obj.NT_WifiCablesPic = path;
+                    //    }
+                    //    else if(path.Contains("LabelingPic.jpg"))
+                    //    {
+                    //        obj.NT_LabelingPic = path;
+                    //    }
+                    //    else if(path.Contains("CableDressingPic.jpg"))
+                    //    {
+                    //        obj.NT_CableDressingPic = path;
+                    //    }
 
-                    }
+                    //}
                     
 
                     //if (System.IO.File.Exists(Server.MapPath("~/WebImages/" + Session["dateAndTime"] + "PlateNoPic.jpg")))
@@ -480,23 +430,11 @@ namespace sb_admin_2.Web.Controllers
 
         
         [HttpPost]
-        public ActionResult SignOffDetails(SignOffDetails data, string prevBtn, string nextBtn)
+        public ActionResult SignOffDetails(SignOffDetails data, string nextBtn)
         {
             //_context.NewTaxis.Add(newTaxiRecord6);
 
             NewTaxi obj = GetNewTaxi();
-
-            //if (prevBtn != null)
-            //{
-            //    HouseKeepingDetails hd = new HouseKeepingDetails();
-
-            //    hd.NT_TaxiHandover = obj.NT_TaxiHandover;
-            //    hd.NT_NoExistingAlarms = obj.NT_NoExistingAlarms;
-            //    hd.NT_TaxiCabin = obj.NT_TaxiCabin;
-            //    hd.NT_ItemsLeftInside = obj.NT_ItemsLeftInside;
-
-            //    return View("HouseKeepingDetails", hd);
-            //}
 
             if (nextBtn != null)
             {

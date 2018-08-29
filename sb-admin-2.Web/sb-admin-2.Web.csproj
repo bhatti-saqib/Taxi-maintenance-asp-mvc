@@ -218,8 +218,13 @@
     <Compile Include="Migrations\201808060827543_AddNewTaxiAsForeignKeyInPreventiveModel.Designer.cs">
       <DependentUpon>201808060827543_AddNewTaxiAsForeignKeyInPreventiveModel.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201808281244462_NewTaxiModelChangedToJustTextFields.cs" />
+    <Compile Include="Migrations\201808281244462_NewTaxiModelChangedToJustTextFields.Designer.cs">
+      <DependentUpon>201808281244462_NewTaxiModelChangedToJustTextFields.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\CableDetails.cs" />
+    <Compile Include="Models\CommonViewModel.cs" />
     <Compile Include="Models\EquipmentDetails.cs" />
     <Compile Include="Models\EquipmentFunctionsDetails.cs" />
     <Compile Include="Models\HouseKeepingDetails.cs" />
@@ -235,9 +240,9 @@
     <Compile Include="Models\PicDetails.cs" />
     <Compile Include="Models\Preventive.cs" />
     <Compile Include="Models\SignOffDetails.cs" />
+    <Compile Include="Models\TaxiChannels.cs" />
     <Compile Include="Models\TaxiDetails.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ViewModel\ViewModels.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="bower_components\bootstrap-social\.gitignore" />
@@ -1448,6 +1453,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="ViewModel\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -1501,6 +1507,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201808060827543_AddNewTaxiAsForeignKeyInPreventiveModel.resx">
       <DependentUpon>201808060827543_AddNewTaxiAsForeignKeyInPreventiveModel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201808281244462_NewTaxiModelChangedToJustTextFields.resx">
+      <DependentUpon>201808281244462_NewTaxiModelChangedToJustTextFields.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
