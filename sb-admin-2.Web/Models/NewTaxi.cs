@@ -173,6 +173,9 @@ namespace sb_admin_2.Web.Models
 
         //public string NT_CableDressingPic { get; set; }
 
+        //[Required]
+        public string User { get; set; }
+
         public List<Preventive> Preventives { get; set; }
 
         //public List<SelectListItem> Channels { get; set; }

@@ -60,11 +60,11 @@ namespace sb_admin_2.Web.Tests.Controllers
         public void Tables()
         {
 
-            ViewResult result = _controller.Tables() as ViewResult;
+            ViewResult result = _controller.SearchTaxi() as ViewResult;
 
             Assert.IsNotNull(result);
             Assert.IsInstanceOfType(result, typeof(ViewResult));
-            Assert.AreEqual(result.ViewName, "Tables");
+            Assert.AreEqual(result.ViewName, "SearchTaxi");
         }
 
         [TestMethod]

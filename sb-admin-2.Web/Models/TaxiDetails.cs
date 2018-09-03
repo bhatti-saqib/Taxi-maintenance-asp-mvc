@@ -35,5 +35,8 @@ namespace sb_admin_2.Web.Models
 
         [Required]
         public string NT_Region { get; set; }
+
+        //[Required]
+        public string User { get; set; }
     }
 }

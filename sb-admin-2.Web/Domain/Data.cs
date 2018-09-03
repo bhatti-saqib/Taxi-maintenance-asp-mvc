@@ -15,7 +15,7 @@ namespace sb_admin_2.Web.Domain
             //menu.Add(new Navbar { Id = 2, nameOption = "Charts", imageClass = "fa fa-bar-chart-o fa-fw", status = true, isParent = true, parentId = 0 });
             menu.Add(new Navbar { Id = 3, nameOption = "Flot Charts", controller = "Home", action = "FlotCharts", status = true, isParent = false, parentId = 2 });
             menu.Add(new Navbar { Id = 4, nameOption = "Morris.js Charts", controller = "Home", action = "MorrisCharts", status = true, isParent = false, parentId = 2 });
-            menu.Add(new Navbar { Id = 5, nameOption = "Search Taxi", controller = "Home", action = "Tables", imageClass = "fa fa-table fa-fw", status = true, isParent = false, parentId = 0 });
+            menu.Add(new Navbar { Id = 5, nameOption = "Search Taxi", controller = "Home", action = "SearchTaxi", imageClass = "fa fa-table fa-fw", status = true, isParent = false, parentId = 0 });
             //menu.Add(new Navbar { Id = 6, nameOption = "Forms", controller = "Home", action = "Forms", imageClass = "fa fa-edit fa-fw", status = true, isParent = false, parentId = 0 });
             //menu.Add(new Navbar { Id = 7, nameOption = "UI Elements", imageClass = "fa fa-wrench fa-fw", status = true, isParent = true, parentId = 0 });
             //menu.Add(new Navbar { Id = 8, nameOption = "Panels and Wells", controller = "Home", action = "Panels", status = true, isParent = false, parentId = 7 });
@@ -30,9 +30,9 @@ namespace sb_admin_2.Web.Domain
             menu.Add(new Navbar { Id = 17, nameOption = "Blank Page", controller = "Home", action = "Blank", status = true, isParent = false, parentId = 16 });
             menu.Add(new Navbar { Id = 18, nameOption = "Login Page", controller = "Home", action = "Login", status = true, isParent = false, parentId = 16 });
 
-            menu.Add(new Navbar { Id = 19, nameOption = "Maintenance Selection", imageClass = "fa fa-bar-chart-o fa-fw", status = true, isParent = true, parentId = 0 });
-            menu.Add(new Navbar { Id = 20, nameOption = "Preventive Maintenance", controller = "Home", action = "MTaxiDetails", status = true, isParent = false, parentId = 19 });
-            menu.Add(new Navbar { Id = 21, nameOption = "Corrective Maintenance", controller = "Home", action = "CSiteTaxiDetails", status = true, isParent = false, parentId = 19 });
+            //menu.Add(new Navbar { Id = 19, nameOption = "Maintenance Selection", imageClass = "fa fa-bar-chart-o fa-fw", status = true, isParent = true, parentId = 0 });
+            //menu.Add(new Navbar { Id = 20, nameOption = "Preventive Maintenance", controller = "Home", action = "MTaxiDetails", status = true, isParent = false, parentId = 19 });
+            //menu.Add(new Navbar { Id = 21, nameOption = "Corrective Maintenance", controller = "Home", action = "CSiteTaxiDetails", status = true, isParent = false, parentId = 19 });
 
             
             return menu.ToList();

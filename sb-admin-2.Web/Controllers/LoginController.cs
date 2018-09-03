@@ -3,6 +3,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Web;
 using System.Web.Mvc;
 using Microsoft.Owin.Security;
+using sb_admin_2.Web.Models;
 
 namespace sb_admin_2.Web.Controllers
 {
@@ -34,7 +35,7 @@ namespace sb_admin_2.Web.Controllers
             if (authenticationResult.IsSuccess)
             {
                 // we are in!
-                Session["UserName"] = model.Username;
+                
                 return RedirectToLocal(returnUrl);
             }
 

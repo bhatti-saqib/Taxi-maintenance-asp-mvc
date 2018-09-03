@@ -12,11 +12,13 @@ namespace sb_admin_2.Web.Controllers
     public class HomeController : Controller
     {
         private DAL.TaxiContext _context;
+        string userName;  // User who is logged in
 
-                
+
         public HomeController()
         {
             _context = new DAL.TaxiContext();
+            
 
         }
 
@@ -39,11 +41,17 @@ namespace sb_admin_2.Web.Controllers
 
         public ActionResult Index()
         {
-            
-            return View();
-            
-            //return RedirectToAction("Index", "Login");
-            
+            userName = @User.Identity.Name;
+
+            if (userName.Length < 1) { 
+                return RedirectToAction("Index", "Login");
+                
+            }
+            else
+            {
+                return View();
+            }
+            //return View();  
         }
 
 
@@ -83,7 +91,8 @@ namespace sb_admin_2.Web.Controllers
         }
 
 
-
+        
+        [Authorize]
         public ActionResult TaxiDetails()
         {
             return View();
@@ -94,7 +103,7 @@ namespace sb_admin_2.Web.Controllers
         public ActionResult TaxiDetails(TaxiDetails data, string nextBtn)
         {
             Session["TaxiPlateNumber"] = data.NT_PlateNumber;
-            
+            data.User = @User.Identity.Name;
 
             if (nextBtn != null)
             {
@@ -108,6 +117,7 @@ namespace sb_admin_2.Web.Controllers
                     obj.NT_MdvrNo = data.NT_MdvrNo;
                     obj.NT_Date = data.NT_Date;
                     obj.NT_Region = data.NT_Region;
+                    obj.User = data.User;
 
                     return View("EquipmentDetails");
                 }
@@ -916,7 +926,9 @@ namespace sb_admin_2.Web.Controllers
         }
 
 
-        public ActionResult Tables()
+
+        [Authorize]
+        public ActionResult SearchTaxi()
         {
             return View("Tables", _context.NewTaxis.ToList());
         }
@@ -929,6 +941,7 @@ namespace sb_admin_2.Web.Controllers
         }
 
 
+        
         public ActionResult Forms()
         {
             return View("Forms");

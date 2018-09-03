@@ -4,7 +4,7 @@ using System.Security.Claims;
 using Microsoft.Owin.Security;
 
 
-namespace sb_admin_2.Web
+namespace sb_admin_2.Web.Models
 {
     public class AdAuthenticationService
     {

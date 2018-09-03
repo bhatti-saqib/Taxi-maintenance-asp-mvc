@@ -157,8 +157,8 @@
                 '<td>' + '<img src="http://localhost:29128/WebImages/@Session["TaxiPlateNumber"]CableDressingPic.jpg" alt="" style="width:50px; height:50;" />' + '</td>' +
                 '</tr>' +*@
                 '<tr>' +
-                //'<td class="title">Camera Connector:</td>' +
-                //'<td>' + data.camera_connector + '</td>' +
+                '<td class="title">User:</td>' +
+                '<td>' + data.user + '</td>' +
                 '<td class="title">Disk Size:</td>' +
                 '<td>' + data.disk_size + '</td>' +
                 '</tr>' +
@@ -210,7 +210,7 @@
                     "camera_connector": "@Model.NT_CameraConnector", "disk_size": "@Model.NT_DiskSize", @*"bronco_mdvr": "@Model.NT_BroncoMdvrs",*@
                     @*"gps": "@Model.NT_Gps", "four_g": "@Model.NT_Four_g",*@ @*"wifi": "@Model.NT_Wifi", "ups_voltage_test": "@Model.NT_Ups",*@
                     @*"taxi_channel": "@Model.NT_Channel", "taxi_handover": "@Model.NT_TaxiHandover",*@ @*"exisiting_alarms": "@Model.NT_NoExistingAlarms",*@
-                    @*"clean_without_damage": "@Model.NT_TaxiCabin", "items_left": "@Model.NT_ItemsLeftInside"*@
+                    @*"clean_without_damage": "@Model.NT_TaxiCabin", "items_left": "@Model.NT_ItemsLeftInside"*@ "user":"@Model.User"
                 }
 
             ];

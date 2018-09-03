@@ -1,15 +1,31 @@
-﻿@*@using System.IO
-@using System.DirectoryServices.AccountManagement*@
+﻿
+@using System.IO;
+@using sb_admin_2.Web.DAL;
 
 
 @*Method to get Full name from AD*@
 
 @*@helper AccountName()
-{
-    using (var context = new PrincipalContext(ContextType.Domain))
     {
-        var principal = UserPrincipal.FindByIdentity(context, User.Identity.Name);
+        using (var context = new PrincipalContext(ContextType.Domain))
+        {
+            var principal = UserPrincipal.FindByIdentity(context, User.Identity.Name);
 
-        @principal.GivenName @principal.Surname
-    }
-}*@
+            @principal.GivenName @principal.Surname
+        }
+    }*@
+
+
+
+@*Method to get number of New Taxi's record*@
+
+@helper NumberOfTaxis()
+{
+
+using (var context = new TaxiContext())
+{
+        var count = context.NewTaxis.Count();
+
+        @count
+}
+}
