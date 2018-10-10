@@ -17,8 +17,7 @@ namespace sb_admin_2.Web.Controllers
 
         public HomeController()
         {
-            _context = new DAL.TaxiContext();
-            
+            _context = new DAL.TaxiContext();            
 
         }
 
