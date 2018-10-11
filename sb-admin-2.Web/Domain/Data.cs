@@ -30,9 +30,9 @@ namespace sb_admin_2.Web.Domain
             menu.Add(new Navbar { Id = 17, nameOption = "Blank Page", controller = "Home", action = "Blank", status = true, isParent = false, parentId = 16 });
             menu.Add(new Navbar { Id = 18, nameOption = "Login Page", controller = "Home", action = "Login", status = true, isParent = false, parentId = 16 });
 
-            //menu.Add(new Navbar { Id = 19, nameOption = "Maintenance Selection", imageClass = "fa fa-bar-chart-o fa-fw", status = true, isParent = true, parentId = 0 });
-            //menu.Add(new Navbar { Id = 20, nameOption = "Preventive Maintenance", controller = "Home", action = "MTaxiDetails", status = true, isParent = false, parentId = 19 });
-            //menu.Add(new Navbar { Id = 21, nameOption = "Corrective Maintenance", controller = "Home", action = "CSiteTaxiDetails", status = true, isParent = false, parentId = 19 });
+            menu.Add(new Navbar { Id = 19, nameOption = "Maintenance Selection", imageClass = "fa fa-bar-chart-o fa-fw", status = true, isParent = true, parentId = 0 });
+            menu.Add(new Navbar { Id = 20, nameOption = "Preventive Maintenance", controller = "Home", action = "MTaxiDetails", status = true, isParent = false, parentId = 19 });
+            menu.Add(new Navbar { Id = 21, nameOption = "Corrective Maintenance", controller = "Home", action = "CSiteTaxiDetails", status = true, isParent = false, parentId = 19 });
 
             
             return menu.ToList();

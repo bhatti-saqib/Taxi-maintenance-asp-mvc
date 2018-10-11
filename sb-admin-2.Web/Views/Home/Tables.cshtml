@@ -30,7 +30,7 @@
                                 <th>Taxi Plate No</th>
                                 <th>Date</th>
                                 <th>Region</th>
-                                <th>ID</th>
+                                @*<th>ID</th>*@
                             </tr>
 
                         </thead>
@@ -43,9 +43,9 @@
                                 <td>@Html.DisplayFor(modelItem => item.NT_PlateNumber)</td>
                                 <td>@item.NT_Date.ToUniversalTime() </td>
                                 <td>@Html.DisplayFor(modelItem => item.NT_Region)</td>
-                                <td>@Html.DisplayFor(modelItem => item.Id)</td>
+                                @*<td>@Html.DisplayFor(modelItem => item.Id)</td>*@
                                 <td>
-                                    @Html.ActionLink("Details", "Details", "Home", new { id = item.Id }, FormMethod.Get)
+                                    @Html.ActionLink("Details", "Details", "Home", new { id = item.NT_PlateNumber }, FormMethod.Get)
                                     @*<span class="btn btn-xs btn-primary btnEdit" id="edit_@item.Id" onclick="createModal('@Url.Action("Details", "Home" , new {id=item.Id })')">Details</span>*@
                                 </td>
                             </tr>

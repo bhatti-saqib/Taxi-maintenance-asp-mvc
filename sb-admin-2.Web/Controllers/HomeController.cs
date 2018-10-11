@@ -933,9 +933,10 @@ namespace sb_admin_2.Web.Controllers
         }
 
 
-        public ActionResult Details(int id)
+        public ActionResult Details(string id)
         {
-            NewTaxi taxi = _context.NewTaxis.Find(id);
+            // NewTaxi taxi = _context.NewTaxis.Find(id);
+            NewTaxi taxi = _context.NewTaxis.FirstOrDefault(n => n.NT_PlateNumber == id);
             return View(taxi);
         }
 
