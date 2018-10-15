@@ -22,10 +22,102 @@
 @helper NumberOfTaxis()
 {
 
-using (var context = new TaxiContext())
-{
+    using (var context = new TaxiContext())
+    {
         var count = context.NewTaxis.Count();
 
         @count
+    }
 }
+
+
+@helper NumberOfSTPendingApprovalTaxis()
+{
+
+    using (var context = new TaxiContext())
+    {
+        var count = context.NewTaxis
+                    .Where(appr => appr.Is_NT_SecureTechRepApproved == null)
+                        //.SelectMany(appr => appr.)
+                        .Count();
+
+        @count
+    }
+
 }
+
+
+@helper NumberOfMCCPendingApprovalTaxis()
+{
+
+    using (var context = new TaxiContext())
+    {
+        var count = context.NewTaxis
+                    .Where(appr => appr.Is_NT_MccRepApproved == null)
+                        //.SelectMany(appr => appr.)
+                        .Count();
+
+        @count
+    }
+
+}
+
+
+
+@helper NumberOfADTaxis()
+{
+
+    using (var context = new TaxiContext())
+    {
+        var count = context.NewTaxis
+                    .Where(appr => appr.NT_Region == "AD")
+                        //.SelectMany(appr => appr.)
+                        .Count();
+
+        @count
+    }
+
+}
+
+
+@helper NumberOfAATaxis()
+{
+
+    using (var context = new TaxiContext())
+    {
+        var count = context.NewTaxis
+                    .Where(appr => appr.NT_Region == "AA")
+                        //.SelectMany(appr => appr.)
+                        .Count();
+
+        @count
+    }
+
+}
+
+
+@helper NumberOfWRTaxis()
+{
+
+    using (var context = new TaxiContext())
+    {
+        var count = context.NewTaxis
+                    .Where(appr => appr.NT_Region == "WR")
+                        //.SelectMany(appr => appr.)
+                        .Count();
+
+        @count
+    }
+
+}
+
+
+@*@helper LastAddedTaxi()
+    {
+
+        using (var context = new TaxiContext())
+        {
+
+        }
+
+    }*@
