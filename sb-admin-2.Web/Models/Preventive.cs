@@ -11,14 +11,14 @@ namespace sb_admin_2.Web.Models
         [StringLength(1)]
         public string typeOfMaintenance { get; set; }
 
-        [Required(ErrorMessage = "Please select Site.")]
-        [StringLength(255)]
-        //[RegularExpression(@"^[a-zA-Z]+$", ErrorMessage = "Please enter only alphabets.")]
-        public string MT_SiteName { get; set; }
+        //[Required(ErrorMessage = "Please select Site.")]
+        //[StringLength(255)]
+        
+        //public string MT_SiteName { get; set; }
 
 
-        [Required]
-        public string MT_TaxiType { get; set; }
+        //[Required]
+        //public string MT_TaxiType { get; set; }
 
         [Required(ErrorMessage = "Please enter Plate Number")]
         //[DataType(DataType.PhoneNumber)]
@@ -26,8 +26,8 @@ namespace sb_admin_2.Web.Models
 
 
         //[RegularExpression("([1-9][0-9]*)", ErrorMessage = "Must be a number")]
-        [Required(ErrorMessage = "Please enter MDVR Number")]
-        public string MT_MdvrNo { get; set; }
+        //[Required(ErrorMessage = "Please enter MDVR Number")]
+        //public string MT_MdvrNo { get; set; }
 
 
         [Required(ErrorMessage = "Please enter Date")]
@@ -35,8 +35,8 @@ namespace sb_admin_2.Web.Models
         [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{dd-mm-yyyy}")]
         public DateTime MT_Date { get; set; }
 
-        [Required]
-        public string MT_Region { get; set; }
+        //[Required]
+        //public string MT_Region { get; set; }
 
         //[Required]
         public string MT_ExistingMDVR { get; set; }

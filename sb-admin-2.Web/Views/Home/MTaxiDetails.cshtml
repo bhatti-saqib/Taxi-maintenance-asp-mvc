@@ -33,10 +33,10 @@
                     <div class="row">
                         <div class="col-lg-6">
                             <form role="form">
-                                <div class="form-group">
-                                    @Html.Label("Site")
+                                @*<div class="form-group">
+                                    @Html.Label("Site")*@
                                     @*@Html.EnumDropDownListFor(model => model.NT_Sites, "Please select Site", new { @class = "form-control" })*@
-                                    @Html.DropDownListFor(m => m.MT_SiteName, new SelectList(
+                                    @*@Html.DropDownListFor(m => m.MT_SiteName, new SelectList(
                                         new List<Object>
                                         {
                                             new { value = "TestSite1", text = "Test Site 1"},
@@ -48,8 +48,8 @@
                                         2), "-- Please Select --", new { @class = "form-control" })
                                     @Html.ValidationMessageFor(m => m.MT_SiteName, "", new { @class = "text-danger" })
 
-                                </div>
-                                <div class="form-group">
+                                </div>*@
+                                @*<div class="form-group">
                                     @Html.Label("Taxi Type")
                                     <div class="radio-inline"><label>@Html.RadioButtonFor(m => m.MT_TaxiType, "Camry", false) Camry </label></div>
                                     <div class="radio-inline"><label>@Html.RadioButtonFor(m => m.MT_TaxiType, "Innova", false) Innova </label></div>
@@ -57,33 +57,32 @@
                                     <div class="radio-inline"><label>@Html.RadioButtonFor(m => m.MT_TaxiType, "Special Needs", false) Special Needs </label></div>
                                     <div class="radio-inline"><label>@Html.RadioButtonFor(m => m.MT_TaxiType, "Smart Taxi", false) Smart Taxi </label></div>
                                     <div class="radio-inline"><label>@Html.RadioButtonFor(m => m.MT_TaxiType, "Smart Taxi", false) Buses </label></div>
-                                </div>
-                                <div class="form-group">
+                                </div>*@
+                                @*<div class="form-group">
                                     @Html.Label("Region")
                                     <div class="radio-inline"><label>@Html.RadioButtonFor(m => m.MT_Region, "AD", true) AD </label></div>
                                     <div class="radio-inline"><label>@Html.RadioButtonFor(m => m.MT_Region, "AA", false) AA </label></div>
-                                    <div class="radio-inline"><label>@Html.RadioButtonFor(m => m.MT_Region, "WR", false) WR </label></div>
+                                    <div class="radio-inline"><label>@Html.RadioButtonFor(m => m.MT_Region, "WR", false) WR </label></div>*@
 
                                     @*@{ selectedRegion = Model.NT_Region;}*@
-                                </div>
+                                @*</div>*@
 
                                 <div class="form-group field-validation-error form-inline">
                                     @Html.Label("Taxi Plate No.")
-                                    @Html.TextBoxFor(m => m.MT_PlateNumber, new { placeholder = "Please enter Taxi Plate No.", @class = "form-control" })
+                                    @*@Html.TextBoxFor(m => m.MT_PlateNumber, new { placeholder = "Search Taxi Plate No.", @class = "form-control" })*@
+                                    @Html.EditorFor(m => m.MT_PlateNumber, new { htmlAttributes = new { placeholder = "Search Taxi Plate No.", @class = "form-control" } })
                                     @Html.ValidationMessageFor(m => m.MT_PlateNumber, "", new { @class = "text-danger" })
                                     @*@Html.ActionLink("Take Photo", "Changephoto", "Photo", new { @class = "btn btn-primary" })*@
                                     @*<a href="@Url.Action("ChangePhoto", "Home", new { fromView ="TaxiDetails"})">
-                                            <img src="~/Content/images/photo-camera.png"/>
-                                        </a>*@
+            <img src="~/Content/images/photo-camera.png"/>
+        </a>*@
                                 </div>
-                                <div class="form-group field-validation-error form-inline">
+                                @*<div class="form-group field-validation-error form-inline">
                                     @Html.Label("Taxi MDVR No.")
                                     @Html.TextBoxFor(m => m.MT_MdvrNo, new { placeholder = "Please enter Taxi MDVR No.", @class = "form-control" })
                                     @Html.ValidationMessageFor(m => m.MT_MdvrNo, "", new { @class = "text-danger" })
-                                    @*<a href="@Url.Action("ChangePhoto", "Home", new { fromView ="TaxiDetails"})">
-                                            <img src="~/Content/images/photo-camera.png" />
-                                        </a>*@
-                                </div>
+                                    
+                                </div>*@
                                 <div class="form-group">
                                     @Html.EditorFor(x => x.MT_Date, new { htmlAttributes = new { placeholder = "Date", @class = "form-control datetimepicker" } })
                                     @Html.ValidationMessageFor(m => m.MT_Date, "", new { @class = "text-danger" })

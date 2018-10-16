@@ -506,12 +506,12 @@ namespace sb_admin_2.Web.Controllers
                 {
                     Preventive obj = GetMaintenanceTaxi();
                     obj.Id = data.Id;
-                    obj.MT_SiteName = data.MT_SiteName;
-                    obj.MT_TaxiType = data.MT_TaxiType;
+                    //obj.MT_SiteName = data.MT_SiteName;
+                    //obj.MT_TaxiType = data.MT_TaxiType;
                     obj.MT_PlateNumber = data.MT_PlateNumber;
-                    obj.MT_MdvrNo = data.MT_MdvrNo;
+                    //obj.MT_MdvrNo = data.MT_MdvrNo;
                     obj.MT_Date = data.MT_Date;
-                    obj.MT_Region = data.MT_Region;
+                    //obj.MT_Region = data.MT_Region;
                     obj.typeOfMaintenance = "P";
 
                     return View("MEquipmentDetails");
@@ -537,12 +537,12 @@ namespace sb_admin_2.Web.Controllers
                 MTaxiDetails td = new MTaxiDetails
                 {
                     Id = obj.Id,
-                    MT_SiteName = obj.MT_SiteName,
-                    MT_TaxiType = obj.MT_TaxiType,
+                    //MT_SiteName = obj.MT_SiteName,
+                    //MT_TaxiType = obj.MT_TaxiType,
                     MT_PlateNumber = obj.MT_PlateNumber,
-                    MT_MdvrNo = obj.MT_MdvrNo,
+                    //MT_MdvrNo = obj.MT_MdvrNo,
                     MT_Date = obj.MT_Date,
-                    MT_Region = obj.MT_Region,
+                    //MT_Region = obj.MT_Region,
                     typeOfMaintenance = obj.typeOfMaintenance
                 };
 

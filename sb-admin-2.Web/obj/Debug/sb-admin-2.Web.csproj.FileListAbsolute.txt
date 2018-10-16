@@ -180,6 +180,7 @@ D:\Repos\sb-admin-2\sb-admin-2.Web\obj\Debug\sb_admin_2.Web.Migrations.AddMainte
 D:\Repos\sb-admin-2\sb-admin-2.Web\obj\Debug\sb_admin_2.Web.Migrations.AddNewTaxiAsForeignKeyInPreventiveModel.resources
 D:\Repos\sb-admin-2\sb-admin-2.Web\obj\Debug\sb_admin_2.Web.Migrations.NewTaxiModelChangedToJustTextFields.resources
 D:\Repos\sb-admin-2\sb-admin-2.Web\obj\Debug\sb_admin_2.Web.Migrations.LoggedInUserFieldAdded.resources
+D:\Repos\sb-admin-2\sb-admin-2.Web\obj\Debug\sb_admin_2.Web.Migrations.RemoveUnnecessaryFieldsFromPreventive.resources
 D:\Repos\sb-admin-2\sb-admin-2.Web\obj\Debug\sb-admin-2.Web.csproj.GenerateResource.cache
 D:\Repos\sb-admin-2\sb-admin-2.Web\obj\Debug\sb-admin-2.Web.csproj.CoreCompileInputs.cache
 D:\Repos\sb-admin-2\sb-admin-2.Web\obj\Debug\sb-admin-2.Web.csproj.CopyComplete
