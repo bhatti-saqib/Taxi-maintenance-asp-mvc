@@ -224,18 +224,7 @@
                                         <td>2:23 PM</td>
                                         <td>245</td>
                                     </tr>
-                                    <tr>
-                                        <td>3320</td>
-                                        <td>10/21/2013</td>
-                                        <td>2:15 PM</td>
-                                        <td>5663</td>
-                                    </tr>
-                                    <tr>
-                                        <td>3319</td>
-                                        <td>10/21/2013</td>
-                                        <td>2:13 PM</td>
-                                        <td>943</td>
-                                    </tr>
+                                                                        
                                 </tbody>
                             </table>
                         </div>
@@ -387,7 +376,8 @@
                     <a href="#" class="list-group-item">
                         <i class="fa fa-comment fa-fw"></i> New Taxi Added
                         <span class="pull-right text-muted small">
-                            <em>4 minutes ago</em>
+                            @*<em>4 minutes ago</em>*@
+                            <em>@MyHelpers.TimeSinceLastTaxiAdded()</em>
                         </span>
                     </a>
                     @*<a href="#" class="list-group-item">
@@ -397,33 +387,33 @@
                         </span>
                     </a>*@
                     <a href="#" class="list-group-item">
-                        <i class="fa fa-envelope fa-fw"></i> Message Sent
+                        <i class="fa fa-envelope fa-fw"></i> Region AD
                         <span class="pull-right text-muted small">
-                            <em>27 minutes ago</em>
+                            <em>@MyHelpers.NumberOfADTaxis() Taxis</em>
                         </span>
                     </a>
                     <a href="#" class="list-group-item">
-                        <i class="fa fa-tasks fa-fw"></i> New Task
+                        <i class="fa fa-tasks fa-fw"></i> Region AA
                         <span class="pull-right text-muted small">
-                            <em>43 minutes ago</em>
+                            <em>@MyHelpers.NumberOfAATaxis() Taxis</em>
                         </span>
                     </a>
                     <a href="#" class="list-group-item">
-                        <i class="fa fa-upload fa-fw"></i> Server Rebooted
+                        <i class="fa fa-upload fa-fw"></i> Region WR
                         <span class="pull-right text-muted small">
-                            <em>11:32 AM</em>
+                            <em>@MyHelpers.NumberOfWRTaxis() Taxis</em>
                         </span>
                     </a>
                     <a href="#" class="list-group-item">
-                        <i class="fa fa-bolt fa-fw"></i> Server Crashed!
+                        <i class="fa fa-bolt fa-fw"></i> Maintenance Required!
                         <span class="pull-right text-muted small">
-                            <em>11:13 AM</em>
+                            <em>@MyHelpers.NumberOfTaxis() Taxis</em>
                         </span>
                     </a>
                     <a href="#" class="list-group-item">
-                        <i class="fa fa-warning fa-fw"></i> Server Not Responding
+                        <i class="fa fa-warning fa-fw"></i> Task Allocated
                         <span class="pull-right text-muted small">
-                            <em>10:57 AM</em>
+                            <em>None</em>
                         </span>
                     </a>
                     @*<a href="#" class="list-group-item">
@@ -639,10 +629,10 @@
             label: "Region AD",
             value: @MyHelpers.NumberOfADTaxis()
         }, {
-                label: "Region AA",
+            label: "Region AA",
             value: @MyHelpers.NumberOfAATaxis()
         }, {
-                label: "Region WR",
+            label: "Region WR",
             value: @MyHelpers.NumberOfWRTaxis()
         }],
         resize: true

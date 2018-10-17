@@ -112,12 +112,33 @@
 }
 
 
-@*@helper LastAddedTaxi()
-    {
+@helper TimeSinceLastTaxiAdded()
+{
 
-        using (var context = new TaxiContext())
+using (var context = new TaxiContext())
+{
+    var latest = context.NewTaxis
+        .OrderByDescending(x => x.NT_Date)
+        .Select(x => x.NT_Date)
+        .FirstOrDefault();
+
+    TimeSpan span = DateTime.Now.Subtract(latest);
+
+        if (span.TotalSeconds < 60)
         {
-
+            @(span.Seconds + " " + "secs ago")
         }
-
-    }*@
+        else if (span.TotalMinutes < 60)
+        {
+            @(span.Minutes + " " + "mins ago")
+        }
+        else if (span.TotalHours < 24)
+        {
+            @(span.Hours + " " + "hours ago")
+        }
+        else
+        {
+            @(span.TotalDays + " " + "days ago")
+        }
+    }
+}
