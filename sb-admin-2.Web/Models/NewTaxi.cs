@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace sb_admin_2.Web.Models
 {
@@ -15,8 +16,9 @@ namespace sb_admin_2.Web.Models
         [Required]
         public string NT_TaxiType { get; set; }
 
+
         //[Required(ErrorMessage = "Please enter Plate Number")]
-        //[DataType(DataType.PhoneNumber)]
+
         [Key]
         public string NT_PlateNumber { get; set; }
 

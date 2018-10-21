@@ -7,13 +7,13 @@ namespace sb_admin_2.Web.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.2.0-61023")]
-    public sealed partial class MakeRepsNullable : IMigrationMetadata
+    public sealed partial class Initial : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(MakeRepsNullable));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(Initial));
         
         string IMigrationMetadata.Id
         {
-            get { return "201807101352571_MakeRepsNullable"; }
+            get { return "201810180828213_Initial"; }
         }
         
         string IMigrationMetadata.Source

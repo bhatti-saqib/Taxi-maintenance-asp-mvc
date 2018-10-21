@@ -64,6 +64,23 @@
 
 
 
+@helper NumberOfDepotPendingApprovalTaxis()
+{
+
+    using (var context = new TaxiContext())
+    {
+        var count = context.NewTaxis
+                    .Where(appr => appr.Is_NT_DepotRepApproved == null)
+                        //.SelectMany(appr => appr.)
+                        .Count();
+
+        @count
+    }
+
+}
+
+
+
 @helper NumberOfADTaxis()
 {
 
@@ -115,14 +132,14 @@
 @helper TimeSinceLastTaxiAdded()
 {
 
-using (var context = new TaxiContext())
-{
-    var latest = context.NewTaxis
-        .OrderByDescending(x => x.NT_Date)
-        .Select(x => x.NT_Date)
-        .FirstOrDefault();
+    using (var context = new TaxiContext())
+    {
+        var latest = context.NewTaxis
+            .OrderByDescending(x => x.NT_Date)
+            .Select(x => x.NT_Date)
+            .FirstOrDefault();
 
-    TimeSpan span = DateTime.Now.Subtract(latest);
+        TimeSpan span = DateTime.Now.Subtract(latest);
 
         if (span.TotalSeconds < 60)
         {
@@ -138,7 +155,7 @@ using (var context = new TaxiContext())
         }
         else
         {
-            @(span.TotalDays + " " + "days ago")
+            @(span.Days + " " + "days ago")
         }
     }
 }

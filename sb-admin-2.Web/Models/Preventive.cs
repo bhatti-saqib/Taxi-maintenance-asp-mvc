@@ -11,17 +11,9 @@ namespace sb_admin_2.Web.Models
         [StringLength(1)]
         public string typeOfMaintenance { get; set; }
 
-        //[Required(ErrorMessage = "Please select Site.")]
-        //[StringLength(255)]
         
-        //public string MT_SiteName { get; set; }
-
-
-        //[Required]
-        //public string MT_TaxiType { get; set; }
-
         [Required(ErrorMessage = "Please enter Plate Number")]
-        //[DataType(DataType.PhoneNumber)]
+        
         public string MT_PlateNumber { get; set; }
 
 
@@ -35,8 +27,7 @@ namespace sb_admin_2.Web.Models
         [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{dd-mm-yyyy}")]
         public DateTime MT_Date { get; set; }
 
-        //[Required]
-        //public string MT_Region { get; set; }
+        
 
         //[Required]
         public string MT_ExistingMDVR { get; set; }

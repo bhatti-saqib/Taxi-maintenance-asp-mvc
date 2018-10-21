@@ -158,77 +158,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201807012045112_InitialModel.cs" />
-    <Compile Include="Migrations\201807012045112_InitialModel.Designer.cs">
-      <DependentUpon>201807012045112_InitialModel.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201807020533333_SerialNumberRemovedFromEquipment.cs" />
-    <Compile Include="Migrations\201807020533333_SerialNumberRemovedFromEquipment.Designer.cs">
-      <DependentUpon>201807020533333_SerialNumberRemovedFromEquipment.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201807020602534_ApplyAnnotationsToNewTaxi.cs" />
-    <Compile Include="Migrations\201807020602534_ApplyAnnotationsToNewTaxi.Designer.cs">
-      <DependentUpon>201807020602534_ApplyAnnotationsToNewTaxi.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201807020835284_DeleteAllEnumsFromModel.cs" />
-    <Compile Include="Migrations\201807020835284_DeleteAllEnumsFromModel.Designer.cs">
-      <DependentUpon>201807020835284_DeleteAllEnumsFromModel.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201807021749051_ChangeDataAnnotations.cs" />
-    <Compile Include="Migrations\201807021749051_ChangeDataAnnotations.Designer.cs">
-      <DependentUpon>201807021749051_ChangeDataAnnotations.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201807022057407_AddTwoMoreFields.cs" />
-    <Compile Include="Migrations\201807022057407_AddTwoMoreFields.Designer.cs">
-      <DependentUpon>201807022057407_AddTwoMoreFields.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201807030555555_ChangeSiteNameDataAnnotation.cs" />
-    <Compile Include="Migrations\201807030555555_ChangeSiteNameDataAnnotation.Designer.cs">
-      <DependentUpon>201807030555555_ChangeSiteNameDataAnnotation.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201807080755376_AddSerialNumbersFieldsInEquipment.cs" />
-    <Compile Include="Migrations\201807080755376_AddSerialNumbersFieldsInEquipment.Designer.cs">
-      <DependentUpon>201807080755376_AddSerialNumbersFieldsInEquipment.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201807101339500_ChangeRepsTypeToBool.cs" />
-    <Compile Include="Migrations\201807101339500_ChangeRepsTypeToBool.Designer.cs">
-      <DependentUpon>201807101339500_ChangeRepsTypeToBool.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201807101352571_MakeRepsNullable.cs" />
-    <Compile Include="Migrations\201807101352571_MakeRepsNullable.Designer.cs">
-      <DependentUpon>201807101352571_MakeRepsNullable.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201807250743536_PicsFieldsAddedToNewTaxi.cs" />
-    <Compile Include="Migrations\201807250743536_PicsFieldsAddedToNewTaxi.Designer.cs">
-      <DependentUpon>201807250743536_PicsFieldsAddedToNewTaxi.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201808040657223_PlateNumberBecomesPrimaryKey.cs" />
-    <Compile Include="Migrations\201808040657223_PlateNumberBecomesPrimaryKey.Designer.cs">
-      <DependentUpon>201808040657223_PlateNumberBecomesPrimaryKey.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201808051813244_UpdateMaintenanceModelWithNewFields.cs" />
-    <Compile Include="Migrations\201808051813244_UpdateMaintenanceModelWithNewFields.Designer.cs">
-      <DependentUpon>201808051813244_UpdateMaintenanceModelWithNewFields.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201808051911124_AddMaintenanceType.cs" />
-    <Compile Include="Migrations\201808051911124_AddMaintenanceType.Designer.cs">
-      <DependentUpon>201808051911124_AddMaintenanceType.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201808060827543_AddNewTaxiAsForeignKeyInPreventiveModel.cs" />
-    <Compile Include="Migrations\201808060827543_AddNewTaxiAsForeignKeyInPreventiveModel.Designer.cs">
-      <DependentUpon>201808060827543_AddNewTaxiAsForeignKeyInPreventiveModel.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201808281244462_NewTaxiModelChangedToJustTextFields.cs" />
-    <Compile Include="Migrations\201808281244462_NewTaxiModelChangedToJustTextFields.Designer.cs">
-      <DependentUpon>201808281244462_NewTaxiModelChangedToJustTextFields.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201808300540194_LoggedInUserFieldAdded.cs" />
-    <Compile Include="Migrations\201808300540194_LoggedInUserFieldAdded.Designer.cs">
-      <DependentUpon>201808300540194_LoggedInUserFieldAdded.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201810160646174_RemoveUnnecessaryFieldsFromPreventive.cs" />
-    <Compile Include="Migrations\201810160646174_RemoveUnnecessaryFieldsFromPreventive.Designer.cs">
-      <DependentUpon>201810160646174_RemoveUnnecessaryFieldsFromPreventive.cs</DependentUpon>
+    <Compile Include="Migrations\201810180828213_Initial.cs" />
+    <Compile Include="Migrations\201810180828213_Initial.Designer.cs">
+      <DependentUpon>201810180828213_Initial.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\CableDetails.cs" />
@@ -1111,6 +1043,10 @@
     <Content Include="Scripts\jquery-ui-sliderAccess.js" />
     <Content Include="Scripts\jquery-ui-timepicker-addon.js" />
     <Content Include="Scripts\jquery-ui-timepicker-addon.min.js" />
+    <Content Include="Scripts\moment-with-locales.js" />
+    <Content Include="Scripts\moment-with-locales.min.js" />
+    <Content Include="Scripts\moment.js" />
+    <Content Include="Scripts\moment.min.js" />
     <Content Include="WebImages\person.jpg" />
     <None Include="Properties\PublishProfiles\CustomProfile.pubxml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
@@ -1289,59 +1225,8 @@
     <None Include="Project_Readme.html" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201807012045112_InitialModel.resx">
-      <DependentUpon>201807012045112_InitialModel.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201807020533333_SerialNumberRemovedFromEquipment.resx">
-      <DependentUpon>201807020533333_SerialNumberRemovedFromEquipment.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201807020602534_ApplyAnnotationsToNewTaxi.resx">
-      <DependentUpon>201807020602534_ApplyAnnotationsToNewTaxi.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201807020835284_DeleteAllEnumsFromModel.resx">
-      <DependentUpon>201807020835284_DeleteAllEnumsFromModel.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201807021749051_ChangeDataAnnotations.resx">
-      <DependentUpon>201807021749051_ChangeDataAnnotations.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201807022057407_AddTwoMoreFields.resx">
-      <DependentUpon>201807022057407_AddTwoMoreFields.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201807030555555_ChangeSiteNameDataAnnotation.resx">
-      <DependentUpon>201807030555555_ChangeSiteNameDataAnnotation.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201807080755376_AddSerialNumbersFieldsInEquipment.resx">
-      <DependentUpon>201807080755376_AddSerialNumbersFieldsInEquipment.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201807101339500_ChangeRepsTypeToBool.resx">
-      <DependentUpon>201807101339500_ChangeRepsTypeToBool.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201807101352571_MakeRepsNullable.resx">
-      <DependentUpon>201807101352571_MakeRepsNullable.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201807250743536_PicsFieldsAddedToNewTaxi.resx">
-      <DependentUpon>201807250743536_PicsFieldsAddedToNewTaxi.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201808040657223_PlateNumberBecomesPrimaryKey.resx">
-      <DependentUpon>201808040657223_PlateNumberBecomesPrimaryKey.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201808051813244_UpdateMaintenanceModelWithNewFields.resx">
-      <DependentUpon>201808051813244_UpdateMaintenanceModelWithNewFields.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201808051911124_AddMaintenanceType.resx">
-      <DependentUpon>201808051911124_AddMaintenanceType.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201808060827543_AddNewTaxiAsForeignKeyInPreventiveModel.resx">
-      <DependentUpon>201808060827543_AddNewTaxiAsForeignKeyInPreventiveModel.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201808281244462_NewTaxiModelChangedToJustTextFields.resx">
-      <DependentUpon>201808281244462_NewTaxiModelChangedToJustTextFields.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201808300540194_LoggedInUserFieldAdded.resx">
-      <DependentUpon>201808300540194_LoggedInUserFieldAdded.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201810160646174_RemoveUnnecessaryFieldsFromPreventive.resx">
-      <DependentUpon>201810160646174_RemoveUnnecessaryFieldsFromPreventive.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201810180828213_Initial.resx">
+      <DependentUpon>201810180828213_Initial.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

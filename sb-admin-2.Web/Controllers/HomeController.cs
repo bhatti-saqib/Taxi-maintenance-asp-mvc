@@ -1,6 +1,9 @@
-﻿using sb_admin_2.Web.Models;
+﻿using Microsoft.Ajax.Utilities;
+using sb_admin_2.Web.DAL;
+using sb_admin_2.Web.Models;
 using System;
 using System.Collections.Generic;
+using System.Collections.Specialized;
 using System.Data.Entity.Validation;
 using System.Linq;
 using System.Web.Mvc;
@@ -14,6 +17,9 @@ namespace sb_admin_2.Web.Controllers
         private DAL.TaxiContext _context;
         string userName;  // User who is logged in
 
+        List<MTaxiDetails> plateNumbers = new List<MTaxiDetails>();
+        
+        private bool isPlateNumberSearched;
 
         public HomeController()
         {
@@ -498,20 +504,21 @@ namespace sb_admin_2.Web.Controllers
         public ActionResult MTaxiDetails(MTaxiDetails data, string prevBtn, string nextBtn)
         {
             //Session["MaintenanceId"] = data.Id;
-
+            
 
             if (nextBtn != null)
             {
                 if (ModelState.IsValid)
                 {
+                    isPlateNumberSearched = false;
+
                     Preventive obj = GetMaintenanceTaxi();
                     obj.Id = data.Id;
-                    //obj.MT_SiteName = data.MT_SiteName;
-                    //obj.MT_TaxiType = data.MT_TaxiType;
+                    
                     obj.MT_PlateNumber = data.MT_PlateNumber;
-                    //obj.MT_MdvrNo = data.MT_MdvrNo;
+                    GetTaxi(data.MT_PlateNumber, isPlateNumberSearched);
+                    
                     obj.MT_Date = data.MT_Date;
-                    //obj.MT_Region = data.MT_Region;
                     obj.typeOfMaintenance = "P";
 
                     return View("MEquipmentDetails");
@@ -527,6 +534,41 @@ namespace sb_admin_2.Web.Controllers
         }
 
 
+
+        public void GetTaxi(string prefix, bool isPlateNumber)
+        {
+            // get all the Taxi Plate Numbers and add them in the List.
+            foreach (var rec in _context.NewTaxis)
+            {
+                plateNumbers.Add(new MTaxiDetails
+                {
+                    Number = rec.NT_PlateNumber.ToString(),
+                });
+            }
+            
+        }
+
+
+
+        [HttpPost]
+        public JsonResult Indx(string Prefix)
+        {
+            isPlateNumberSearched = true;
+            GetTaxi(Prefix, isPlateNumberSearched);
+
+            //Searching records from list using LINQ query
+            var No = (from N in plateNumbers
+                        where N.Number.StartsWith(Prefix)
+                        select new { N.Number, });
+
+            return Json(No, JsonRequestBehavior.AllowGet);
+
+        }
+
+
+
+
+
         [HttpPost]
         public ActionResult MEquipmentDetails(MEquipmentDetails data, string prevBtn, string nextBtn)
         {
@@ -539,7 +581,7 @@ namespace sb_admin_2.Web.Controllers
                     Id = obj.Id,
                     //MT_SiteName = obj.MT_SiteName,
                     //MT_TaxiType = obj.MT_TaxiType,
-                    MT_PlateNumber = obj.MT_PlateNumber,
+                    //MT_PlateNumber = obj.MT_PlateNumber,
                     //MT_MdvrNo = obj.MT_MdvrNo,
                     MT_Date = obj.MT_Date,
                     //MT_Region = obj.MT_Region,

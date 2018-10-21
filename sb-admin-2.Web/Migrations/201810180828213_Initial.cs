@@ -3,22 +3,42 @@ namespace sb_admin_2.Web.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class AddNewTaxiAsForeignKeyInPreventiveModel : DbMigration
+    public partial class Initial : DbMigration
     {
         public override void Up()
         {
+            CreateTable(
+                "dbo.NewTaxis",
+                c => new
+                    {
+                        NT_PlateNumber = c.String(nullable: false, maxLength: 128),
+                        NT_SiteName = c.String(nullable: false, maxLength: 255),
+                        NT_TaxiType = c.String(nullable: false),
+                        NT_MdvrNo = c.String(nullable: false),
+                        NT_Date = c.DateTime(nullable: false),
+                        NT_Region = c.String(nullable: false),
+                        NT_MDVRSerialNo = c.String(nullable: false),
+                        NT_CameraSerialNo = c.String(nullable: false),
+                        NT_UpsSerialNo = c.String(nullable: false),
+                        NT_HDDSerialNo = c.String(nullable: false),
+                        NT_Emmis = c.String(nullable: false),
+                        NT_CameraConnector = c.String(nullable: false),
+                        NT_DiskSize = c.String(nullable: false),
+                        Is_NT_DepotRepApproved = c.Boolean(),
+                        Is_NT_SecureTechRepApproved = c.Boolean(),
+                        Is_NT_MccRepApproved = c.Boolean(),
+                        User = c.String(),
+                    })
+                .PrimaryKey(t => t.NT_PlateNumber);
+            
             CreateTable(
                 "dbo.Preventives",
                 c => new
                     {
                         Id = c.Int(nullable: false, identity: true),
                         typeOfMaintenance = c.String(maxLength: 1),
-                        MT_SiteName = c.String(nullable: false, maxLength: 255),
-                        MT_TaxiType = c.String(nullable: false),
                         MT_PlateNumber = c.String(nullable: false),
-                        MT_MdvrNo = c.String(nullable: false),
                         MT_Date = c.DateTime(nullable: false),
-                        MT_Region = c.String(nullable: false),
                         MT_ExistingMDVR = c.String(),
                         MT_MDVRSerialNo = c.String(),
                         MT_Cameras = c.String(),
@@ -83,6 +103,7 @@ namespace sb_admin_2.Web.Migrations
             DropForeignKey("dbo.Preventives", "NewTaxi_NT_PlateNumber", "dbo.NewTaxis");
             DropIndex("dbo.Preventives", new[] { "NewTaxi_NT_PlateNumber" });
             DropTable("dbo.Preventives");
+            DropTable("dbo.NewTaxis");
         }
     }
 }
