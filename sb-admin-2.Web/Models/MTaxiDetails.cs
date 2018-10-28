@@ -22,7 +22,7 @@ namespace sb_admin_2.Web.Models
         
         [Required(ErrorMessage = "Please enter Date")]
         [DataType(DataType.DateTime)]
-        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{dd-mm-yyyy}")]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd-MMM-yyyy hh:mm tt}")]
         public DateTime MT_Date { get; set; }
 
 
@@ -43,6 +43,7 @@ namespace sb_admin_2.Web.Models
         }
 
 
+        [Required(ErrorMessage = "Please enter Plate Number")]
         public string MT_PlateNumber
         {
             get

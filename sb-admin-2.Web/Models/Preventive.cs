@@ -17,14 +17,9 @@ namespace sb_admin_2.Web.Models
         public string MT_PlateNumber { get; set; }
 
 
-        //[RegularExpression("([1-9][0-9]*)", ErrorMessage = "Must be a number")]
-        //[Required(ErrorMessage = "Please enter MDVR Number")]
-        //public string MT_MdvrNo { get; set; }
-
-
         [Required(ErrorMessage = "Please enter Date")]
         [DataType(DataType.DateTime)]
-        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{dd-mm-yyyy}")]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd-MMM-yyyy hh:mm tt}")]
         public DateTime MT_Date { get; set; }
 
         
@@ -35,28 +30,28 @@ namespace sb_admin_2.Web.Models
 
         //[Required(ErrorMessage = "Please enter MDVR Serial No.")]
         //[MaxLength(10, ErrorMessage="Cannot be greater than 10")]
-        public string MT_MDVRSerialNo { get; set; }
+        public string MT_ReplacedMDVRSerialNo { get; set; }
 
 
         //[Required]
         public string MT_Cameras { get; set; }
 
         //[Required(ErrorMessage = "Please enter Camera Serial No.")]
-        public string MT_CameraSerialNo { get; set; }
+        public string MT_ReplacedCameraSerialNo { get; set; }
 
         //[Required]
         public string MT_Ups { get; set; }
 
 
         //[Required(ErrorMessage = "Please enter UPS Serial No.")]
-        public string MT_UpsSerialNo { get; set; }
+        public string MT_ReplacedUpsSerialNo { get; set; }
 
         //[Required]
         public string MT_Hdds { get; set; }
 
 
         //[Required(ErrorMessage = "Please enter HDD Serial No.")]
-        public string MT_HDDSerialNo { get; set; }
+        public string MT_ReplacedHDDSerialNo { get; set; }
 
         //[Required]
         public string MT_Sims { get; set; }

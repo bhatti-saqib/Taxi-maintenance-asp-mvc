@@ -1,0 +1,228 @@
+﻿
+
+@model sb_admin_2.Web.Models.Preventive
+
+@{
+    ViewBag.Title = "CSignOffDetails";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<head>
+    <style type="text/css" class="init">
+
+        .title {
+            font-weight: bold;
+        }
+
+        .details-table {
+            width: 100%;
+            background-color: #FFF;
+            margin: 5px;
+        }
+
+        td.details-control {
+            background: url('/Content/Images/details_open.png') no-repeat center center;
+            cursor: pointer;
+        }
+
+        tr.shown td.details-control {
+            background: url('/Content/Images/details_close.png') no-repeat center center;
+        }
+    </style>
+    <script type="text/javascript" language="javascript" src="../../media/js/jquery.js"></script>
+    <script type="text/javascript" language="javascript" src="../../media/js/jquery.dataTables.js"></script>
+    <script type="text/javascript" language="javascript" src="../resources/syntax/shCore.js"></script>
+    @*<script type="text/javascript" language="javascript" src="../resources/demo.js"></script>*@
+    <script type="text/javascript" language="javascript" class="init">
+
+        function format(data) {
+            return '<div class="details-container">' +
+                '<table cellpadding="5" cellspacing="0" border="0" class="details-table">' +
+                '<tr>' +
+                '<td class="title">Plate No:</td>' +
+                '<td>' + data.taxi_plateNo + '</td>' +
+                '<td class="title">Date:</td>' +
+                '<td>' + data.date + '</td>' +
+                '</tr>' +
+                '<tr>' +
+                '<td class="title">Equipment for Corrective Measure:</td>' +
+                '<td>' + data.equip_corr_measure + '</td>' +
+                '<td class="title">Corrective Measure Taken :</td>' +
+                '<td>' + data.corre_measure_taken + '</td>' +
+                '</tr>' +
+                '<tr>' +
+                '<td class="title">Comment:</td>' +
+                '<td>' + data.comment_box + '</td>' +
+                '<td class="title">Old Serial No :</td>' +
+                '<td>' + data.old_serial + '</td>' +
+                '</tr>' +
+                                                                                                   
+                                                                
+            '</table>' +
+                '</div>';
+        };
+
+        $(document).ready(function () {
+
+            var data = [
+                {
+                    "taxi_plateNo": "@Model.MT_PlateNumber", "date": "@Model.MT_Date",
+                    "equip_corr_measure": "@Model.MT_Equ_For_Corr_Measure",
+                    "corre_measure_taken": "@Model.MT_Corr_Measure_Taken",
+                    "comment_box": "@Model.MT_Comment_Box_For_Technicians",
+                    "old_serial": "@Model.MT_Old_SerialNo_If_Replaced"
+                }
+
+            ];
+
+
+
+            var table = $('.datatables').DataTable({
+
+                // Column definitions
+                columns: [
+                    {
+                        className: 'details-control',
+                        defaultContent: '',
+                        data: null,
+                        orderable: false
+                    },
+                    { data: 'taxi_plateNo' },
+                    { data: 'date' },
+                    
+                ],
+
+                "paging": false,
+                "ordering": false,
+                "info": false,
+                "searching": false,
+                data: data,
+
+                //pagingType: 'full_numbers',
+
+                // Localization
+                language: {
+                    emptyTable: 'Virhe! Haku epäonnistui.',
+                    zeroRecords: 'Ei hakutuloksia.',
+                    thousands: ',',
+                    processing: 'Prosessoidaan...',
+                    loadingRecords: 'Ladataan...',
+                    info: 'Sivu _PAGE_ / _PAGES_',
+                    infoEmpty: 'Sivu 0 / 0',
+                    infoFiltered: '(rajattu _MAX_ hakutuloksesta)',
+                    infoPostFix: '',
+                    lengthMenu: 'Rivien määrä _MENU_',
+                    search: 'Hae:',
+                    paginate: {
+                        first: 'Ensimmäinen',
+                        last: 'Viimeinen',
+                        next: 'Seuraava',
+                        previous: 'Edellinen'
+                    },
+                    aria: {
+                        sortAscending: ' aktivoi järjestääksesi sarake nousevasti',
+                        sortDescending: ' aktivoi järjestääksesi saraka laskevasti'
+                    }
+                }
+            });
+
+            $('.datatables tbody').on('click', 'td.details-control', function () {
+                var tr = $(this).closest('tr'),
+                    row = table.row(tr);
+
+                if (row.child.isShown()) {
+                    tr.next('tr').removeClass('details-row');
+                    row.child.hide();
+                    tr.removeClass('shown');
+                }
+                else {
+                    row.child(format(row.data())).show();
+                    tr.next('tr').addClass('details-row');
+                    tr.addClass('shown');
+                }
+            });
+        });
+    </script>
+</head>
+
+
+
+<table class="table table-striped table-hover datatables">
+    <thead>
+        <tr>
+            <th></th>
+            <th>Taxi Plate No.</th>
+            <th>Date</th>
+            
+        </tr>
+    </thead>
+    <tbody></tbody>
+</table>
+
+
+
+@using (Html.BeginForm("CSignOffDetails", "Home"))
+{
+    @*<h2>Add New Taxi</h2>*@
+
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+
+                </div>
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <form role="form">
+                                <div class="form-group">
+                                    <input type="submit" class="btn btn-primary" name="nextBtn" value='Submit' />
+                                    @*<input type="submit" class="btn btn-primary btn-lg btn-block" name="pendingBtn" value='Depot Representative' />*@
+                                    @*@Html.TextBoxFor(m => m.Is_NT_DepotRepApproved, new { placeholder = "Depot Representative", @class = "form-control" })
+                                        @Html.ValidationMessageFor(m => m.Is_NT_DepotRepApproved, "", new { @class = "text-danger" })*@
+                                </div>
+                                @*<div class="form-group row">
+                                        <div class=col-md-6>
+                                            <input type="submit" class="btn btn-success" name="nextBtn" value='Depot Rep Approved' />
+                                        </div>
+                                        <div class=col-md-6>
+                                            <input type="button" class="btn btn-danger" value="Depot Rep Rejected" onclick="location.href='@Url.Action("TaxiDetails", "Home")'" />
+                                        </div>
+                                    </div>*@
+                                @*<div class="form-group row">
+                                        <div class=col-md-6>
+                                            <input type="submit" class="btn btn-success disabled" name="nextBtn" value='SecureTech Rep Approved' />
+                                        </div>
+                                        <div class=col-md-6>
+                                            <input type="button" class="btn btn-danger disabled" value="SecureTech Rep Rejected" onclick="location.href='@Url.Action("TaxiDetails", "Home")'" />
+                                        </div>
+                                    </div>*@
+                                @*<div class="form-group row">
+                                        <div class=col-md-6>
+                                            <input type="submit" class="btn btn-success disabled" name="nextBtn" value='MCC Rep Approved' />
+                                        </div>
+                                        <div class=col-md-6>
+                                            <input type="button" class="btn btn-danger disabled" value="MCC Rep Rejected" onclick="location.href='@Url.Action("TaxiDetails", "Home")'" />
+                                        </div>
+                                    </div>*@
+                            </form>
+                        </div>
+                        <!-- /.col-lg-6 (nested) -->
+                        @*<div class="col-lg-6">
+
+                            </div>*@
+                        <!-- /.col-lg-6 (nested) -->
+                    </div>
+                    <!-- /.row (nested) -->
+                </div>
+                <!-- /.panel-body -->
+            </div>
+            <!-- /.panel -->
+        </div>
+        <!-- /.col-lg-12 -->
+    </div>
+    <!-- /.row -->
+}
+
+
+

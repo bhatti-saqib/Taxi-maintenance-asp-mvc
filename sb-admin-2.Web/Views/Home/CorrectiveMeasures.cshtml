@@ -6,53 +6,97 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Corrective Measures Taken</h2>
 
-<div class="row">
-    <div class="col-lg-12">
-        <div class="panel panel-default">
-            <div class="panel-heading">
+@using (Html.BeginForm("CorrectiveMeasures", "Home"))
+{
+    <h2>Corrective Measures Taken</h2>
 
-            </div>
-            <div class="panel-body">
-                <div class="row">
-                    <div class="col-lg-6">
-                        <form role="form">
-                            <div class="form-group">
-                                @Html.Label("Equipment for Corrective Measure")
-                                @Html.EnumDropDownListFor(model => model.equipmentForCorrective, "Select Equipment", new { @class = "form-control" })
-                            </div>
-                            <div class="form-group">
-                                @Html.Label("Corrective Measure Taken")
-                                @Html.EnumDropDownListFor(model => model.correctiveMeasures, "Corrective Measures Taken", new { @class = "form-control" })
-                            </div>
-                            <div class="form-group">
-                                @Html.Label("Comment box for technicians to comment")
-                                @Html.TextAreaFor(x => x.reportedIssue, 10, 55, null)
-                            </div>
-                            <div class="form-group">
-                                <label>If replaced is selected</label>
-                                <input class="form-control" placeholder="Old Serial No.">
-                            </div>
-                            <div class="form-group">
-                                <input class="form-control" placeholder="New Serial No.">
-                            </div>
-                            
-                            @Html.ActionLink("Next", "SignOff", "Home", null, new { @class = "btn btn-primary" })
-                        </form>
-                    </div>
-                    <!-- /.col-lg-6 (nested) -->
-                    @*<div class="col-lg-6">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">
 
-                        </div>*@
-                    <!-- /.col-lg-6 (nested) -->
                 </div>
-                <!-- /.row (nested) -->
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <form role="form">
+                                <div class="form-group">
+                                    @Html.Label("Equipment for Corrective Measure")
+                                    @Html.DropDownListFor(m => m.MT_Equ_For_Corr_Measure, new SelectList(
+                                            new List<Object>
+                                            {
+                                                new { value = "MDVR", text = "MDVR"},
+                                                new { value = "Camera", text = "Camera"},
+                                                new { value = "UPS", text = "UPS"},
+                                                new { value = "HDD", text = "HDD"},
+                                                new { value = "Sim Card", text = "Sim Card"},
+                                                new { value = "Emmi", text = "Emmi"},
+                                                new { value = "Camera FOV", text = "Camera FOV"},
+                                            },
+                                            "value",
+                                            "text",
+                                            2), "-- Please Select --", new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(m => m.MT_Equ_For_Corr_Measure, "", new { @class = "text-danger" })
+
+                                </div>
+                                <div class="form-group">
+                                    @Html.Label("Corrective Measure Taken")
+                                    @Html.DropDownListFor(m => m.MT_Corr_Measure_Taken, new SelectList(
+                                            new List<Object>
+                                            {
+                                                new { value = "Replaced", text = "Replaced"},
+                                                new { value = "Fixed", text = "Fixed"},
+                                                
+                                            },
+                                            "value",
+                                            "text",
+                                            2), "-- Please Select --", new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(m => m.MT_Corr_Measure_Taken, "", new { @class = "text-danger" })
+                                </div>
+                                <div class="form-group">
+                                    @Html.Label("Comment box for technicians to comment")
+                                    @Html.TextAreaFor(x => x.MT_Comment_Box_For_Technicians, 10, 55, null)
+                                </div>
+                                <div class="form-group">
+                                    @Html.Label("If replaced is selected")
+                                    <br />
+                                    <div class="radio-inline"><label>@Html.RadioButton("ReplacedYes", "yes", false) Yes </label></div>
+                                    <div class="radio-inline"><label>@Html.RadioButton("ReplacedYes", "no", true) No </label></div>
+                                    @Html.TextBoxFor(m => m.MT_Old_SerialNo_If_Replaced, new { placeholder = "Serial No. if replaced", @class = "form-control", @disabled = "disabled", id = "srId" })
+                                </div>
+
+                                @*@Html.ActionLink("Next", "Thankyou", "Home", null, new { @class = "btn btn-primary" })*@
+                                <input type="submit" class="btn btn-primary" name="nextBtn" value='Next' />
+                            </form>
+                        </div>
+                        <!-- /.col-lg-6 (nested) -->
+                        @*<div class="col-lg-6">
+
+                            </div>*@
+                        <!-- /.col-lg-6 (nested) -->
+                    </div>
+                    <!-- /.row (nested) -->
+                </div>
+                <!-- /.panel-body -->
             </div>
-            <!-- /.panel-body -->
+            <!-- /.panel -->
         </div>
-        <!-- /.panel -->
+        <!-- /.col-lg-12 -->
     </div>
-    <!-- /.col-lg-12 -->
-</div>
-<!-- /.row -->
+    <!-- /.row -->
+}
+
+
+@section Scripts{
+
+    <script type="text/javascript">
+        $(".radio-inline").click(function () {
+            $("#srId").attr("disabled", true);
+            if ($("input[name=ReplacedYes]:checked").val() == "yes") {
+                $("#srId").attr("disabled", false);
+            }
+        });
+
+    </script>
+}

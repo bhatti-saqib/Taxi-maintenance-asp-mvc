@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 
 namespace sb_admin_2.Web.Models
 {
@@ -71,70 +70,14 @@ namespace sb_admin_2.Web.Models
         [Required]
         public string NT_Emmis { get; set; }
 
-        //[Required]
-        //public string NT_CameraFovs { get; set; }
-
-        //[Required]
-        //public string NT_PowerConnections { get; set; }
-
-        //[Required]
-        //public string NT_PowerCables { get; set; }
-
-        //[Required]
-        //public string NT_CameraCables { get; set; }
-
-        //[Required]
-        //public string NT_FourG_cables { get; set; }
-
-        //[Required]
-        //public string NT_Gps_cables { get; set; }
-
-        //[Required]
-        //public string NT_WifiCables { get; set; }
-
-        //[Required]
-        //public string NT_Labeling { get; set; }
-
-        //[Required]
-        //public string NT_CableDressing { get; set; }
-
+        
         [Required]
         public string NT_CameraConnector { get; set; }
 
         [Required]
         public string NT_DiskSize { get; set; }
 
-        //[Required]
-        //public string NT_BroncoMdvrs { get; set; }
-
-        //[Required]
-        //public string NT_Gps { get; set; }
-
-        //[Required]
-        //public string NT_Four_g { get; set; }
-
-        //[Required]
-        //public string NT_Wifi { get; set; }
-
-        //[Required]
-        //public string NT_VoltageTest { get; set; }
-
-        //[Required]
-        //public string NT_Channels { get; set; }
-
         
-        //[Required]
-        //public string NT_TaxiHandover { get; set; }
-
-        //[Required]
-        //public string NT_NoExistingAlarms { get; set; }
-
-        //[Required]
-        //public string NT_TaxiCabin { get; set; }
-
-        //[Required]
-        //public string NT_ItemsLeftInside { get; set; }
-
 
         //[Required(ErrorMessage = "Please enter Depot Representative Name.")]
         public bool? Is_NT_DepotRepApproved { get; set; }
@@ -147,34 +90,7 @@ namespace sb_admin_2.Web.Models
         //[Required(ErrorMessage = "Please enter MCC Representative Name.")]
         public bool? Is_NT_MccRepApproved { get; set; }
 
-        //public string NT_PlateNumberPic { get; set; }
-
-        //public string NT_MdvrNoPic { get; set; }
-
-        //public string NT_MDVRSerialNoPic { get; set; }
-
-        //public string NT_CameraSerialNoPic { get; set; }
-
-        //public string NT_UpsSerialNoPic { get; set; }
-
-        //public string NT_HDDSerialNoPic { get; set; }
-
-        //public string NT_PowerConnectionsPic { get; set; }
-
-        //public string NT_PowerCablesPic { get; set; }
-
-        //public string NT_CameraCablesPic { get; set; }
-
-        //public string NT_FourG_cablesPic { get; set; }
-
-        //public string NT_Gps_cablesPic { get; set; }
-
-        //public string NT_WifiCablesPic { get; set; }
-
-        //public string NT_LabelingPic { get; set; }
-
-        //public string NT_CableDressingPic { get; set; }
-
+        
         //[Required]
         public string User { get; set; }
 

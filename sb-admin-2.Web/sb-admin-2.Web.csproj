@@ -162,9 +162,18 @@
     <Compile Include="Migrations\201810180828213_Initial.Designer.cs">
       <DependentUpon>201810180828213_Initial.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201810211202361_PlateNumberMadeRequiredInPreventiveTable.cs" />
+    <Compile Include="Migrations\201810211202361_PlateNumberMadeRequiredInPreventiveTable.Designer.cs">
+      <DependentUpon>201810211202361_PlateNumberMadeRequiredInPreventiveTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201810270625154_ChangedNamesInPreventiveTable.cs" />
+    <Compile Include="Migrations\201810270625154_ChangedNamesInPreventiveTable.Designer.cs">
+      <DependentUpon>201810270625154_ChangedNamesInPreventiveTable.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\CableDetails.cs" />
     <Compile Include="Models\CommonViewModel.cs" />
+    <Compile Include="Models\CorrectiveMeasure.cs" />
     <Compile Include="Models\EquipmentDetails.cs" />
     <Compile Include="Models\EquipmentFunctionsDetails.cs" />
     <Compile Include="Models\HouseKeepingDetails.cs" />
@@ -1185,7 +1194,6 @@
     <Content Include="Views\Home\MTaxiDetails.cshtml" />
     <Content Include="Views\Home\SignOff.cshtml" />
     <Content Include="Views\Home\Thankyou.cshtml" />
-    <Content Include="Views\Home\CSiteTaxiDetails.cshtml" />
     <Content Include="Views\Home\CorrectiveMeasures.cshtml" />
     <Content Include="Views\Home\TaxiDetails.cshtml" />
     <Content Include="Views\Home\EquipmentDetails.cshtml" />
@@ -1212,6 +1220,8 @@
     <Content Include="Views\Home\MHouseKeepingDetails.cshtml" />
     <Content Include="Views\Home\MPicDetails.cshtml" />
     <Content Include="Views\Home\MSignOffDetails.cshtml" />
+    <Content Include="Views\Home\CTaxiDetails.cshtml" />
+    <Content Include="Views\Home\CSignOffDetails.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -1227,6 +1237,12 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201810180828213_Initial.resx">
       <DependentUpon>201810180828213_Initial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201810211202361_PlateNumberMadeRequiredInPreventiveTable.resx">
+      <DependentUpon>201810211202361_PlateNumberMadeRequiredInPreventiveTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201810270625154_ChangedNamesInPreventiveTable.resx">
+      <DependentUpon>201810270625154_ChangedNamesInPreventiveTable.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

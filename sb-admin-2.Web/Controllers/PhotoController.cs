@@ -47,7 +47,7 @@ namespace sb_admin_2.Web.Controllers
                 Session.Remove("val");
 
                 
-                return View("/Views/Home/PicDetails.cshtml");
+                return View("/Views/Home/MPicDetails.cshtml");
                 
             }
             else
@@ -66,8 +66,8 @@ namespace sb_admin_2.Web.Controllers
         public JsonResult Rebind()
         {
             //string path = "http://localhost:29128/WebImages/" + Session["val"].ToString();
-            //string path = "http://localhost:29128/WebImages/" + Session["dateAndTime"] + btnName.ToString();
-            string path = "http://localhost:29128/WebImages/" + Session["TaxiPlateNumber"] + btnName.ToString();
+            string path = "http://localhost:29128/WebImages/" + Session["dateAndTime"] + btnName.ToString();
+            //string path = "http://localhost:29128/WebImages/" + Session["TaxiPlateNumber"] + btnName.ToString();
             picPaths.Add(path);
             return Json(path, JsonRequestBehavior.AllowGet);
         }
@@ -88,8 +88,8 @@ namespace sb_admin_2.Web.Controllers
 
                 //var path = Server.MapPath("~/WebImages/" + date + "test.jpg");
                 //Session["dateAndTime"] = DateTime.Now.ToFileTime().ToString();
-                //var path = Server.MapPath("~/WebImages/" + Session["dateAndTime"] + btnName);
-                var path = Server.MapPath("~/WebImages/" + Session["TaxiPlateNumber"] + btnName);
+                var path = Server.MapPath("~/WebImages/" + Session["dateAndTime"] + btnName);
+                //var path = Server.MapPath("~/WebImages/" + Session["TaxiPlateNumber"] + btnName);
 
                 System.IO.File.WriteAllBytes(path, String_To_Bytes2(dump));
 

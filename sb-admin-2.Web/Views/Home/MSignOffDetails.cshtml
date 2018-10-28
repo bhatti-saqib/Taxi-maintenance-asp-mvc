@@ -37,54 +37,54 @@
         function format(data) {
             return '<div class="details-container">' +
                 '<table cellpadding="5" cellspacing="0" border="0" class="details-table">' +
+                //'<tr>' +
+                //'<td class="title">Site Name:</td>' +
+                //'<td>' + data.site_name + '</td>' +
+                //'<td class="title">Taxi Type:</td>' +
+                //'<td>' + data.taxi_type + '</td>' +
+                //'</tr>' +
                 '<tr>' +
-                '<td class="title">Site Name:</td>' +
-                '<td>' + data.site_name + '</td>' +
-                '<td class="title">Taxi Type:</td>' +
-                '<td>' + data.taxi_type + '</td>' +
-                '</tr>' +
-                '<tr>' +
-                '<td class="title">Plate No:</td>' +
-                '<td>' + data.taxi_plateNo + '</td>' +
+                //'<td class="title">Plate No:</td>' +
+                //'<td>' + data.taxi_plateNo + '</td>' +
                 '<td class="title">Plate No Pic :</td>' +
-                '<td>' + '<img src="http://localhost:29128/WebImages/@Session["MaintenanceId"]PlateNoPic.jpg" alt="" style="width:50px; height:50;" />' + '</td>' +
+                '<td>' + '<img src="http://localhost:29128/WebImages/@Session["dateAndTime"]PlateNoPic.jpg" alt="" style="width:50px; height:50;" />' + '</td>' +
                 '</tr>' +
                 '<tr>' +
-                '<td class="title">MDVR No:</td>' +
-                '<td>' + data.mdvr_no + '</td>' +
+                //'<td class="title">MDVR No:</td>' +
+                //'<td>' + data.mdvr_no + '</td>' +
                 '<td class="title">Mdvr No Pic :</td>' +
-                '<td>' + '<img src="http://localhost:29128/WebImages/@Session["MaintenanceId"]MdvrNoPic.jpg" alt="" style="width:50px; height:50;" />' + '</td>' +
+                '<td>' + '<img src="http://localhost:29128/WebImages/@Session["dateAndTime"]MdvrNoPic.jpg" alt="" style="width:50px; height:50;" />' + '</td>' +
                 '</tr>' +
                 '<tr>' +
-                '<td class="title">Date:</td>' +
-                '<td>' + data.date + '</td>' +
-                '<td class="title">Region:</td>' +
-                '<td>' + data.region + '</td>' +
+                //'<td class="title">Date:</td>' +
+                //'<td>' + data.date + '</td>' +
+                //'<td class="title">Region:</td>' +
+                //'<td>' + data.region + '</td>' +
                 '</tr>' +
                 '<tr>' +
                 '<td class="title">MDVR Serial No:</td>' +
                 '<td>' + data.mdvr_serialNo + '</td>' +
                 '<td class="title">MDVR Serial No Pic :</td>' +
-                '<td>' + '<img src="http://localhost:29128/WebImages/@Session["MaintenanceId"]MDVRSerialNoPic.jpg" alt="" style="width:50px; height:50;" />' + '</td>' +
+                '<td>' + '<img src="http://localhost:29128/WebImages/@Session["dateAndTime"]MDVRSerialNoPic.jpg" alt="" style="width:50px; height:50;" />' + '</td>' +
                 '</tr>' +
                 '<tr>' +
                 '<td class="title">Camera Serial No:</td>' +
                 '<td>' + data.camera_serialNo + '</td>' +
                 '<td class="title">Camera Serial No Pic :</td>' +
-                '<td>' + '<img src="http://localhost:29128/WebImages/@Session["MaintenanceId"]CameraSerialNoPic.jpg" alt="" style="width:50px; height:50;" />' + '</td>' +
+                '<td>' + '<img src="http://localhost:29128/WebImages/@Session["dateAndTime"]CameraSerialNoPic.jpg" alt="" style="width:50px; height:50;" />' + '</td>' +
                 '</tr>' +
                 '<tr>' +
                 '<td class="title">HDD Serial No:</td>' +
                 '<td>' + data.hdd_serialNo + '</td>' +
                 '<td class="title">HDD Serial No Pic :</td>' +
-                '<td>' + '<img src="http://localhost:29128/WebImages/@Session["MaintenanceId"]HDDSerialNoPic.jpg" alt="" style="width:50px; height:50;" />' + '</td>' +
+                '<td>' + '<img src="http://localhost:29128/WebImages/@Session["dateAndTime"]HDDSerialNoPic.jpg" alt="" style="width:50px; height:50;" />' + '</td>' +
 
                 '</tr>' +
                 '<tr>' +
                 '<td class="title">UPS Serial No:</td>' +
                 '<td>' + data.ups_serialNo + '</td>' +
                 '<td class="title">Ups Serial No Pic :</td>' +
-                '<td>' + '<img src="http://localhost:29128/WebImages/@Session["MaintenanceId"]UpsSerialNoPic.jpg" alt="" style="width:50px; height:50;" />' + '</td>' +
+                '<td>' + '<img src="http://localhost:29128/WebImages/@Session["dateAndTime"]UpsSerialNoPic.jpg" alt="" style="width:50px; height:50;" />' + '</td>' +
                 '</tr>' +
                 '<tr>' +
                 '<td class="title">Sim Card:</td>' +
@@ -94,7 +94,7 @@
                 '</tr>' +
                 '<tr>' +
                 '<td class="title">Power Connections Pic :</td>' +
-                '<td>' + '<img src="http://localhost:29128/WebImages/@Session["MaintenanceId"]PowerConnectionsPic.jpg" alt="" style="width:50px; height:50;" />' + '</td>' +
+                '<td>' + '<img src="http://localhost:29128/WebImages/@Session["dateAndTime"]PowerConnectionsPic.jpg" alt="" style="width:50px; height:50;" />' + '</td>' +
                 '<td class="title">Power Connection:</td>' +
                 '<td>' + data.power_connection + '</td>' +
                 '</tr>' +
@@ -102,7 +102,7 @@
                 '<td class="title">Power Cables:</td>' +
                 '<td>' + data.power_cables + '</td>' +
                 '<td class="title">Power Cables Pic :</td>' +
-                '<td>' + '<img src="http://localhost:29128/WebImages/@Session["MaintenanceId"]PowerCablesPic.jpg" alt="" style="width:50px; height:50;" />' + '</td>' +
+                '<td>' + '<img src="http://localhost:29128/WebImages/@Session["dateAndTime"]PowerCablesPic.jpg" alt="" style="width:50px; height:50;" />' + '</td>' +
                 '</tr>' +
                 '<tr>' +
                 '<td class="title">Power Connection:</td>' +
@@ -114,17 +114,17 @@
                 '<td class="title">Camera Cables:</td>' +
                 '<td>' + data.camera_cable + '</td>' +
                 '<td class="title">Camera Cables Pic :</td>' +
-                '<td>' + '<img src="http://localhost:29128/WebImages/@Session["MaintenanceId"]CameraCablesPic.jpg" alt="" style="width:50px; height:50;" />' + '</td>' +
+                '<td>' + '<img src="http://localhost:29128/WebImages/@Session["dateAndTime"]CameraCablesPic.jpg" alt="" style="width:50px; height:50;" />' + '</td>' +
                 '</tr>' +
                 '<tr>' +
                 '<td class="title">4G Cables:</td>' +
                 '<td>' + data.fourG_cable + '</td>' +
                 '<td class="title">4G Cables Pic :</td>' +
-                '<td>' + '<img src="http://localhost:29128/WebImages/@Session["MaintenanceId"]4GCablesPic.jpg" alt="" style="width:50px; height:50;" />' + '</td>' +
+                '<td>' + '<img src="http://localhost:29128/WebImages/@Session["dateAndTime"]4GCablesPic.jpg" alt="" style="width:50px; height:50;" />' + '</td>' +
                 '</tr>' +
                 '<tr>' +
                 '<td class="title">GPS Cables Pic :</td>' +
-                '<td>' + '<img src="http://localhost:29128/WebImages/@Session["MaintenanceId"]GPSCablesPic.jpg" alt="" style="width:50px; height:50;" />' + '</td>' +
+                '<td>' + '<img src="http://localhost:29128/WebImages/@Session["dateAndTime"]GPSCablesPic.jpg" alt="" style="width:50px; height:50;" />' + '</td>' +
                 '<td class="title">GPS Cables:</td>' +
                 '<td>' + data.gps_cable + '</td>' +
                 '</tr>' +
@@ -132,11 +132,11 @@
                 '<td class="title">WiFi Cables:</td>' +
                 '<td>' + data.wiFi_cable + '</td>' +
                 '<td class="title">Wifi Cables Pic :</td>' +
-                '<td>' + '<img src="http://localhost:29128/WebImages/@Session["MaintenanceId"]WifiCablesPic.jpg" alt="" style="width:50px; height:50;" />' + '</td>' +
+                '<td>' + '<img src="http://localhost:29128/WebImages/@Session["dateAndTime"]WifiCablesPic.jpg" alt="" style="width:50px; height:50;" />' + '</td>' +
                 '</tr>' +
                 '<tr>' +
                 '<td class="title">Labeling Pic :</td>' +
-                '<td>' + '<img src="http://localhost:29128/WebImages/@Session["MaintenanceId"]LabelingPic.jpg" alt="" style="width:50px; height:50;" />' + '</td>' +
+                '<td>' + '<img src="http://localhost:29128/WebImages/@Session["dateAndTime"]LabelingPic.jpg" alt="" style="width:50px; height:50;" />' + '</td>' +
                 '<td class="title">Labeling:</td>' +
                 '<td>' + data.labeling + '</td>' +
                 '</tr>' +
@@ -144,7 +144,7 @@
                 '<td class="title">Cable Dressing:</td>' +
                 '<td>' + data.cable_dressing + '</td>' +
                 '<td class="title">Cable Dressing Pic :</td>' +
-                '<td>' + '<img src="http://localhost:29128/WebImages/@Session["MaintenanceId"]CableDressingPic.jpg" alt="" style="width:50px; height:50;" />' + '</td>' +
+                '<td>' + '<img src="http://localhost:29128/WebImages/@Session["dateAndTime"]CableDressingPic.jpg" alt="" style="width:50px; height:50;" />' + '</td>' +
                 '</tr>' +
                 '<tr>' +
                 '<td class="title">Bronco MDVR:</td>' +
@@ -170,7 +170,7 @@
                 '<td class="title">Existing Alarms :</td>' +
                 '<td>' + data.exisiting_alarms + '</td>' +
                 '</tr>' +
-                
+
             '</table>' +
                 '</div>';
         };
@@ -179,8 +179,8 @@
 
             var data = [
                 {
-                    "site_name": "@Model.MT_SiteName", "taxi_type": "@Model.MT_TaxiType", "taxi_plateNo": "@Model.MT_PlateNumber", "date": "@Model.MT_Date",
-                    "mdvr_no": "@Model.MT_MdvrNo", "region": "@Model.MT_Region", "mdvr_serialNo": "@Model.MT_MDVRSerialNo", "camera_serialNo": "@Model.MT_CameraSerialNo",
+                    @*"site_name": "@Model.MT_SiteName", "taxi_type": "@Model.MT_TaxiType",*@ "taxi_plateNo": "@Model.MT_PlateNumber", "date": "@Model.MT_Date",
+                    @*"mdvr_no": "@Model.MT_MdvrNo", "region": "@Model.MT_Region",*@ "mdvr_serialNo": "@Model.MT_MDVRSerialNo", "camera_serialNo": "@Model.MT_CameraSerialNo",
                     "ups_serialNo": "@Model.MT_UpsSerialNo", "hdd_serialNo": "@Model.MT_HDDSerialNo", "sim_card": "@Model.MT_Sims", "emmi": "@Model.MT_Emmis",
                     "camera_fov": "@Model.MT_CameraFovs", "power_connection": "@Model.MT_PowerConnections", "power_cables": "@Model.MT_PowerCables",
                     "camera_cable": "@Model.MT_CameraCables", "fourG_cable": "@Model.MT_FourG_cables", "gps_cable": "@Model.MT_Gps_cables",
@@ -204,15 +204,15 @@
                         data: null,
                         orderable: false
                     },
-                    { data: 'site_name' },
-                    { data: 'taxi_type' },
                     { data: 'taxi_plateNo' },
+                    { data: 'camera_serialNo' },
+                    { data: 'ups_serialNo' },
                     { data: 'date' },
                     {
                         data: 'MdvrNoImageUrl',
                         render: function (data, type, full, meta) {
                             //return '<img src=' + 'http://localhost:29128/WebImages/PlateNoPic.jpg/' + data + '>';
-                            return '<img src="http://localhost:29128/WebImages/@Session["MaintenanceId"]PlateNoPic.jpg" alt="" style="width:50px; height:50;"/>';
+                            return '<img src="http://localhost:29128/WebImages/@Session["dateAndTime"]PlateNoPic.jpg" alt="" style="width:50px; height:50;"/>';
                         }
                     }
                 ],
@@ -278,9 +278,9 @@
     <thead>
         <tr>
             <th></th>
-            <th>Site Name</th>
-            <th>Taxi Type</th>
-            <th>Taxi Plate No</th>
+            <th>Taxi Plate No.</th>
+            <th>Camera Serial No.</th>
+            <th>UPS Serial No.</th>
             <th>Date</th>
             <th>Plate No Pic</th>
         </tr>

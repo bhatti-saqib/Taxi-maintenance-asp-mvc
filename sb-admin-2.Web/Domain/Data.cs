@@ -32,7 +32,7 @@ namespace sb_admin_2.Web.Domain
 
             menu.Add(new Navbar { Id = 19, nameOption = "Maintenance Selection", imageClass = "fa fa-bar-chart-o fa-fw", status = true, isParent = true, parentId = 0 });
             menu.Add(new Navbar { Id = 20, nameOption = "Preventive Maintenance", controller = "Home", action = "MTaxiDetails", status = true, isParent = false, parentId = 19 });
-            menu.Add(new Navbar { Id = 21, nameOption = "Corrective Maintenance", controller = "Home", action = "CSiteTaxiDetails", status = true, isParent = false, parentId = 19 });
+            menu.Add(new Navbar { Id = 21, nameOption = "Corrective Maintenance", controller = "Home", action = "CTaxiDetails", status = true, isParent = false, parentId = 19 });
 
             
             return menu.ToList();
