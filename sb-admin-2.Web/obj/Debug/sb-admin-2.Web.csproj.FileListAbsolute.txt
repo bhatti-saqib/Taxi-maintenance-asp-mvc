@@ -171,3 +171,4 @@ D:\Repos\sb-admin-2\sb-admin-2.Web\obj\Debug\sb-admin-2.Web.csproj.CopyComplete
 D:\Repos\sb-admin-2\sb-admin-2.Web\obj\Debug\sb-admin-2.Web.dll
 D:\Repos\sb-admin-2\sb-admin-2.Web\obj\Debug\sb-admin-2.Web.pdb
 D:\Repos\sb-admin-2\sb-admin-2.Web\obj\Debug\sb_admin_2.Web.Migrations.ChangedNamesInPreventiveTable.resources
+D:\Repos\sb-admin-2\sb-admin-2.Web\obj\Debug\sb-admin-2.Web.csprojAssemblyReference.cache
