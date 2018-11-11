@@ -41,7 +41,7 @@
 
 @using (Html.BeginForm("MEquipmentDetails", "Home"))
 {
-    <h2>Preventive Maintenance</h2>
+    <h2 style="color:orangered">Preventive Maintenance</h2>
 
     @*<div class="row">*@
     <div class="col-lg-12">
@@ -161,7 +161,7 @@
                             @Html.ValidationMessageFor(m => m.MT_Sims, "", new { @class = "text-danger" })
                         </div>
                         <div class="form-group">
-                            @Html.Label("Emmi")
+                            @Html.Label("EMI")
                             @*@Html.EnumDropDownListFor(model => model.NT_Emmis, "Select Emmi", new { @class = "form-control" })*@
                             @*@Html.DropDownListFor(m => m.NT_Emmis, new SelectList(
                                     new List<Object>

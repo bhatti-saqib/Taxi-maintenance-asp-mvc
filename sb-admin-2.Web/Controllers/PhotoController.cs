@@ -24,7 +24,7 @@ namespace sb_admin_2.Web.Controllers
         [HttpPost]
         public ActionResult Index(string ImageName)
         {
-            ViewBag.pic = "http://localhost:29128/WebImages/" + Session["val"].ToString();
+            ViewBag.pic = "http://localhost:29128/WebImages/" + Session["dateAndTime"].ToString();
 
             return View();
         }
