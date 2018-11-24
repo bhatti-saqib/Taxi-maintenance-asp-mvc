@@ -1,5 +1,7 @@
 ﻿
+
 @model sb_admin_2.Web.Models.Preventive
+
 
 @{
     ViewBag.Title = "MEquipmentDetails";
@@ -7,280 +9,299 @@
 }
 
 
-<head>
-    
-    @*<style type="text/css">
-
-        .panel {
-            margin: 1em;
-        }
-
-        .panel-horizontal .panel-heading {
-            margin-bottom: 0;
-            border-bottom: 0;
-            border-right: 1px solid transparent;
-            border-top-right-radius: 0;
-            width: 150px;
-        }
-
-        .panel-horizontal .panel-body {
-            float: right;
-            padding-bottom: 0;
-            margin: 0 0 15px 150px;
-        }
-    </style>*@
-</head>
-
-
-
-
-@*@{
-    var data = ViewBag.Message;
-    
-}*@
 
 @using (Html.BeginForm("MEquipmentDetails", "Home"))
 {
     <h2 style="color:orangered">Preventive Maintenance</h2>
 
-    @*<div class="row">*@
-    <div class="col-lg-12">
-        <div class="panel panel-default panel-horizontal">
-
-        <div class="panel-body">
+    @*<div class="container">*@
+        <div class="panel panel-default">
             <div class="row">
-                <div class="col-lg-6">
-                    <form role="form">
-                        <div class="form-group">
-                            @Html.Label("Existing MDVR")
-                            @Html.DropDownListFor(m => m.MT_ExistingMDVR, new SelectList(
-                                new List<Object>
-                                {
-                                    new { value = "VeryGood", text = "Very Good"},
-                                    new { value = "Good", text = "Good"},
-                                    new { value = "Fair", text = "Fair"},
-                                    new { value = "Poor", text = "Poor"},
-                                    new { value = "VeryPoor", text = "Very Poor"},
-                                },
-                                "value",
-                                "text",
-                                2), "-- Please Select --", new { @class = "form-control" })
-                            @Html.ValidationMessageFor(m => m.MT_ExistingMDVR, "", new { @class = "text-danger" })
-                        </div>
-                        <div class="form-group">
-                            @Html.Label("Replaced MDVR")
-                            <br />
-                            <div class="radio-inline"><label>@Html.RadioButton("MDVRYes", "yes", false) Yes </label></div>
-                            <div class="radio-inline"><label>@Html.RadioButton("MDVRYes", "no", true) No </label></div>
-                            @Html.TextBoxFor(m => m.MT_ReplacedMDVRSerialNo, new { placeholder = "New MDVR Serial No.", @class = "form-control", @disabled = "disabled", id = "mdvrId" })
-                        </div>
-                        <div class="form-group">
-                            @Html.Label("Taxi Cameras")
+                <div class="col-lg-5 col-md-5 col-sm-5" style="padding-top:10px;">
+                    @*<div class="panel panel-default">*@
+                    <form class="form form-horizontal">
+                        <div class="control-group">
+                            <!--label class="control-label">Email</label-->
+                            <div class="controls">
+                                <div class="form-group" style="padding-left:10px;">
+                                    @Html.Label("Existing MDVR")
 
-                            @Html.DropDownListFor(m => m.MT_Cameras, new SelectList(
-                                new List<Object>
-                                {
-                                    new { value = "VeryGood", text = "Very Good"},
-                                    new { value = "Good", text = "Good"},
-                                    new { value = "Fair", text = "Fair"},
-                                    new { value = "Poor", text = "Poor"},
-                                    new { value = "VeryPoor", text = "Very Poor"},
-                                },
-                                "value",
-                                "text",
-                                2), "-- Please Select --", new { @class = "form-control" })
-                            @Html.ValidationMessageFor(m => m.MT_Cameras, "", new { @class = "text-danger" })
-                        </div>
-                        <div class="form-group">
-                            @Html.Label("Replaced Taxi Cameras")
-                            <br />
-                            <div class="radio-inline"><label>@Html.RadioButton("TaxiYes", "yes", false) Yes </label></div>
-                            <div class="radio-inline"><label>@Html.RadioButton("TaxiYes", "no", true) No </label></div>
-                            @Html.TextBoxFor(m => m.MT_ReplacedCameraSerialNo, new { placeholder = "New Taxi Camera Serial No.", @class = "form-control", @disabled = "disabled", id = "cameraId" })
-                        </div>
-                        <div class="form-group">
-                            @Html.Label("UPS Test")
-                            @Html.DropDownListFor(m => m.MT_Ups, new SelectList(
-                                new List<Object>
-                                {
-                                    new { value = "VeryGood", text = "Very Good"},
-                                    new { value = "Good", text = "Good"},
-                                    new { value = "Fair", text = "Fair"},
-                                    new { value = "Poor", text = "Poor"},
-                                    new { value = "VeryPoor", text = "Very Poor"},
-                                },
-                                "value",
-                                "text",
-                                2), "-- Please Select --", new { @class = "form-control" })
-                            @Html.ValidationMessageFor(m => m.MT_Ups, "", new { @class = "text-danger" })
-                        </div>
-                        <div class="form-group">
-                            @Html.Label("Replaced UPS")
-                            <br />
-                            <div class="radio-inline"><label>@Html.RadioButton("UPSYes", "yes", false) Yes </label></div>
-                            <div class="radio-inline"><label>@Html.RadioButton("UPSYes", "no", true) No </label></div>
-                            @Html.TextBoxFor(m => m.MT_ReplacedUpsSerialNo, new { placeholder = "New UPS Serial No.", @class = "form-control", @disabled = "disabled", id = "upsId" })
-                        </div>
-                        <div class="form-group">
-                            @Html.Label("HDD")
-                            @Html.DropDownListFor(m => m.MT_Hdds, new SelectList(
-                                new List<Object>
-                                {
-                                    new { value = "VeryGood", text = "Very Good"},
-                                    new { value = "Good", text = "Good"},
-                                    new { value = "Fair", text = "Fair"},
-                                    new { value = "Poor", text = "Poor"},
-                                    new { value = "VeryPoor", text = "Very Poor"},
-                                },
-                                "value",
-                                "text",
-                                2), "-- Please Select --", new { @class = "form-control" })
-                            @Html.ValidationMessageFor(m => m.MT_Hdds, "", new { @class = "text-danger" })
-                        </div>
-                        <div class="form-group">
-                            @Html.Label("Replaced HDD")
-                            <br />
-                            <div class="radio-inline"><label>@Html.RadioButton("HDDYes", "yes", false) Yes </label></div>
-                            <div class="radio-inline"><label>@Html.RadioButton("HDDYes", "no", true) No </label></div>
-                            @Html.TextBoxFor(m => m.MT_ReplacedHDDSerialNo, new { placeholder = "New HDD Serial No.", @class = "form-control", @disabled = "disabled", id = "hddId" })
-                        </div>
-                        <div class="form-group">
-                            @Html.Label("Sim Card")
-                            @Html.DropDownListFor(m => m.MT_Sims, new SelectList(
-                                new List<Object>
-                                {
-                                    new { value = "VeryGood", text = "Very Good"},
-                                    new { value = "Good", text = "Good"},
-                                    new { value = "Fair", text = "Fair"},
-                                    new { value = "Poor", text = "Poor"},
-                                    new { value = "VeryPoor", text = "Very Poor"},
-                                },
-                                "value",
-                                "text",
-                                2), "-- Please Select --", new { @class = "form-control" })
-                            @Html.ValidationMessageFor(m => m.MT_Sims, "", new { @class = "text-danger" })
-                        </div>
-                        <div class="form-group">
-                            @Html.Label("EMI")
-                            @*@Html.EnumDropDownListFor(model => model.NT_Emmis, "Select Emmi", new { @class = "form-control" })*@
-                            @*@Html.DropDownListFor(m => m.NT_Emmis, new SelectList(
-                                    new List<Object>
-                                    {
-                                        new { value = "VeryGood", text = "Very Good"},
-                                        new { value = "Good", text = "Good"},
-                                        new { value = "Fair", text = "Fair"},
-                                        new { value = "Poor", text = "Poor"},
-                                        new { value = "VeryPoor", text = "Very Poor"},
-                                    },
-                                    "value",
-                                    "text",
-                                    2), "-- Please Select --", new { @class = "form-control" })
-                                @Html.ValidationMessageFor(m => m.NT_Emmis, "", new { @class = "text-danger" })*@
-                            @Html.TextBoxFor(m => m.MT_Emmis, new { placeholder = "Please enter Emmi No.", @class = "form-control" })
-                            @Html.ValidationMessageFor(m => m.MT_Emmis, "", new { @class = "text-danger" })
-                        </div>
-                        <div class="form-group">
-                            @Html.Label("Camera FOV")
-                            @*@Html.EnumDropDownListFor(model => model.NT_CameraFovs, "Select Camera FOV ", new { @class = "form-control" })*@
-                            @Html.DropDownListFor(m => m.MT_CameraFovs, new SelectList(
-                                new List<Object>
-                                {
-                                    new { value = "VeryGood", text = "Very Good"},
-                                    new { value = "Good", text = "Good"},
-                                    new { value = "Fair", text = "Fair"},
-                                    new { value = "Poor", text = "Poor"},
-                                    new { value = "VeryPoor", text = "Very Poor"},
-                                },
-                                "value",
-                                "text",
-                                2), "-- Please Select --", new { @class = "form-control" })
-                            @Html.ValidationMessageFor(m => m.MT_CameraFovs, "", new { @class = "text-danger" })
-                        </div>
+                                    @Html.DropDownListFor(m => m.MT_ExistingMDVR, new SelectList(
+                                       new List<Object>
+                                       {
+                                           new { value = "VeryGood", text = "Very Good"},
+                                           new { value = "Good", text = "Good"},
+                                           new { value = "Fair", text = "Fair"},
+                                           new { value = "Poor", text = "Poor"},
+                                           new { value = "VeryPoor", text = "Very Poor"},
+                                        },
+                                       "value",
+                                       "text",
+                                       2), "-- Please Select --", new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(m => m.MT_ExistingMDVR, "", new { @class = "text-danger" })
+                                </div>
+                                <div class="form-group" style="padding-left:10px;">
+                                    @Html.Label("Replaced MDVR")
+                                    <br />
+                                    <div class="radio-inline"><label>@Html.RadioButton("MDVRYes", "yes", false) Yes </label></div>
+                                    <div class="radio-inline"><label>@Html.RadioButton("MDVRYes", "no", true) No </label></div>
+                                    @Html.TextBoxFor(m => m.MT_ReplacedMDVRSerialNo, new { placeholder = "Please enter MDVR Serial No.", @class = "form-control", @readonly = "readonly", id = "mdvrId" })
+                                </div>
+                                <div class="form-group" style="padding-left:10px;">
+                                    @Html.Label("Taxi Cameras")
 
-                        @*@Html.ActionLink("Next", "AddNewTaxi3", "Home", null, new { @class = "btn btn-primary" })*@
-                        @*<input type="submit" class="btn btn-primary" name="prevBtn" value='Previous' />*@
+                                    @Html.DropDownListFor(m => m.MT_Cameras, new SelectList(
+                                       new List<Object>
+                                       {
+                                           new { value = "VeryGood", text = "Very Good"},
+                                           new { value = "Good", text = "Good"},
+                                           new { value = "Fair", text = "Fair"},
+                                           new { value = "Poor", text = "Poor"},
+                                           new { value = "VeryPoor", text = "Very Poor"},
+                                       },
+                                       "value",
+                                       "text",
+                                       2), "-- Please Select --", new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(m => m.MT_Cameras, "", new { @class = "text-danger" })
+                                </div>
+                                <div class="form-group" style="padding-left:10px;">
+                                    @Html.Label("Replaced Taxi Cameras")
+                                    <br />
+                                    <div class="radio-inline"><label>@Html.RadioButton("TaxiYes", "yes", false) Yes </label></div>
+                                    <div class="radio-inline"><label>@Html.RadioButton("TaxiYes", "no", true) No </label></div>
+                                    @Html.TextBoxFor(m => m.MT_ReplacedCameraSerialNo, new { placeholder = "New Taxi Camera Serial No.", @class = "form-control", @readonly = "readonly", id = "cameraId" })
+                                </div>
+                                <div class="form-group" style="padding-left:10px;">
+                                    @Html.Label("UPS Test")
+
+                                    @Html.DropDownListFor(m => m.MT_Ups, new SelectList(
+                                       new List<Object>
+                                       {
+                                           new { value = "VeryGood", text = "Very Good"},
+                                           new { value = "Good", text = "Good"},
+                                           new { value = "Fair", text = "Fair"},
+                                           new { value = "Poor", text = "Poor"},
+                                           new { value = "VeryPoor", text = "Very Poor"},
+                                       },
+                                       "value",
+                                       "text",
+                                       2), "-- Please Select --", new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(m => m.MT_Ups, "", new { @class = "text-danger" })
+                                </div>
+                                <div class="form-group" style="padding-left:10px;">
+                                    @Html.Label("Replaced UPS")
+                                    <br />
+                                    <div class="radio-inline"><label>@Html.RadioButton("UPSYes", "yes", false) Yes </label></div>
+                                    <div class="radio-inline"><label>@Html.RadioButton("UPSYes", "no", true) No </label></div>
+                                    @Html.TextBoxFor(m => m.MT_ReplacedUpsSerialNo, new { placeholder = "New UPS Serial No.", @class = "form-control", @readonly = "readonly", id = "upsId" })
+                                </div>
+                                <div class="form-group" style="padding-left:10px;">
+                                    @Html.Label("HDD")
+
+                                    @Html.DropDownListFor(m => m.MT_Hdds, new SelectList(
+                                       new List<Object>
+                                       {
+                                           new { value = "VeryGood", text = "Very Good"},
+                                           new { value = "Good", text = "Good"},
+                                           new { value = "Fair", text = "Fair"},
+                                           new { value = "Poor", text = "Poor"},
+                                           new { value = "VeryPoor", text = "Very Poor"},
+                                       },
+                                       "value",
+                                       "text",
+                                       2), "-- Please Select --", new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(m => m.MT_Hdds, "", new { @class = "text-danger" })
+                                </div>
+                                <div class="form-group" style="padding-left:10px;">
+                                    @Html.Label("Replaced HDD")
+                                    <br />
+                                    <div class="radio-inline"><label>@Html.RadioButton("HDDYes", "yes", false) Yes </label></div>
+                                    <div class="radio-inline"><label>@Html.RadioButton("HDDYes", "no", true) No </label></div>
+                                    @Html.TextBoxFor(m => m.MT_ReplacedHDDSerialNo, new { placeholder = "New HDD Serial No.", @class = "form-control", @readonly = "readonly", id = "hddId" })
+                                </div>
+                                <div class="form-group" style="padding-left:10px;">
+                                    @Html.Label("Sim Card")
+
+                                    @Html.DropDownListFor(m => m.MT_Sims, new SelectList(
+                                       new List<Object>
+                                       {
+                                           new { value = "VeryGood", text = "Very Good"},
+                                           new { value = "Good", text = "Good"},
+                                           new { value = "Fair", text = "Fair"},
+                                           new { value = "Poor", text = "Poor"},
+                                           new { value = "VeryPoor", text = "Very Poor"},
+                                       },
+                                       "value",
+                                       "text",
+                                       2), "-- Please Select --", new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(m => m.MT_Sims, "", new { @class = "text-danger" })
+                                </div>
+                                <div class="form-group" style="padding-left:10px;">
+                                    @Html.Label("EMI")
+
+                                    @Html.TextBoxFor(m => m.MT_Emmis, new { placeholder = "Please enter Emmi No.", @class = "form-control" })
+                                    @Html.ValidationMessageFor(m => m.MT_Emmis, "", new { @class = "text-danger" })
+                                </div>
+                                <div class="form-group" style="padding-left:10px;">
+                                    @Html.Label("Camera FOV")
+
+                                    @Html.DropDownListFor(m => m.MT_CameraFovs, new SelectList(
+                                       new List<Object>
+                                       {
+                                           new { value = "VeryGood", text = "Very Good"},
+                                           new { value = "Good", text = "Good"},
+                                           new { value = "Fair", text = "Fair"},
+                                           new { value = "Poor", text = "Poor"},
+                                           new { value = "VeryPoor", text = "Very Poor"},
+                                       },
+                                       "value",
+                                       "text",
+                                       2), "-- Please Select --", new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(m => m.MT_CameraFovs, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                        </div>
                         <input type="submit" class="btn btn-primary" name="nextBtn" value='Next' />
                     </form>
+                    @*</div>*@
                 </div>
-                <!-- /.col-lg-6 (nested) -->
-                @*<div class="col-lg-6">
+                <div class="col-lg-5 col-md-5 col-sm-5" style="padding-top:10px;">
+                    <div class="panel panel-default">
+                        <div class="table-responsive">
+                            <table class="table table-bordered table-hover table-striped">
+                                <thead>
+                                    <tr>
+                                        <th>Plate Number</th>
+                                        <th>MDVR</th>
+                                        <th>Camera</th>
+                                        <th>UPS</th>
+                                        <th>HDD</th>
+                                        <th>EMI</th>
+                                        <th>Date</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        @if (Model != null)
+                                        {
+                                            if (Model.MT_PlateNumber != null)
+                                            {
+                                                <td>@Model.MT_PlateNumber</td>
+                                            }
+                                            else
+                                            {
+                                                <td>N/A </td>
+                                            }
+                                            if (Model.MT_ReplacedMDVRSerialNo != null)
+                                            {
+                                                <td>@Model.MT_ReplacedMDVRSerialNo</td>
+                                            }
+                                            else
+                                            {
+                                                <td>N/A </td>
+                                            }
+                                            if (Model.MT_ReplacedCameraSerialNo != null)
+                                            {
+                                                <td>@Model.MT_ReplacedCameraSerialNo</td>
+                                            }
+                                            else
+                                            {
+                                                <td>N/A </td>
+                                            }
+                                            if (Model.MT_ReplacedUpsSerialNo != null)
+                                            {
+                                                <td>@Model.MT_ReplacedUpsSerialNo</td>
+                                            }
+                                            else
+                                            {
+                                                <td>N/A </td>
+                                            }
+                                            if (Model.MT_ReplacedHDDSerialNo != null)
+                                            {
+                                                <td>@Model.MT_ReplacedHDDSerialNo</td>
+                                            }
+                                            else
+                                            {
+                                                <td>N/A </td>
+                                            }
+                                            if (Model.MT_Emmis != null)
+                                            {
+                                                <td>@Model.MT_Emmis</td>
+                                            }
+                                            else
+                                            {
+                                                <td>N/A </td>
+                                            }
+                                            if (Model.MT_Date != null)
+                                            {
+                                                <td>@Model.MT_Date</td>
+                                            }
+                                            else
+                                            {
+                                                <td>N/A </td>
+                                            }
 
-                    </div>*@
-                <!-- /.col-lg-6 (nested) -->
-        </div>
-        <div class="panel-body">
-            <div class="col-xs-offset-7 col-xs-5" style="margin-top:auto">
-                    <div class="table-responsive">
-                        <table class="table table-bordered table-hover table-striped">
-                            <thead>
-                                <tr>
-                                    <th>Site</th>
-                                    <th>Taxi Type</th>
-                                    <th>Region</th>
-                                    <th>Date</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>"National Taxi"</td>
-                                    <td>"Camry"</td>
-                                    <td>"WR"</td>
-                                    <td>"23-Oct-2018 11:00 PM"</td>
-                                </tr>
-                            </tbody>
-                        </table>
+                                        }
+                                        @*else
+                                        {
+                                            <td>N/A</td>
+                                            <td>N/A</td>
+                                            <td>N/A</td>
+                                            <td>N/A</td>
+                                            <td>N/A</td>
+                                            <td>N/A</td>
+                                            <td>N/A</td>
+                                        }*@
+
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
-                    <!-- /.table-responsive -->
                 </div>
-                </div>
-                <!-- /.row (nested) -->
+
+            </div>
         </div>
-        <!-- /.panel-body -->
+                    
 
-    </div>
-    <!-- /.panel -->
-    </div>
-    <!-- /.col-lg-12 -->
-    @*</div>*@
-    <!-- /.row -->
-}
+        }
 
-@section Scripts{
+        @section Scripts{
 
-    <script type="text/javascript">
-        $(".radio-inline").click(function () {
-            $("#mdvrId").attr("disabled", true);
-            if ($("input[name=MDVRYes]:checked").val() == "yes") {
-                $("#mdvrId").attr("disabled", false);
-            }
-        });
+            <script type="text/javascript">
+                $(".radio-inline").click(function () {
+                    $("#mdvrId").attr("readonly", true);
+                    if ($("input[name=MDVRYes]:checked").val() == "yes") {
+                        $("#mdvrId").attr("readonly", false);
+                    }
+                });
 
 
-        $(".radio-inline").click(function () {
-            $("#cameraId").attr("disabled", true);
-            if ($("input[name=TaxiYes]:checked").val() == "yes") {
-                $("#cameraId").attr("disabled", false);
-            }
-        });
+                $(".radio-inline").click(function () {
+                    $("#cameraId").attr("readonly", true);
+                    if ($("input[name=TaxiYes]:checked").val() == "yes") {
+                        $("#cameraId").attr("readonly", false);
+                    }
+                });
 
 
-        $(".radio-inline").click(function () {
-            $("#upsId").attr("disabled", true);
-            if ($("input[name=UPSYes]:checked").val() == "yes") {
-                $("#upsId").attr("disabled", false);
-            }
-        });
+                $(".radio-inline").click(function () {
+                    $("#upsId").attr("readonly", true);
+                    if ($("input[name=UPSYes]:checked").val() == "yes") {
+                        $("#upsId").attr("readonly", false);
+                    }
+                });
 
 
-        $(".radio-inline").click(function () {
-            $("#hddId").attr("disabled", true);
-            if ($("input[name=HDDYes]:checked").val() == "yes") {
-                $("#hddId").attr("disabled", false);
-            }
-        });
-    </script>
+                $(".radio-inline").click(function () {
+                    $("#hddId").attr("readonly", true);
+                    if ($("input[name=HDDYes]:checked").val() == "yes") {
+                        $("#hddId").attr("readonly", false);
+                    }
+                });
+            </script>
 
-}
+        }
 
 
 

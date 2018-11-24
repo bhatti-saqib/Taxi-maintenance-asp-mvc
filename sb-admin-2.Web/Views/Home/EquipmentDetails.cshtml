@@ -37,14 +37,14 @@
                                         2), "-- Please Select --", new { @class = "form-control" })
                                     @Html.ValidationMessageFor(m => m.NT_ExistingMDVR, "", new { @class = "text-danger" })
                                 </div>*@
-                                <div class="form-group">
+                                @*<div class="form-group">
                                     @Html.Label("MDVR Serial Number")
                                     @Html.TextBoxFor(m => m.NT_MDVRSerialNo, new { placeholder = "Please enter MDVR Serial No.", @class = "form-control" })
-                                    @Html.ValidationMessageFor(m => m.NT_MDVRSerialNo, "", new { @class = "text-danger" })
+                                    @Html.ValidationMessageFor(m => m.NT_MDVRSerialNo, "", new { @class = "text-danger" })*@
                                     @*<a href="@Url.Action("ChangePhoto", "Home")">
                                         <img src="~/Content/images/photo-camera.png" />
                                     </a>*@
-                                </div>
+                                @*</div>*@
                                 @*<div class="form-group">
                                     @Html.Label("Taxi Cameras")
                                     @Html.DropDownListFor(m => m.NT_Cameras, new SelectList(
@@ -125,7 +125,7 @@
                                     @Html.ValidationMessageFor(m => m.NT_Sims, "", new { @class = "text-danger" })
                                 </div>*@
                                 <div class="form-group">
-                                    @Html.Label("Emmi")
+                                    @Html.Label("EMI")
                                     @*@Html.EnumDropDownListFor(model => model.NT_Emmis, "Select Emmi", new { @class = "form-control" })*@
                                     @*@Html.DropDownListFor(m => m.NT_Emmis, new SelectList(
                                         new List<Object>

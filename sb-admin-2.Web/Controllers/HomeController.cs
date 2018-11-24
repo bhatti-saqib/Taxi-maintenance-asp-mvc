@@ -8,6 +8,7 @@ using System.Web.Mvc;
 using System.Web.UI.WebControls;
 
 
+
 namespace sb_admin_2.Web.Controllers
 {
     public class HomeController : Controller
@@ -19,6 +20,11 @@ namespace sb_admin_2.Web.Controllers
         
         private bool isPlateNumberSearched;
 
+        private Preventive rec;   // Holds the latest returned record from Maintenance table
+                                  // based on plate number
+
+
+
         public HomeController()
         {
             _context = new DAL.TaxiContext();            
@@ -26,22 +32,7 @@ namespace sb_admin_2.Web.Controllers
         }
 
 
-        //private List<SelectListItem> LoadData()
-        //{
-        //    //Here we will provide the checkbox values to be displayed
-        //    // on EquipmentFunctionsDetails View
-        //    List<SelectListItem> channels = new List<SelectListItem>();
-        //    {
-        //        channels.Add(new SelectListItem() { Text = "CH1", Value = "CH1" });
-        //        channels.Add(new SelectListItem() { Text = "CH2", Value = "CH2" });
-        //        channels.Add(new SelectListItem() { Text = "CH3", Value = "CH3" });
-        //        channels.Add(new SelectListItem() { Text = "CH4", Value = "CH4" });
-        //    };
-
-        //    return channels;
-        //}
-
-
+        
         public ActionResult Index()
         {
             userName = @User.Identity.Name;
@@ -113,7 +104,7 @@ namespace sb_admin_2.Web.Controllers
                 if (ModelState.IsValid)
                 {
                     NewTaxi obj = GetNewTaxi();
-                    //obj.Id = data.Id;
+                    
                     obj.NT_SiteName = data.NT_SiteName;
                     obj.NT_TaxiType = data.NT_TaxiType;
                     obj.NT_PlateNumber = data.NT_PlateNumber;
@@ -121,6 +112,17 @@ namespace sb_admin_2.Web.Controllers
                     obj.NT_Date = data.NT_Date;
                     obj.NT_Region = data.NT_Region;
                     obj.User = data.User;
+
+
+                    // While adding NewTaxi record, add a record in Maintenance table
+                    // as well with the typeOfMaintenance = 'N'
+                    Preventive m_obj = GetMaintenanceTaxi();
+                    m_obj.MT_PlateNumber = data.NT_PlateNumber;
+                    m_obj.MT_Date = data.NT_Date;
+                    m_obj.MT_ReplacedMDVRSerialNo = data.NT_MdvrNo;
+                    m_obj.typeOfMaintenance = "N";
+
+                    ////////////////////////////////////////////
 
                     return View("EquipmentDetails");
                 }
@@ -147,7 +149,7 @@ namespace sb_admin_2.Web.Controllers
                 if (ModelState.IsValid)
                 {
                     //obj.NT_ExistingMDVR = data.NT_ExistingMDVR;
-                    obj.NT_MDVRSerialNo = data.NT_MDVRSerialNo;
+                    //obj.NT_MDVRSerialNo = data.NT_MDVRSerialNo;
                     //obj.NT_Cameras = data.NT_Cameras;
                     obj.NT_CameraSerialNo = data.NT_CameraSerialNo;
                     //obj.NT_Ups = data.NT_Ups;
@@ -157,6 +159,7 @@ namespace sb_admin_2.Web.Controllers
                     //obj.NT_Sims = data.NT_Sims;
                     obj.NT_Emmis = data.NT_Emmis;
                     //obj.NT_CameraFovs = data.NT_CameraFovs;
+
 
                     return View("CableDetails");
                 }
@@ -294,68 +297,6 @@ namespace sb_admin_2.Web.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    //foreach(var path in PhotoController.picPaths)
-                    //{
-                    //    if(path.Contains("PlateNoPic.jpg"))
-                    //    {
-                    //        obj.NT_PlateNumberPic = path;
-                    //    }
-                    //    else if(path.Contains("MdvrNoPic.jpg"))
-                    //    {
-                    //        obj.NT_MdvrNoPic = path;
-                    //    }
-                    //    else if(path.Contains("MDVRSerialNoPic.jpg"))
-                    //    {
-                    //        obj.NT_MDVRSerialNoPic = path;
-                    //    }
-                    //    else if (path.Contains("CameraSerialNoPic.jpg"))
-                    //    {
-                    //        obj.NT_CameraSerialNoPic = path;
-                    //    }
-                    //    else if(path.Contains("UpsSerialNoPic.jpg"))
-                    //    {
-                    //        obj.NT_UpsSerialNoPic = path;
-                    //    }
-                    //    else if(path.Contains("HDDSerialNoPic.jpg"))
-                    //    {
-                    //        obj.NT_HDDSerialNoPic = path;
-                    //    }
-                    //    else if(path.Contains("PowerConnectionsPic.jpg"))
-                    //    {
-                    //        obj.NT_PowerConnectionsPic = path;
-                    //    }
-                    //    else if(path.Contains("PowerCablesPic.jpg"))
-                    //    {
-                    //        obj.NT_PowerCablesPic = path;
-                    //    }    
-                    //    else if(path.Contains("CameraCablesPic.jpg"))
-                    //    {
-                    //        obj.NT_CameraCablesPic = path;
-                    //    }
-                    //    else if(path.Contains("4GCablesPic.jpg"))
-                    //    {
-                    //        obj.NT_FourG_cablesPic = path;
-                    //    }
-                    //    else if(path.Contains("GPSCablesPic.jpg"))
-                    //    {
-                    //        obj.NT_Gps_cablesPic = path;
-                    //    }
-                    //    else if(path.Contains("WifiCablesPic.jpg"))
-                    //    {
-                    //        obj.NT_WifiCablesPic = path;
-                    //    }
-                    //    else if(path.Contains("LabelingPic.jpg"))
-                    //    {
-                    //        obj.NT_LabelingPic = path;
-                    //    }
-                    //    else if(path.Contains("CableDressingPic.jpg"))
-                    //    {
-                    //        obj.NT_CableDressingPic = path;
-                    //    }
-
-                    //}
-                    
-
                     return View("SignOffDetails", obj);
                     
                 }
@@ -368,13 +309,15 @@ namespace sb_admin_2.Web.Controllers
             return View();
         }
 
-        
+
+
         [HttpPost]
         public ActionResult SignOffDetails(SignOffDetails data, string nextBtn)
         {
             //_context.NewTaxis.Add(newTaxiRecord6);
 
             NewTaxi obj = GetNewTaxi();
+            Preventive m_obj = GetMaintenanceTaxi();
 
             if (nextBtn != null)
             {
@@ -385,11 +328,15 @@ namespace sb_admin_2.Web.Controllers
                     obj.Is_NT_MccRepApproved = data.Is_NT_MccRepApproved;
 
                     _context.NewTaxis.Add(obj);
+                    _context.Preventives.Add(m_obj);
 
                     try
                     {
                         _context.SaveChanges();
                         RemoveNewTaxi();
+                        RemoveMaintenanceTaxi();
+
+
                     }
                     catch (DbEntityValidationException e)
                     {
@@ -419,6 +366,8 @@ namespace sb_admin_2.Web.Controllers
         }
 
 
+
+        [Authorize]
         public ActionResult MTaxiDetails()
         {
             return View();
@@ -445,10 +394,10 @@ namespace sb_admin_2.Web.Controllers
                     Session["dateAndTime"] = rgx.Replace(data.MT_Date.ToString(), "");
                     obj.typeOfMaintenance = "P";
 
-                    //NewTaxi rec = GetRecord(obj.MT_PlateNumber);
-                    //ViewBag.Message = rec; // Send the record using ViewBag
+                    rec = GetTaxiForMaintenance(obj.MT_PlateNumber, obj.typeOfMaintenance);
+                                        
 
-                    return View("MEquipmentDetails");
+                    return View("MEquipmentDetails", Session["Record"]);
                     
                 }
                 else
@@ -463,68 +412,11 @@ namespace sb_admin_2.Web.Controllers
 
 
 
-        public void GetTaxi(string prefix, bool isPlateNumber)
-        {
-            // get all the Taxi Plate Numbers and add them in the List.
-            foreach (var rec in _context.NewTaxis)
-            {
-                plateNumbers.Add(new MTaxiDetails
-                {
-                    Number = rec.NT_PlateNumber.ToString(),
-                });
-            }
-            
-        }
-
-
-
-        [HttpPost]
-        public JsonResult Indx(string Prefix)
-        {
-            isPlateNumberSearched = true;
-            GetTaxi(Prefix, isPlateNumberSearched);
-
-            //Searching records from list using LINQ query
-            var No = (from N in plateNumbers
-                        where N.Number.StartsWith(Prefix)
-                        select new { N.Number, });
-
-            return Json(No, JsonRequestBehavior.AllowGet);
-
-        }
-
-
-
-        //public NewTaxi GetRecord(string pNo)
-        //{
-        //    var record = _context.NewTaxis.Where(a => a.NT_PlateNumber == pNo).Single();
-
-        //    return record;
-        //}
-
-
-
+        
         [HttpPost]
         public ActionResult MEquipmentDetails(MEquipmentDetails data, string prevBtn, string nextBtn)
         {
             Preventive obj = GetMaintenanceTaxi();
-
-            if (prevBtn != null)
-            {
-                MTaxiDetails td = new MTaxiDetails
-                {
-                    Id = obj.Id,
-                    //MT_SiteName = obj.MT_SiteName,
-                    //MT_TaxiType = obj.MT_TaxiType,
-                    //MT_PlateNumber = obj.MT_PlateNumber,
-                    //MT_MdvrNo = obj.MT_MdvrNo,
-                    MT_Date = obj.MT_Date,
-                    //MT_Region = obj.MT_Region,
-                    typeOfMaintenance = obj.typeOfMaintenance
-                };
-
-                return View("MTaxiDetails", td);
-            }
 
             if (nextBtn != null)
             {
@@ -542,7 +434,7 @@ namespace sb_admin_2.Web.Controllers
                     obj.MT_Emmis = data.MT_Emmis;
                     obj.MT_CameraFovs = data.MT_CameraFovs;
 
-                    return View("MCableDetails");
+                    return View("MCableDetails", Session["Record"]);
                 }
                 else
                 {
@@ -574,7 +466,7 @@ namespace sb_admin_2.Web.Controllers
                     obj.MT_Labeling = data.MT_Labeling;
                     obj.MT_CableDressing = data.MT_CableDressing;
                     
-                    return View("MEquipmentFunctionsDetails");
+                    return View("MEquipmentFunctionsDetails", Session["Record"]);
                 }
                 else
                 {
@@ -593,24 +485,6 @@ namespace sb_admin_2.Web.Controllers
         {
             Preventive obj = GetMaintenanceTaxi();
 
-            if (prevBtn != null)
-            {
-                MCableDetails cd = new MCableDetails()
-                {
-                    MT_PowerConnections = obj.MT_PowerConnections,
-                    MT_PowerCables = obj.MT_PowerCables,
-                    MT_CameraCables = obj.MT_CameraCables,
-                    MT_FourG_cables = obj.MT_FourG_cables,
-                    MT_Gps_cables = obj.MT_Gps_cables,
-                    MT_WifiCables = obj.MT_WifiCables,
-                    MT_Labeling = obj.MT_Labeling,
-                    MT_CableDressing = obj.MT_CableDressing
-                
-                };
-
-                return View("MCableDetails", cd);
-            }
-
             if (nextBtn != null)
             {
                 if (ModelState.IsValid)
@@ -621,7 +495,7 @@ namespace sb_admin_2.Web.Controllers
                     obj.MT_Wifi = data.MT_Wifi;
                     obj.MT_VoltageTest = data.MT_VoltageTest;
                     
-                    return View("MHouseKeepingDetails");
+                    return View("MHouseKeepingDetails", Session["Record"]);
                 }
                 else
                 {
@@ -640,21 +514,6 @@ namespace sb_admin_2.Web.Controllers
         public ActionResult MHouseKeepingDetails(MHouseKeepingDetails data, string prevBtn, string nextBtn)
         {
             Preventive obj = GetMaintenanceTaxi();
-
-            if (prevBtn != null)
-            {
-                MEquipmentFunctionsDetails ed = new MEquipmentFunctionsDetails()
-                {
-                    MT_BroncoMdvrs = obj.MT_BroncoMdvrs,
-                    MT_Gps = obj.MT_Gps,
-                    MT_Four_g = obj.MT_Four_g,
-                    MT_Wifi = obj.MT_Wifi,
-                    MT_VoltageTest = obj.MT_VoltageTest
-                    
-                };
-
-                return View("MEquipmentFunctionsDetails", ed);
-            }
 
             if (nextBtn != null)
             {
@@ -852,8 +711,19 @@ namespace sb_admin_2.Web.Controllers
 
                     try
                     {
+                        // Remove the record from Maintenance table which had been added
+                        // during adding New Taxi. It's typeOfMaintenance is "N".
+                        var itemToRemove = _context.Preventives.SingleOrDefault(x => x.typeOfMaintenance == "N"
+                                            && x.MT_PlateNumber == obj.MT_PlateNumber);
+
+                        if (itemToRemove != null)
+                        {
+                            _context.Preventives.Remove(itemToRemove);
+                            //_context.SaveChanges();
+                        }
                         _context.SaveChanges();
                         RemoveMaintenanceTaxi();
+                        RemoveTaxiForMaintenance();
                     }
                     catch (DbEntityValidationException e)
                     {
@@ -885,6 +755,7 @@ namespace sb_admin_2.Web.Controllers
 
 
 
+        [Authorize]
         public ActionResult CTaxiDetails()
         {
             return View();
@@ -913,10 +784,10 @@ namespace sb_admin_2.Web.Controllers
                     Session["dateAndTime"] = rgx.Replace(data.MT_Date.ToString(), "");
                     obj.typeOfMaintenance = "C";
 
-                    //NewTaxi rec = GetRecord(obj.MT_PlateNumber);
-                    //ViewBag.Message = rec; // Send the record using ViewBag
 
-                    return View("CorrectiveMeasures", obj);
+                    rec = GetTaxiForMaintenance(obj.MT_PlateNumber, obj.typeOfMaintenance);
+
+                    return View("CorrectiveMeasures", Session["Record"]);
                 }
                 else
                 {
@@ -1012,6 +883,67 @@ namespace sb_admin_2.Web.Controllers
             return View("Thankyou");
         }
 
+
+
+
+
+        private Preventive GetTaxiForMaintenance(string pNumber, string to_maint)
+        {
+            // Get the records from Maintenance table based on plate number
+            // and return the latest record
+
+            var record = _context.Preventives
+                .Where(a => a.MT_PlateNumber == pNumber
+                && (a.typeOfMaintenance == to_maint || a.typeOfMaintenance == "N"))
+                .OrderByDescending(a => a.MT_Date)
+                .FirstOrDefault();
+
+            if (Session["Record"] == null)
+            {
+                Session["Record"] = record;
+            }
+
+
+            return (Preventive)Session["Record"]; 
+        }
+
+
+        private void RemoveTaxiForMaintenance()
+        {
+            Session.Remove("Record");
+        }
+
+
+
+        public void GetTaxi(string prefix, bool isPlateNumber)
+        {
+            // get all the Taxi Plate Numbers and add them in the List.
+            foreach (var rec in _context.NewTaxis)
+            {
+                plateNumbers.Add(new MTaxiDetails
+                {
+                    Number = rec.NT_PlateNumber.ToString(),
+                });
+            }
+
+        }
+
+
+
+        [HttpPost]
+        public JsonResult Indx(string Prefix)
+        {
+            isPlateNumberSearched = true;
+            GetTaxi(Prefix, isPlateNumberSearched);
+
+            //Searching records from list using LINQ query
+            var No = (from N in plateNumbers
+                      where N.Number.StartsWith(Prefix)
+                      select new { N.Number, });
+
+            return Json(No, JsonRequestBehavior.AllowGet);
+
+        }
 
 
 

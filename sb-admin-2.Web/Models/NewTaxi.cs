@@ -39,9 +39,9 @@ namespace sb_admin_2.Web.Models
         //public string NT_ExistingMDVR { get; set; }
 
 
-        [Required(ErrorMessage = "Please enter MDVR Serial No.")]
+        //[Required(ErrorMessage = "Please enter MDVR Serial No.")]
         //[MaxLength(10, ErrorMessage="Cannot be greater than 10")]
-        public string NT_MDVRSerialNo { get; set; }
+        //public string NT_MDVRSerialNo { get; set; }
 
 
         //[Required]

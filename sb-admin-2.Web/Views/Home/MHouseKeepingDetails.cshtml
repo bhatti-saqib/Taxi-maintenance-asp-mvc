@@ -10,17 +10,13 @@
 {
     <h2 style="color:orangered">Preventive Maintenance</h2>
 
-    <div class="row">
-        <div class="col-lg-12">
-            <div class="panel panel-default">
-                <div class="panel-heading">
-
-                </div>
-                <div class="panel-body">
-                    <div class="row">
-                        <div class="col-lg-6">
-                            <form role="form">
-                                <div class="form-group">
+    <div class="panel panel-default">
+        <div class="row">
+            <div class="col-lg-5 col-md-5 col-sm-5" style="padding-top:10px;">
+                <form class="form form-horizontal">
+                    <div class="control-group">
+                        <div class="controls">
+                            <div class="form-group" style="padding-left:10px;">
                                     @*<div class="form-inline">*@
                                     @Html.Label("Taxi Handover")
                                     @*@Html.EnumDropDownListFor(model => model.NT_TaxiHandover, "Select Taxi Handover", new { @class = "form-control" })*@
@@ -39,7 +35,7 @@
                                     @Html.ValidationMessageFor(m => m.MT_TaxiHandover, "", new { @class = "text-danger" })
                                     @*</div>*@
                                 </div>
-                                <div class="form-group">
+                                <div class="form-group" style="padding-left:10px;">
                                     @Html.Label("Existing Alarms")
                                     @*@Html.EnumDropDownListFor(model => model.NT_NoExistingAlarms, " ", new { @class = "form-control" })*@
                                     @Html.DropDownListFor(m => m.MT_NoExistingAlarms, new SelectList(
@@ -53,36 +49,77 @@
                                         2), "-- Please Select --", new { @class = "form-control" })
                                     @Html.ValidationMessageFor(m => m.MT_NoExistingAlarms, "", new { @class = "text-danger" })
                                 </div>
-                                <div class="form-group">
+                                <div class="form-group" style="padding-left:10px;">
                                     @Html.Label("Overall Taxi Feedback")
                                     @*@Html.EnumDropDownListFor(model => model.taxiFeedback,  // model field that will be used to store user selection
-                                            " ", // Text for the 1st default option
-                                            new { @class = "form-control" })*@
+                                    " ", // Text for the 1st default option
+                                    new { @class = "form-control" })*@
                                 </div>
-                                <div class="form-group">
+                                <div class="form-group" style="padding-left:10px;">
                                     @Html.TextAreaFor(x => x.MT_OverallFeedback, 10, 55, null)
                                 </div>
-
-
-                                @*@Html.ActionLink("Next", "AddNewTaxi6", "Home", null, new { @class = "btn btn-primary" })*@
-                                @*<input type="submit" class="btn btn-primary" name="prevBtn" value='Previous' />*@
-                                <input type="submit" class="btn btn-primary" name="nextBtn" value='Next' />
-                            </form>
+                            </div>
                         </div>
-                        <!-- /.col-lg-6 (nested) -->
-                        @*<div class="col-lg-6">
-
-                            </div>*@
-                        <!-- /.col-lg-6 (nested) -->
-                    </div>
-                    <!-- /.row (nested) -->
+                    @*@Html.ActionLink("Next", "AddNewTaxi6", "Home", null, new { @class = "btn btn-primary" })*@
+                    <input type="submit" class="btn btn-primary" name="nextBtn" value='Next' />
+                </form>
                 </div>
-                <!-- /.panel-body -->
+            <div class="col-lg-5 col-md-5 col-sm-5" style="padding-top:10px;">
+                <div class="panel panel-default">
+                    <div class="table-responsive">
+                        <table class="table table-bordered table-hover table-striped">
+                            <thead>
+                                <tr>
+                                    <th>Taxi Handover</th>
+                                    <th>Existing Alarms</th>
+                                    <th>Overall Taxi Feedback</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    @if (Model != null)
+                                    {
+                                        if (Model.MT_TaxiHandover != null)
+                                        {
+                                            <td>@Model.MT_TaxiHandover</td>
+                                        }
+                                        else
+                                        {
+                                            <td>N/A </td>
+                                        }
+                                        if (Model.MT_NoExistingAlarms != null)
+                                        {
+                                            <td>@Model.MT_NoExistingAlarms</td>
+                                        }
+                                        else
+                                        {
+                                            <td>N/A </td>
+                                        }
+                                        if (Model.MT_OverallFeedback != null)
+                                        {
+                                            <td>@Model.MT_OverallFeedback</td>
+                                        }
+                                        else
+                                        {
+                                            <td>N/A </td>
+                                        }
+                                                                                
+                                    }
+                                    @*else
+                                    {
+                                        <td>N/A</td>
+                                        <td>N/A</td>
+                                        <td>N/A</td>
+                                    }*@
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
             </div>
-            <!-- /.panel -->
         </div>
-        <!-- /.col-lg-12 -->
     </div>
-    <!-- /.row -->
 }
 

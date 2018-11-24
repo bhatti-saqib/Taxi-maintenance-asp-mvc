@@ -9,173 +9,251 @@
 @using (Html.BeginForm("MCableDetails", "Home"))
 {
     <h2 style="color:orangered">Preventive Maintenance</h2>
-    <div class="row">
-        <div class="col-lg-12">
-            <div class="panel panel-default">
-                <div class="panel-heading">
-
-                </div>
-                <div class="panel-body">
-                    <div class="row">
-                        <div class="col-lg-6">
-                            <form role="form">
-                                <div class="form-group">
-                                    @Html.Label("Power Connection")
-                                    @*@Html.EnumDropDownListFor(model => model.NT_PowerConnections, "Select Power Connection", new { @class = "form-control" })*@
-                                    @Html.DropDownListFor(m => m.MT_PowerConnections, new SelectList(
-                                        new List<Object>
-                                        {
-                                            new { value = "VeryGood", text = "Very Good"},
-                                            new { value = "Good", text = "Good"},
-                                            new { value = "Fair", text = "Fair"},
-                                            new { value = "Poor", text = "Poor"},
-                                            new { value = "VeryPoor", text = "Very Poor"},
-                                        },
-                                        "value",
-                                        "text",
-                                        2), "-- Please Select --", new { @class = "form-control" })
-                                    @Html.ValidationMessageFor(m => m.MT_PowerConnections, "", new { @class = "text-danger" })
-                                </div>
-                                <div class="form-group">
-                                    @Html.Label("Power Cables")
-                                    @*@Html.EnumDropDownListFor(model => model.NT_PowerCables, "Select Power Cables", new { @class = "form-control" })*@
-                                    @Html.DropDownListFor(m => m.MT_PowerCables, new SelectList(
-                                        new List<Object>
-                                        {
-                                            new { value = "VeryGood", text = "Very Good"},
-                                            new { value = "Good", text = "Good"},
-                                            new { value = "Fair", text = "Fair"},
-                                            new { value = "Poor", text = "Poor"},
-                                            new { value = "VeryPoor", text = "Very Poor"},
-                                        },
-                                        "value",
-                                        "text",
-                                        2), "-- Please Select --", new { @class = "form-control" })
-                                    @Html.ValidationMessageFor(m => m.MT_PowerCables, "", new { @class = "text-danger" })
-                                </div>
-                                <div class="form-group">
-                                    @Html.Label("Camera Cables")
-                                    @*@Html.EnumDropDownListFor(model => model.NT_CameraCables, "Select Camera Cables", new { @class = "form-control" })*@
-                                    @Html.DropDownListFor(m => m.MT_CameraCables, new SelectList(
-                                        new List<Object>
-                                        {
-                                            new { value = "VeryGood", text = "Very Good"},
-                                            new { value = "Good", text = "Good"},
-                                            new { value = "Fair", text = "Fair"},
-                                            new { value = "Poor", text = "Poor"},
-                                            new { value = "VeryPoor", text = "Very Poor"},
-                                        },
-                                        "value",
-                                        "text",
-                                        2), "-- Please Select --", new { @class = "form-control" })
-                                    @Html.ValidationMessageFor(m => m.MT_CameraCables, "", new { @class = "text-danger" })
-                                </div>
-                                <div class="form-group">
-                                    @Html.Label("4G Cables")
-                                    @*@Html.EnumDropDownListFor(model => model.NT_FourG_cables, "Select 4G Cables", new { @class = "form-control" })*@
-                                    @Html.DropDownListFor(m => m.MT_FourG_cables, new SelectList(
-                                        new List<Object>
-                                        {
-                                            new { value = "VeryGood", text = "Very Good"},
-                                            new { value = "Good", text = "Good"},
-                                            new { value = "Fair", text = "Fair"},
-                                            new { value = "Poor", text = "Poor"},
-                                            new { value = "VeryPoor", text = "Very Poor"},
-                                        },
-                                        "value",
-                                        "text",
-                                        2), "-- Please Select --", new { @class = "form-control" })
-                                    @Html.ValidationMessageFor(m => m.MT_FourG_cables, "", new { @class = "text-danger" })
-                                </div>
-                                <div class="form-group">
-                                    @Html.Label("GPS Cables")
-                                    @*@Html.EnumDropDownListFor(model => model.NT_Gps_cables, "Select GPS Cables", new { @class = "form-control" })*@
-                                    @Html.DropDownListFor(m => m.MT_Gps_cables, new SelectList(
-                                        new List<Object>
-                                        {
-                                            new { value = "VeryGood", text = "Very Good"},
-                                            new { value = "Good", text = "Good"},
-                                            new { value = "Fair", text = "Fair"},
-                                            new { value = "Poor", text = "Poor"},
-                                            new { value = "VeryPoor", text = "Very Poor"},
-                                        },
-                                        "value",
-                                        "text",
-                                        2), "-- Please Select --", new { @class = "form-control" })
-                                    @Html.ValidationMessageFor(m => m.MT_Gps_cables, "", new { @class = "text-danger" })
-                                </div>
-                                <div class="form-group">
-                                    @Html.Label("Wi-Fi Cables")
-                                    @*@Html.EnumDropDownListFor(model => model.NT_WifiCables, "Select Wi-Fi Cables", new { @class = "form-control" })*@
-                                    @Html.DropDownListFor(m => m.MT_WifiCables, new SelectList(
-                                        new List<Object>
-                                        {
-                                            new { value = "VeryGood", text = "Very Good"},
-                                            new { value = "Good", text = "Good"},
-                                            new { value = "Fair", text = "Fair"},
-                                            new { value = "Poor", text = "Poor"},
-                                            new { value = "VeryPoor", text = "Very Poor"},
-                                        },
-                                        "value",
-                                        "text",
-                                        2), "-- Please Select --", new { @class = "form-control" })
-                                    @Html.ValidationMessageFor(m => m.MT_WifiCables, "", new { @class = "text-danger" })
-                                </div>
-                                <div class="form-group">
-                                    @Html.Label("Labeling")
-                                    @*@Html.EnumDropDownListFor(model => model.NT_Labeling, "Select Labeling", new { @class = "form-control" })*@
-                                    @Html.DropDownListFor(m => m.MT_Labeling, new SelectList(
-                                        new List<Object>
-                                        {
-                                            new { value = "VeryGood", text = "Very Good"},
-                                            new { value = "Good", text = "Good"},
-                                            new { value = "Fair", text = "Fair"},
-                                            new { value = "Poor", text = "Poor"},
-                                            new { value = "VeryPoor", text = "Very Poor"},
-                                        },
-                                        "value",
-                                        "text",
-                                        2), "-- Please Select --", new { @class = "form-control" })
-                                    @Html.ValidationMessageFor(m => m.MT_Labeling, "", new { @class = "text-danger" })
-                                </div>
-                                <div class="form-group">
-                                    @Html.Label("Cable Dressing")
-                                    @*@Html.EnumDropDownListFor(model => model.NT_CableDressing, "Select Cable Dressing", new { @class = "form-control" })*@
-                                    @Html.DropDownListFor(m => m.MT_CableDressing, new SelectList(
-                                        new List<Object>
-                                        {
-                                            new { value = "VeryGood", text = "Very Good"},
-                                            new { value = "Good", text = "Good"},
-                                            new { value = "Fair", text = "Fair"},
-                                            new { value = "Poor", text = "Poor"},
-                                            new { value = "VeryPoor", text = "Very Poor"},
-                                        },
-                                        "value",
-                                        "text",
-                                        2), "-- Please Select --", new { @class = "form-control" })
-                                    @Html.ValidationMessageFor(m => m.MT_CableDressing, "", new { @class = "text-danger" })
-                                </div>
-
-                                @*@Html.ActionLink("Next", "AddNewTaxi4", "Home", null, new { @class = "btn btn-primary" })*@
-                                @*<input type="submit" class="btn btn-primary" name="prevBtn" value='Previous' />*@
-                                <input type="submit" class="btn btn-primary" name="nextBtn" value='Next' />
-                            </form>
+    
+    <div class="panel panel-default">
+        <div class="row">
+            <div class="col-lg-5 col-md-5 col-sm-5" style="padding-top:10px;">
+                <form class="form form-horizontal">
+                    <div class="control-group">
+                        <div class="controls">
+                            <div class="form-group" style="padding-left:10px;">
+                                @Html.Label("Power Connection")
+                                @*@Html.EnumDropDownListFor(model => model.NT_PowerConnections, "Select Power Connection", new { @class = "form-control" })*@
+                                @Html.DropDownListFor(m => m.MT_PowerConnections, new SelectList(
+                                    new List<Object>
+                                    {
+                                        new { value = "VeryGood", text = "Very Good"},
+                                        new { value = "Good", text = "Good"},
+                                        new { value = "Fair", text = "Fair"},
+                                        new { value = "Poor", text = "Poor"},
+                                        new { value = "VeryPoor", text = "Very Poor"},
+                                    },
+                                    "value",
+                                    "text",
+                                    2), "-- Please Select --", new { @class = "form-control" })
+                                @Html.ValidationMessageFor(m => m.MT_PowerConnections, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="form-group" style="padding-left:10px;">
+                                @Html.Label("Power Cables")
+                                @Html.DropDownListFor(m => m.MT_PowerCables, new SelectList(
+                                    new List<Object>
+                                    {
+                                        new { value = "VeryGood", text = "Very Good"},
+                                        new { value = "Good", text = "Good"},
+                                        new { value = "Fair", text = "Fair"},
+                                        new { value = "Poor", text = "Poor"},
+                                        new { value = "VeryPoor", text = "Very Poor"},
+                                    },
+                                    "value",
+                                    "text",
+                                    2), "-- Please Select --", new { @class = "form-control" })
+                                @Html.ValidationMessageFor(m => m.MT_PowerCables, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="form-group" style="padding-left:10px;">
+                                @Html.Label("Camera Cables")
+                                @*@Html.EnumDropDownListFor(model => model.NT_CameraCables, "Select Camera Cables", new { @class = "form-control" })*@
+                                @Html.DropDownListFor(m => m.MT_CameraCables, new SelectList(
+                                    new List<Object>
+                                    {
+                                        new { value = "VeryGood", text = "Very Good"},
+                                        new { value = "Good", text = "Good"},
+                                        new { value = "Fair", text = "Fair"},
+                                        new { value = "Poor", text = "Poor"},
+                                        new { value = "VeryPoor", text = "Very Poor"},
+                                    },
+                                    "value",
+                                    "text",
+                                    2), "-- Please Select --", new { @class = "form-control" })
+                                @Html.ValidationMessageFor(m => m.MT_CameraCables, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="form-group" style="padding-left:10px;">
+                                @Html.Label("4G Cables")
+                                @*@Html.EnumDropDownListFor(model => model.NT_FourG_cables, "Select 4G Cables", new { @class = "form-control" })*@
+                                @Html.DropDownListFor(m => m.MT_FourG_cables, new SelectList(
+                                    new List<Object>
+                                    {
+                                        new { value = "VeryGood", text = "Very Good"},
+                                        new { value = "Good", text = "Good"},
+                                        new { value = "Fair", text = "Fair"},
+                                        new { value = "Poor", text = "Poor"},
+                                        new { value = "VeryPoor", text = "Very Poor"},
+                                    },
+                                    "value",
+                                    "text",
+                                    2), "-- Please Select --", new { @class = "form-control" })
+                                @Html.ValidationMessageFor(m => m.MT_FourG_cables, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="form-group" style="padding-left:10px;">
+                                @Html.Label("GPS Cables")
+                                @*@Html.EnumDropDownListFor(model => model.NT_Gps_cables, "Select GPS Cables", new { @class = "form-control" })*@
+                                @Html.DropDownListFor(m => m.MT_Gps_cables, new SelectList(
+                                    new List<Object>
+                                    {
+                                        new { value = "VeryGood", text = "Very Good"},
+                                        new { value = "Good", text = "Good"},
+                                        new { value = "Fair", text = "Fair"},
+                                        new { value = "Poor", text = "Poor"},
+                                        new { value = "VeryPoor", text = "Very Poor"},
+                                    },
+                                    "value",
+                                    "text",
+                                    2), "-- Please Select --", new { @class = "form-control" })
+                                @Html.ValidationMessageFor(m => m.MT_Gps_cables, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="form-group" style="padding-left:10px;">
+                                @Html.Label("Wi-Fi Cables")
+                                @*@Html.EnumDropDownListFor(model => model.NT_WifiCables, "Select Wi-Fi Cables", new { @class = "form-control" })*@
+                                @Html.DropDownListFor(m => m.MT_WifiCables, new SelectList(
+                                    new List<Object>
+                                    {
+                                        new { value = "VeryGood", text = "Very Good"},
+                                        new { value = "Good", text = "Good"},
+                                        new { value = "Fair", text = "Fair"},
+                                        new { value = "Poor", text = "Poor"},
+                                        new { value = "VeryPoor", text = "Very Poor"},
+                                    },
+                                    "value",
+                                    "text",
+                                    2), "-- Please Select --", new { @class = "form-control" })
+                                @Html.ValidationMessageFor(m => m.MT_WifiCables, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="form-group" style="padding-left:10px;">
+                                @Html.Label("Labeling")
+                                @*@Html.EnumDropDownListFor(model => model.NT_Labeling, "Select Labeling", new { @class = "form-control" })*@
+                                @Html.DropDownListFor(m => m.MT_Labeling, new SelectList(
+                                    new List<Object>
+                                    {
+                                        new { value = "VeryGood", text = "Very Good"},
+                                        new { value = "Good", text = "Good"},
+                                        new { value = "Fair", text = "Fair"},
+                                        new { value = "Poor", text = "Poor"},
+                                        new { value = "VeryPoor", text = "Very Poor"},
+                                    },
+                                    "value",
+                                    "text",
+                                    2), "-- Please Select --", new { @class = "form-control" })
+                                @Html.ValidationMessageFor(m => m.MT_Labeling, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="form-group" style="padding-left:10px;">
+                                @Html.Label("Cable Dressing")
+                                @*@Html.EnumDropDownListFor(model => model.NT_CableDressing, "Select Cable Dressing", new { @class = "form-control" })*@
+                                @Html.DropDownListFor(m => m.MT_CableDressing, new SelectList(
+                                    new List<Object>
+                                    {
+                                        new { value = "VeryGood", text = "Very Good"},
+                                        new { value = "Good", text = "Good"},
+                                        new { value = "Fair", text = "Fair"},
+                                        new { value = "Poor", text = "Poor"},
+                                        new { value = "VeryPoor", text = "Very Poor"},
+                                    },
+                                    "value",
+                                    "text",
+                                    2), "-- Please Select --", new { @class = "form-control" })
+                                @Html.ValidationMessageFor(m => m.MT_CableDressing, "", new { @class = "text-danger" })
+                            </div>
                         </div>
-                        <!-- /.col-lg-6 (nested) -->
-                        @*<div class="col-lg-6">
-
-                            </div>*@
-                        <!-- /.col-lg-6 (nested) -->
                     </div>
-                    <!-- /.row (nested) -->
-                </div>
-                <!-- /.panel-body -->
+                    @*@Html.ActionLink("Next", "AddNewTaxi4", "Home", null, new { @class = "btn btn-primary" })*@
+                    <input type="submit" class="btn btn-primary" name="nextBtn" value='Next' />
+            </form>
             </div>
-            <!-- /.panel -->
+            <div class="col-lg-5 col-md-5 col-sm-5" style="padding-top:10px;">
+                <div class="panel panel-default">
+                    <div class="table-responsive">
+                        <table class="table table-bordered table-hover table-striped">
+                            <thead>
+                                <tr>
+                                    <th>Power Connection</th>
+                                    <th>Power Cables</th>
+                                    <th>Camera Cables</th>
+                                    <th>4G Cables</th>
+                                    <th>Wi-Fi Cables</th>
+                                    <th>Labeling</th>
+                                    <th>Cable Dressing</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    @if (Model != null)
+                                    {
+                                        if (Model.MT_PowerConnections != null)
+                                        {
+                                            <td>@Model.MT_PowerConnections</td>
+                                        }
+                                        else
+                                        {
+                                            <td>N/A </td>
+                                        }
+                                        if (Model.MT_PowerCables != null)
+                                        {
+                                            <td>@Model.MT_PowerCables</td>
+                                        }
+                                        else
+                                        {
+                                            <td>N/A </td>
+                                        }
+                                        if (Model.MT_CameraCables != null)
+                                        {
+                                            <td>@Model.MT_CameraCables</td>
+                                        }
+                                        else
+                                        {
+                                            <td>N/A </td>
+                                        }
+                                        if (Model.MT_FourG_cables != null)
+                                        {
+                                            <td>@Model.MT_FourG_cables</td>
+                                        }
+                                        else
+                                        {
+                                            <td>N/A </td>
+                                        }
+                                        if (Model.MT_WifiCables != null)
+                                        {
+                                            <td>@Model.MT_WifiCables</td>
+                                        }
+                                        else
+                                        {
+                                            <td>N/A </td>
+                                        }
+                                        if (Model.MT_Labeling != null)
+                                        {
+                                            <td>@Model.MT_Labeling</td>
+                                        }
+                                        else
+                                        {
+                                            <td>N/A </td>
+                                        }
+                                        if (Model.MT_CableDressing != null)
+                                        {
+                                            <td>@Model.MT_CableDressing</td>
+                                        }
+                                        else
+                                        {
+                                            <td>N/A </td>
+                                        }
+                                                                                                                        
+                                    }
+                                    @*else
+        {
+            <td>N/A</td>
+            <td>N/A</td>
+            <td>N/A</td>
+            <td>N/A</td>
+            <td>N/A</td>
+            <td>N/A</td>
+            <td>N/A</td>
+        }*@
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
         </div>
-        <!-- /.col-lg-12 -->
-    </div>
-    <!-- /.row -->
+     </div>        
+                
 }
 
 

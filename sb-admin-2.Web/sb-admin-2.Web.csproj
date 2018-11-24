@@ -170,6 +170,10 @@
     <Compile Include="Migrations\201810270625154_ChangedNamesInPreventiveTable.Designer.cs">
       <DependentUpon>201810270625154_ChangedNamesInPreventiveTable.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201811120805285_MdvrSerialNoRemovedFromNewTaxi.cs" />
+    <Compile Include="Migrations\201811120805285_MdvrSerialNoRemovedFromNewTaxi.Designer.cs">
+      <DependentUpon>201811120805285_MdvrSerialNoRemovedFromNewTaxi.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\CableDetails.cs" />
     <Compile Include="Models\CommonViewModel.cs" />
@@ -1243,6 +1247,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201810270625154_ChangedNamesInPreventiveTable.resx">
       <DependentUpon>201810270625154_ChangedNamesInPreventiveTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201811120805285_MdvrSerialNoRemovedFromNewTaxi.resx">
+      <DependentUpon>201811120805285_MdvrSerialNoRemovedFromNewTaxi.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

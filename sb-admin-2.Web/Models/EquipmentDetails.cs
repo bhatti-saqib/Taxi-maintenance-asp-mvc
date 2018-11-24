@@ -11,8 +11,8 @@ namespace sb_admin_2.Web.Models
         //public string NT_ExistingMDVR { get; set; }
 
 
-        [Required(ErrorMessage = "Please enter MDVR Serial No.")]
-        public string NT_MDVRSerialNo { get; set; }
+        //[Required(ErrorMessage = "Please enter MDVR Serial No.")]
+        //public string NT_MDVRSerialNo { get; set; }
 
 
         //[Required(ErrorMessage = "-- Please Select --")]

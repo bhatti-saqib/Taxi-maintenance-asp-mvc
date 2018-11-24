@@ -67,8 +67,8 @@
                 '<td>' + data.region + '</td>' +
                 '</tr>' +
                 '<tr>' +
-                '<td class="title">MDVR Serial No:</td>' +
-                '<td>' + data.mdvr_serialNo + '</td>' +
+                //'<td class="title">MDVR Serial No:</td>' +
+                //'<td>' + data.mdvr_serialNo + '</td>' +
                 '<td class="title">Camera Serial No:</td>' +
                 '<td>' + data.camera_serialNo + '</td>' +
                 @*'<td class="title">MDVR Serial No Pic :</td>' +
@@ -202,7 +202,7 @@
             var data = [
                 {
                     "site_name": "@Model.NT_SiteName", "taxi_type": "@Model.NT_TaxiType", "taxi_plateNo": "@Model.NT_PlateNumber", "date": "@Model.NT_Date",
-                    "mdvr_no": "@Model.NT_MdvrNo", "region": "@Model.NT_Region", "mdvr_serialNo": "@Model.NT_MDVRSerialNo", "camera_serialNo": "@Model.NT_CameraSerialNo",
+                    "mdvr_no": "@Model.NT_MdvrNo", "region": "@Model.NT_Region", @*"mdvr_serialNo": "@Model.NT_MDVRSerialNo",*@ "camera_serialNo": "@Model.NT_CameraSerialNo",
                     "ups_serialNo": "@Model.NT_UpsSerialNo", "hdd_serialNo": "@Model.NT_HDDSerialNo", @*"sim_card": "@Model.NT_Sims",*@ "emmi": "@Model.NT_Emmis",
                     @*"camera_fov": "@Model.NT_CameraFovs",*@ @*"power_connection": "@Model.NT_PowerConnections",*@ @*"power_cables": "@Model.NT_PowerCables",*@
                     @*"camera_cable": "@Model.NT_CameraCables",*@ @*"fourG_cable": "@Model.NT_FourG_cables",*@ @*"gps_cable": "@Model.NT_Gps_cables",*@
