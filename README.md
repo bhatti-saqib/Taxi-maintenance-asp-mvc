@@ -7,7 +7,10 @@ Web application to automate manual process of maintaining company taxi's using M
 - Dashboard with Live data.
 - Add New Taxi records.
 - Search Taxi records.
-- Add 2 types of Maintenance Record (Corrective ).
+- Add 2 types of Maintenance Record (Corrective & Preventive).
+- Capture pictures through device camera
+- Search Taxi Records.
+- Active Directory integration.
 
 ### Screenshot
 
