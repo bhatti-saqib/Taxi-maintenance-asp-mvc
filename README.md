@@ -14,7 +14,7 @@ Web application to automate manual process of maintaining company taxi's using M
 
 ### Screenshot
 
-![dbyll-screenshot](sb-admin-2.Web/Content/images/sb-admin-2.jpg)
+<img width="926" alt="dashboard" src="https://user-images.githubusercontent.com/6277495/49084348-aabf8980-f268-11e8-9c7f-e66d3d78ca01.PNG">
 
 ### License
 - [MIT](http://opensource.org/licenses/MIT)
