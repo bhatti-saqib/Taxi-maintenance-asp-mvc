@@ -1,12 +1,16 @@
-sb-admin 2 Bootstrap template for ASP MVC
+Automation of Manual process of Maintaining Cars
 =====
 
-sb-admin 2 Bootstrap template with ASP MVC 5
+Web application to automate manual process of maintaining company taxi's using MVC, Entity Framework and Web Pages w/ Razor.
 
 ### Features
-- sb-admin 2 bootstrap template.
-- ASP MVC 5.
-- Dynamic Navbar.
+- Dashboard with Live data.
+- Add New Taxi records.
+- Search Taxi records.
+- Add 2 types of Maintenance Record (Corrective & Preventive).
+- Capture pictures through device camera
+- Search Taxi Records.
+- Active Directory integration.
 
 ### Screenshot
 
