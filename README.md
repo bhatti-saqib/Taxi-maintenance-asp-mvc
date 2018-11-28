@@ -14,7 +14,7 @@ Web application to automate manual process of maintaining company taxi's using M
 
 ### How to install
 - Download the latest stable release from the download tab
-- 
+- No need to give any username & password.
 
 ### Screenshot
 
