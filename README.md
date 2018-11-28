@@ -13,7 +13,8 @@ Web application to automate manual process of maintaining company taxi's using M
 - Active Directory integration.
 
 ### How to install
-- Download the latest stable release from the download tab and unzip it to your web folder
+- Download the latest stable release from the download tab
+- 
 
 ### Screenshot
 
