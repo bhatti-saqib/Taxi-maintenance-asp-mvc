@@ -14,6 +14,9 @@ Web application to automate manual process of maintaining company taxi's using M
 
 ### Screenshot
 
+### How to install
+- Download the latest stable release from the download tab and unzip it to your web folder
+
 <img width="926" alt="dashboard" src="https://user-images.githubusercontent.com/6277495/49084348-aabf8980-f268-11e8-9c7f-e66d3d78ca01.PNG">
 
 ### Authors
