@@ -16,6 +16,11 @@ Web application to automate manual process of maintaining company taxi's using M
 - Download the latest stable release from the download tab
 - No need to give any username & password.
 
+### System Requirements
+- ASP.NET 4.5+
+- MS SQL Server 2008 Express (or higher)
+- Visual C++ Redistributable for Visual Studio 2017
+
 ### Screenshot
 
 <img width="926" alt="dashboard" src="https://user-images.githubusercontent.com/6277495/49084348-aabf8980-f268-11e8-9c7f-e66d3d78ca01.PNG">
