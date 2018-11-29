@@ -37,15 +37,18 @@ namespace sb_admin_2.Web.Controllers
         {
             userName = @User.Identity.Name;
 
-            if (userName.Length < 1) { 
-                return RedirectToAction("Index", "Login");
+            // Comment the following if statement to bypass the login
+            //if (userName.Length < 1) { 
+            //    return RedirectToAction("Index", "Login");
                 
-            }
-            else
-            {
-                return View();
-            }
-            //return View();  
+            //}
+            //else
+            //{
+            //    return View();
+            //}
+            ///////////////////////////////////////////
+            
+            return View();  
         }
 
 
@@ -86,7 +89,7 @@ namespace sb_admin_2.Web.Controllers
 
 
         
-        [Authorize]
+        //[Authorize]
         public ActionResult TaxiDetails()
         {
             return View();
@@ -367,7 +370,7 @@ namespace sb_admin_2.Web.Controllers
 
 
 
-        [Authorize]
+        //[Authorize]
         public ActionResult MTaxiDetails()
         {
             return View();
@@ -755,7 +758,7 @@ namespace sb_admin_2.Web.Controllers
 
 
 
-        [Authorize]
+        //[Authorize]
         public ActionResult CTaxiDetails()
         {
             return View();
@@ -979,7 +982,7 @@ namespace sb_admin_2.Web.Controllers
 
 
 
-        [Authorize]
+        //[Authorize]
         public ActionResult SearchTaxi()
         {
             return View("Tables", _context.NewTaxis.ToList());
